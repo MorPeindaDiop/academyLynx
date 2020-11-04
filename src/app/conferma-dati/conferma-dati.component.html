@@ -1,1 +1,230 @@
-<p>conferma-dati works!</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+
+
+    <!--FORM NOME & COGNOME --------------------------------------------->
+    <div class="container">
+      <div class="row">
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"><b>Nome:</b></label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+          </div>
+        </div>
+
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"><b>Cognome:</b></label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Cognome">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <!--FORM SENIORITY & SKILLS --------------------------------------------->
+    <div class="container">
+      <div class="row">
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"><b>Skills:</b></label>
+            <div class="row">
+              <div class="col-md-12">
+
+                <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                  <option value="" disabled selected>Choose your country</option>
+                  <option value="1">USA</option>
+                  <option value="2">Germany</option>
+                  <option value="3">France</option>
+                  <option value="4">Poland</option>
+                  <option value="5">Japan</option>
+                </select>
+                <label class="mdb-main-label">Label example</label>
+                <button class="btn-save btn btn-primary btn-sm">Save</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"><b>Seniority:</b></label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                Junior developer
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+              <label class="form-check-label" for="exampleRadios2">
+                Mid-level developer
+              </label>
+            </div>
+            <div class="form-check disabled">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+              <label class="form-check-label" for="exampleRadios2">
+                Senior developer
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!--TABELLA INFO --------------------------------------------->
+    <div class="container">
+      <div class="row">
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+          </div>
+        </div>
+
+
+        <div class="col" style="text-align: left;">
+          <div class="form-group">
+            <div>
+              <label for="exampleFormControlInput1"><b>Legenda:</b></label>
+            </div>
+            <label for="exampleFormControlInput1"><b>Junior developer:</b></label>
+            <p>
+              Junior developers are developers who are just starting out in their careers and may not have hands-on experience in web or software development.
+              They're still learning how to code and may need direct instruction or guidance from their team. Junior developers are expected to follow instructions,
+              identify issues and ask for help when they face an issue above their experience level.
+            </p>
+
+            <label for="exampleFormControlInput1"><b>Mid-level developer:</b></label>
+            <p>
+              Mid-level developers have the skills and experience to work independently and have real-world experience in completing or managing projects.
+              They have a strong knowledge of best practices and have done enough coding to quickly analyze data and recognize the best solution.
+            </p>
+
+            <label for="exampleFormControlInput1"><b>Senior-level developer:</b></label>
+            <p>
+              Senior developers make strategic decisions about how software should be designed and provide expert-level solutions to challenging issues.
+              They can make significant changes to a program's architecture and teach other developers how to be more efficient and consistent. Senior developers have strong
+              communication skills and are able to work quickly, document their updates and explain the reasoning for how they execute different software functions.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <!--TASTO CONFERMA --------------------------------------------->
+    <div class="container">
+      <div class="row">
+
+        <div class="col" style="text-align: center;">
+          <div class="form-group">
+          </div>
+        </div>
+
+        <div class="col" style="text-align: center;">
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-lg" id="mi-modal" data-toggle="modal" data-target="#exampleModal">Conferma
+            </button>
+
+
+            <!-- BANNER CONFERMA DATI ------------------------------------------------>
+            <!--
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">DATI SALVATI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Il test avrà inizio appena farai click sul tasto avanti!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" routerLink="/questionario">AVANTI</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+
+          </div>
+        </div>
+
+        <div class="col" style="text-align: center;">
+          <div class="form-group">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+    <!-- SCRIPT PER JS ----------------------------->
+
+    <script>
+      var modalConfirm = function(callback){
+
+        $("#btn-confirm").on("click", function(){
+          $("#mi-modal").modal('show');
+        });
+
+        $("#modal-btn-si").on("click", function(){
+          callback(true);
+          $("#mi-modal").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function(){
+          callback(false);
+          $("#mi-modal").modal('hide');
+        });
+      };
+
+      modalConfirm(function(confirm){
+        if(confirm){
+          //Acciones si el usuario confirma
+          $("#result").html("CONFIRMADO");
+        }else{
+          //Acciones si el usuario no confirma
+          $("#result").html("NO CONFIRMADO");
+        }
+      });
+    </script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+

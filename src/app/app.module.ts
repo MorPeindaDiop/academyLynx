@@ -8,6 +8,7 @@ import { RegistrazioneComponent } from './registrazione/registrazione.component'
 import { ConfermaDatiComponent } from './conferma-dati/conferma-dati.component';
 import { QuestionarioComponent } from './questionario/questionario.component';
 import { RisultatoComponent } from './risultato/risultato.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RisultatoComponent } from './risultato/risultato.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
