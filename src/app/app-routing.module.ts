@@ -7,6 +7,7 @@ import { QuestionarioComponent } from './questionario/questionario.component';
 const routes: Routes = [
   {path:'questionario', component : QuestionarioComponent},
   {path:'form', component : ConfermaDatiComponent},
+  {path: '', redirectTo: '/form', pathMatch: 'full' },
 ];
 
 @NgModule({
