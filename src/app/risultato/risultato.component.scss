@@ -1,0 +1,24 @@
+.contorno{
+  border: 5px solid black ;
+  margin: auto;
+  width: 60%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+
+.element{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* just aesthetics */
+
+
+.element{
+  position:absolute;
+  background: rgb(248, 249, 250);
+  width: 50vw; height: 50vh;
+}
