@@ -14,6 +14,9 @@
 
 
 
+    
+
+
     <!--FORM NOME & COGNOME --------------------------------------------->
     <div class="container">
       <div class="row">
@@ -37,31 +40,23 @@
     </div>
 
     <br>
+    
 
     <!--FORM SENIORITY & SKILLS --------------------------------------------->
     <div class="container">
       <div class="row">
 
         <div class="col" style="text-align: left;">
-          <div class="form-group">
-            <label for="exampleFormControlInput1"><b>Skills:</b></label>
-            <div class="row">
-              <div class="col-md-12">
-
-                <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
-                  <option value="" disabled selected>Choose your country</option>
-                  <option value="1">USA</option>
-                  <option value="2">Germany</option>
-                  <option value="3">France</option>
-                  <option value="4">Poland</option>
-                  <option value="5">Japan</option>
-                </select>
-                <label class="mdb-main-label">Label example</label>
-                <button class="btn-save btn btn-primary btn-sm">Save</button>
-
-              </div>
-            </div>
+          <div  *ngIf="isDropdown">
+            <ng-multiselect-dropdown [placeholder]="'Select skills'"
+            [settings]="dropdownSettings"
+              [data]="dropdownList"
+              [(ngModel)]="selectedItems"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
           </div>
+        
         </div>
 
 
