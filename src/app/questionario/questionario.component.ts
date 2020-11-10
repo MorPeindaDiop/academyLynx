@@ -10,14 +10,14 @@ export class QuestionarioComponent implements OnInit {
 
   dropdownList = [];
   selectedItems = [];
-  dropdownSettings:IDropdownSettings;
-  isDropdown=false;
+  dropdownSettings: IDropdownSettings;
+  isDropdown = false;
 
   constructor() { }
 
   ngOnInit(): void {
 
-    this.isDropdown=true;
+    this.isDropdown = true;
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Mumbai' },
@@ -46,6 +46,4 @@ export class QuestionarioComponent implements OnInit {
   onSelectAll(items: any) {
     console.log(items);
   }
-
-
 }
