@@ -9,13 +9,13 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class ConfermaDatiComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
-  dropdownSettings:IDropdownSettings;
-  isDropdown=false;
+  dropdownSettings: IDropdownSettings;
+  isDropdown = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.isDropdown=true;
+    this.isDropdown = true;
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Roma' },
@@ -24,7 +24,7 @@ export class ConfermaDatiComponent implements OnInit {
       { item_id: 4, item_text: 'Bologna' },
       { item_id: 5, item_text: 'Lecco' }
     ];
-    
+
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',

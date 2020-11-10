@@ -1,24 +1,39 @@
-.contorno{
-  border: 5px solid black ;
+.contorno {
+  border: 5px solid black;
   margin: auto;
-  width: 60%;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-
-
-.element{
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  //width: 60%;
+  //margin-top: 0;
 }
 
 /* just aesthetics */
+.titolo {
+  margin-top: 10%;
+}
 
+.container {
 
-.element{
-  position:absolute;
+  margin-bottom: 1%;
+}
+
+.element {
+
+  //margin-top: 5%;
+  //margin-bottom: 13%;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  height: 80%;
   background: rgb(248, 249, 250);
-  width: 50vw; height: 50vh;
+}
+
+.spazio {
+  margin-bottom: 5%;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 10rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
