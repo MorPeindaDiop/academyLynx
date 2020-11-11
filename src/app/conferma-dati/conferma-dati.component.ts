@@ -25,7 +25,7 @@ export class ConfermaDatiComponent implements OnInit {
   ngOnInit(): void {
     this.isDropdown = true;
     this.skill=this.http.retrieveGetCall< CandidateAnswer[] >("candidateAnswer/findAll");
-    this.skill.pipe(switchMap( (skills) => skills.forEach(function (skill) { this.candidateAnswer.push(skill); }) ));
+    this.skill.pipe(switchMap( async (skills) => skills.forEach(function (skill) { this.candidateAnswer.push(skill); }) ));
     this.dropdownList = [
       { item_id: 1, item_text: 'Roma' },
       { item_id: 2, item_text: 'Milano' },
