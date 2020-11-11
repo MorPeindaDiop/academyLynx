@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Observable } from 'rxjs';
+import { HttpCommunicationsService } from '../core/HttpCommunications/http-communications.service.spec';
+import { CandidateAnswer } from '../core/model/CandidateAnswer';
+
 
 @Component({
   selector: 'app-conferma-dati',
@@ -11,11 +16,12 @@ export class ConfermaDatiComponent implements OnInit {
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
   isDropdown = false;
-
-  constructor() { }
+  skill : Observable < CandidateAnswer[] >;
+  constructor(private http: HttpCommunicationsService) { }
 
   ngOnInit(): void {
     this.isDropdown = true;
+    this.skill=this.http.retrieveGetCall< CandidateAnswer[] >("candidateAnswer/findAll");
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Roma' },

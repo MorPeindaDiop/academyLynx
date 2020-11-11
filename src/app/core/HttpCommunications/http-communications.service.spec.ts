@@ -7,8 +7,8 @@ import {HttpClient, HttpEvent, HttpEventType, HttpParams, HttpRequest, HttpRespo
 )
 export class HttpCommunicationsService {
 
-  private host = 'http://localhost:8080/Lynx';
-
+  private host = 'http://localhost:8090/lynx/rest/';
+  
   constructor(private httpClient: HttpClient) {
   }
 

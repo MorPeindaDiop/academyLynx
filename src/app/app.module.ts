@@ -9,6 +9,7 @@ import { RisultatoComponent } from './risultato/risultato.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
