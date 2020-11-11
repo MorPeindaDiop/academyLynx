@@ -9,7 +9,9 @@ import { HttpCommunicationsService } from './HttpCommunications/http-communicati
 
 @NgModule({
   declarations: [],
-  providers: [HttpCommunicationsService],
+  providers: [
+    HttpCommunicationsService
+  ],
   imports: [
     HttpClientModule,
   ]

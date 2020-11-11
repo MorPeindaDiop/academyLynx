@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { HttpCommunicationsService } from '../core/HttpCommunications/http-communications.service';
-
-import { CandidateAnswer } from '../core/model/CandidateAnswer';
+import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
+import { CandidateAnswer } from 'src/app/core/model/CandidateAnswer';
 
 
 @Component({
@@ -26,6 +24,8 @@ export class ConfermaDatiComponent implements OnInit {
     this.isDropdown = true;
     this.skill=this.http.retrieveGetCall< CandidateAnswer[] >("candidateAnswer/findAll");
     this.skill.pipe(switchMap( async (skills) => skills.forEach(function (skill) { this.candidateAnswer.push(skill); }) ));
+    //.subscribe(todo => { this.todo = todo; })
+    
     this.dropdownList = [
       { item_id: 1, item_text: 'Roma' },
       { item_id: 2, item_text: 'Milano' },
