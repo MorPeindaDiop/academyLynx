@@ -40,7 +40,7 @@ export class ConfermaDatiComponent implements OnInit {
     this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
     console.log(this.senioritys);
     this.senioritys.pipe().subscribe((seniority) =>
-      seniority.result.forEach((item)=> this.dropdownListSeniority.push({ item_id: item.id, item_text: item.description })),
+      seniority.result.forEach((item)=> this.dropdownListSeniority.push(item)),
       );
 
     console.log(this.dropdownListSeniority);
