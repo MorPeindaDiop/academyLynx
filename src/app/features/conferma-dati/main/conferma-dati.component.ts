@@ -14,6 +14,7 @@ import { Skill } from 'src/app/core/model/Skill';
   styleUrls: ['./conferma-dati.component.scss']
 })
 export class ConfermaDatiComponent implements OnInit {
+  skill1 =[];
   dropdownListSkill = [];
   dropdownListSeniority = [];
   selectedItems = [];
@@ -33,10 +34,17 @@ export class ConfermaDatiComponent implements OnInit {
     console.log(this.skills);
     this.skills.pipe().subscribe((skill) =>
       skill.result.forEach((item)=> this.dropdownListSkill.push({ item_id: item.id, item_text: item.description })),
+      
       );
-
+    for(let i=0; i<this.dropdownListSkill.length;i+3){
+      this.skill1.push(this.dropdownListSkill[i]);
+      console.log(this.skill1[i]);
+    }
+    //console.log("prova"+this.skill1);
     console.log(this.dropdownListSkill);
       
+
+
     this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
     console.log(this.senioritys);
     this.senioritys.pipe().subscribe((seniority) =>
