@@ -64,10 +64,32 @@
               <td>
                 <b>Frontend:</b>
               </td>
+              <td>
+                <b>Frontend:</b>
+              </td>
+              <td>
+                <b>Frontend:</b>
+              </td>
             </tr>
             <tr>
-              <td *ngFor="let skill of dropdownListSkill" class="form-check">
-                <input class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.item_text}}
+              <td class="form-check">
+                <ng-container *ngFor="let skill of dropdownListSkill">
+                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
+                  <br>
+                </ng-container>
+              </td>
+              <td class="form-check">
+                <ng-container *ngFor="let skill of dropdownListSkill; let j = index; j+3">
+                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
+                  <br>
+                </ng-container>
+              </td>
+              <td class="form-check">
+                <ng-container *ngFor="let skill of dropdownListSkill; let k = index; k+4">
+
+                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
+                  <br>
+                </ng-container>
               </td>
             </tr>
           </table>

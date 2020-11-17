@@ -23,6 +23,10 @@ export class ConfermaDatiComponent implements OnInit {
   dbSkill = [];
   senioritys : Observable < Response > ;
   dbSeniority = [];
+
+  inizio: number = 0;
+  fine: number = 3;
+
   constructor(private http: HttpCommunicationsService) { }
 
   ngOnInit(): void {
@@ -32,7 +36,7 @@ export class ConfermaDatiComponent implements OnInit {
     this.skills=this.http.retrieveGetCall< Response >("skill/findAll");
     console.log(this.skills);
     this.skills.pipe().subscribe((skill) =>
-      skill.result.forEach((item)=> this.dropdownListSkill.push({ item_id: item.id, item_text: item.description })),
+      skill.result.forEach((item)=> this.dropdownListSkill.push(item)),
       );
 
     console.log(this.dropdownListSkill);
@@ -45,6 +49,21 @@ export class ConfermaDatiComponent implements OnInit {
 
     console.log(this.dropdownListSeniority);
     
+  }
+
+  identify1(index){
+    if (index%3 == 0 ) {
+      this.inizio = this.inizio+3;
+      this.fine = this.fine+3;
+    }
+  }
+
+  identify2(index){
+    return index = index + 2;
+  }
+
+  identify3(index){
+    return index = index + 4;
   }
   
   // getPost() {
