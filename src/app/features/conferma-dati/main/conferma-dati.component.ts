@@ -14,6 +14,7 @@ import { Skill } from 'src/app/core/model/Skill';
   styleUrls: ['./conferma-dati.component.scss']
 })
 export class ConfermaDatiComponent implements OnInit {
+  skill1 =[];
   dropdownListSkill = [];
   dropdownListSeniority = [];
   selectedItems = [];
@@ -27,73 +28,67 @@ export class ConfermaDatiComponent implements OnInit {
   inizio: number = 0;
   fine: number = 3;
 
-  constructor(private http: HttpCommunicationsService) { }
+  constructor(private http: HttpCommunicationsService) { 
 
-  ngOnInit(): void {
-   // this.isDropdown = true;
+  }
+
+  async ngOnInit() {
+
   
-
-    this.skills=this.http.retrieveGetCall< Response >("skill/findAll");
-    console.log(this.skills);
-    this.skills.pipe().subscribe((skill) =>
-      skill.result.forEach((item)=> this.dropdownListSkill.push(item)),
-      );
-
+    console.log("oninit");
+    console.log("this.dropdownListSkill.length: ");
+    console.log(this.dropdownListSkill.length);
     console.log(this.dropdownListSkill);
-      
-    this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
-    console.log(this.senioritys);
-    this.senioritys.pipe().subscribe((seniority) =>
-      seniority.result.forEach((item)=> this.dropdownListSeniority.push(item)),
-      );
 
-    console.log(this.dropdownListSeniority);
+    await this.richiesta();
     
-  }
-
-  identify1(index){
-    if (index%3 == 0 ) {
-      this.inizio = this.inizio+3;
-      this.fine = this.fine+3;
+    // for(let i=0; i<this.dropdownListSkill.length;i+3){
+      //   this.skill1.push([this.dropdownListSkill[i],this.dropdownListSkill[i+1]]);
+      //   console.log("this.skill1 nel for");
+      //   console.log(this.skill1);
+      // }
+      
+      console.log("richiamo await");
+      await this.cicloFor();
+      
+      console.log("this.skill1 nell'oninit");
+      console.log(this.skill1);
+      
+      
     }
-  }
 
-  identify2(index){
-    return index = index + 2;
-  }
+    richiesta() {
 
-  identify3(index){
-    return index = index + 4;
+      this.skills=this.http.retrieveGetCall< Response >("skill/findAll");
+      this.skills.pipe().subscribe((skill) =>
+        skill.result.forEach((item)=> this.dropdownListSkill.push(item))
+        );
+      console.log("this.dropdownListSkill nel costruttore");
+      console.log(this.dropdownListSkill);
+  
+      this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
+      this.senioritys.pipe().subscribe((seniority) =>
+        seniority.result.forEach((item)=> this.dropdownListSeniority.push(item)),
+        );
+      console.log("this.dropdownListSeniority nel costruttore");
+      console.log(this.dropdownListSeniority);
+  
+    }
+    
+    cicloFor() : Promise<any> {
+      return new Promise((resolve) => {
+        console.log("ciclo for");
+        for(let i=0; i<this.dropdownListSkill.length;i+3){
+          this.skill1.push([this.dropdownListSkill[i],this.dropdownListSkill[i+1]]);
+          console.log("ciao");
+          console.log(this.skill1);
+        }
+        console.log("fine ciclo for");
+          resolve(this.skill1)
+        }
+      );
+    
   }
   
-  // getPost() {
-  //   this.skills=this.http.retrieveGetCall< Response >("skill/findAll");
-  //   console.log(this.skills);
-  //   this.skills.pipe().subscribe((skill) =>
-  //     skill.result.forEach((item)=> this.dbSkill.push(item)),
-      
-  //     );
 
-  //     console.log(this.dbSkill);
-
-      
-  //   // this.skills.pipe(switchMap( async (skills) => skills.forEach((skill) => this.candidateAnswer.push("ciao") )));
-  //   // console.log(this.candidateAnswer);
-  //   //.subscribe(todo => { this.todo = todo; })
-  //   //this.posts = this.http.get(this.ROOT_URL );s
-
-  //   return JSON.stringify(this.dbSkill);
-    
-  // }
-  // getPosts1(){
-  //   this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
-  //   console.log(this.senioritys);
-  //   this.senioritys.pipe().subscribe((seniority) =>
-  //     seniority.result.forEach((item)=> this.dbSeniority.push(item)),
-      
-  //     );
-
-  //     console.log(this.dbSeniority);
-  //     return JSON.stringify(this.dbSeniority);
-  // }
 }

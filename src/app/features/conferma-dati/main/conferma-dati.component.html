@@ -57,7 +57,6 @@
           </li>
         </ul>
         </div> -->
-        <br>
         <div>
           <table style="width:100%">
             <tr>
@@ -71,27 +70,20 @@
                 <b>Frontend:</b>
               </td>
             </tr>
-            <tr>
-              <td class="form-check">
-                <ng-container *ngFor="let skill of dropdownListSkill">
-                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
-                  <br>
-                </ng-container>
-              </td>
-              <td class="form-check">
-                <ng-container *ngFor="let skill of dropdownListSkill; let j = index; j+3">
-                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
-                  <br>
-                </ng-container>
-              </td>
-              <td class="form-check">
-                <ng-container *ngFor="let skill of dropdownListSkill; let k = index; k+4">
 
-                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{skill.description}}
+            <!-- <tr *ngFor="let skill of skill1">
+              <td class="form-check" *ngFor="let item of skill">
+                <ng-container *ngFor="let skill of dropdownListSkill">
+                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{item.description}}
                   <br>
                 </ng-container>
               </td>
-            </tr>
+            </tr> -->
+            <!-- <tr *ngFor="let skill of dropdownListSkill; let i = index">
+              <td>{{skill.item_text}}</td>
+              <td>{{i}}</td>
+            </tr> -->
+
           </table>
         </div>
       </div>
@@ -111,25 +103,16 @@
     </table> -->
 
 
-    
+
 
       <div class="col" style="text-align: left;">
-        <div class="form-group">
-          <div>
-            <table style="width:100%">
-              <tr>
-                <td>
-                  <b>Frontend:</b>
-                </td>
-              </tr>
-              <tr>
-                <td *ngFor="let seniority of dropdownListSeniority" class="form-check">
-                  <input class="form-check-input" type="checkbox" [checked]="seniority.checked"> {{seniority.description}}
-                </td>
-              </tr>
-            </table>
+        <label for="exampleFormControlInput1"><b>Seniority:</b></label>
+        <div class="form-check">
+          <div *ngFor="let seniority of dropdownListSeniority" class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> {{seniority.description}}
+
           </div>
-          <!-- <label for="exampleFormControlInput1"><b>Seniority:</b></label>
+          <!-- 
           <div class="form-check">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
               checked>
