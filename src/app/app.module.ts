@@ -13,6 +13,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { SkillsEffects } from './redux/skill/skill.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,10 +30,10 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([SkillsEffects /*, ProductsEffects, CartEffects*/]),
     StoreRouterConnectingModule.forRoot(),
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25,
-    //   logOnly: environment.production,
-    // }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

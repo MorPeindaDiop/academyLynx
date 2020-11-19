@@ -70,6 +70,11 @@
                 <b>Frontend:</b>
               </td>
             </tr>
+            <tr>
+              <div *ngFor="let skill of skills | async">
+                {{ skill.description }}
+            </div>
+            </tr>
 
             <!-- <tr *ngFor="let skill of skill1">
               <td class="form-check" *ngFor="let item of skill">
@@ -85,6 +90,13 @@
             </tr> -->
 
           </table>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Toppings</mat-label>
+            <mat-select [formControl]="toppings" multiple>
+              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
 
