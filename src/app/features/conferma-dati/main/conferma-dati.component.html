@@ -12,12 +12,7 @@
 
   <title>Hello, world!</title>
 </head>
-
 <body>
-  <!-- <div>
-    <button (click)="getPosts()">json</button>
-  </div> -->
-
   <!--FORM NOME & COGNOME --------------------------------------------->
   <div class="container">
     <div class="row">
@@ -28,8 +23,6 @@
           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
         </div>
       </div>
-
-
       <div class="col" style="text-align: left;">
         <div class="form-group">
           <label for="exampleFormControlInput2"><b>Cognome:</b></label>
@@ -39,117 +32,34 @@
 
     </div>
   </div>
-
   <br>
-
-
   <!--FORM SENIORITY & SKILLS --------------------------------------------->
   <div class="container">
     <div class="row">
-
       <div class="col" style="text-align: left;">
-
-
-        <!-- <div>
-          <ul>
-          <li *ngFor="let skill of dropdownList">
-            {{skill.item_text}}
-          </li>
-        </ul>
-        </div> -->
         <div>
-          <table style="width:100%">
-            <tr>
-              <td>
-                <b>Frontend:</b>
-              </td>
-              <td>
-                <b>Frontend:</b>
-              </td>
-              <td>
-                <b>Frontend:</b>
-              </td>
-            </tr>
-            <tr>
-              <div *ngFor="let skill of skills | async">
-                {{ skill.description }}
-            </div>
-            </tr>
-
-            <!-- <tr *ngFor="let skill of skill1">
-              <td class="form-check" *ngFor="let item of skill">
-                <ng-container *ngFor="let skill of dropdownListSkill">
-                  <input  class="form-check-input" type="checkbox" [checked]="skill.checked"> {{item.description}}
-                  <br>
-                </ng-container>
-              </td>
-            </tr> -->
-            <!-- <tr *ngFor="let skill of dropdownListSkill; let i = index">
-              <td>{{skill.item_text}}</td>
-              <td>{{i}}</td>
-            </tr> -->
-
-          </table>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Toppings</mat-label>
-            <mat-select [formControl]="toppings" multiple>
-              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Skill</mat-label>
+            <mat-select [formControl]="skill" multiple>
+              <mat-option *ngFor="let skill of skills | async" [value]="skill">{{skill.description}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
 
-
-      <!-- RIGA 2 TABELLA -------------------------------------------
-      <tr>
-        <td>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Python
-            </label>
-          </div>
-        </td>
-      </tr>
-    </table> -->
-
-
-
-
       <div class="col" style="text-align: left;">
         <label for="exampleFormControlInput1"><b>Seniority:</b></label>
         <div class="form-check">
-          <div *ngFor="let seniority of dropdownListSeniority" class="form-check">
+          <div *ngFor="let seniority of seniorities | async" class="form-check">
             <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> {{seniority.description}}
 
           </div>
-          <!-- 
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-              checked>
-            <label class="form-check-label" for="exampleRadios1">
-              Junior developer
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-            <label class="form-check-label" for="exampleRadios2">
-              Mid-level developer
-            </label>
-          </div>
-          <div class="form-check disabled">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-            <label class="form-check-label" for="exampleRadios2">
-              Senior developer
-            </label>
-          </div> -->
+
         </div>
       </div>
 
     </div>
   </div>
-
 
   <!--TABELLA INFO --------------------------------------------->
   <div class="container">
@@ -159,10 +69,10 @@
         <div class="form-group">
         </div>
       </div>
-
-
+      
       <div class="col" style="text-align: left;">
         <div class="form-group">
+          <br>
           <div>
             <label for="exampleFormControlInput1"><b>Legenda:</b></label>
           </div>
@@ -194,12 +104,9 @@
           </p>
         </div>
       </div>
-
     </div>
   </div>
-
   <br>
-
   <!--TASTO CONFERMA --------------------------------------------->
   <div class="container">
     <div class="row">
@@ -254,5 +161,4 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -12,13 +12,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { SkillsEffects } from './redux/skill/skill.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SenioritiesEffects } from './redux/seniority/seniority.effects';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,13 +29,16 @@ import { environment } from 'src/environments/environment';
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects /*, ProductsEffects, CartEffects*/]),
+    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    BrowserAnimationsModule,
+    
   ],
+  exports:[MatFormFieldModule],
   providers: [],
   bootstrap: [AppComponent]
 })

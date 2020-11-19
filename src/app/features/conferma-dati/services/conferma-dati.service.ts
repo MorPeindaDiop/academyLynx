@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { retrieveAllSeniorities } from 'src/app/redux/seniority/seniority.actions';
 import { retrieveAllSkills } from 'src/app/redux/skill/skill.actions';
 
 @Injectable({
@@ -13,4 +14,7 @@ export class ConfermaDatiService {
     this.store.dispatch(retrieveAllSkills())
   }
   
+  retrieveAllSeniorities() {
+    this.store.dispatch(retrieveAllSeniorities())
+  }
 }
