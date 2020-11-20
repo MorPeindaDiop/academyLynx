@@ -48,10 +48,10 @@
       </div>
 
       <div class="col" style="text-align: left;">
-        <label for="exampleFormControlInput1"><b>Seniority:</b></label>
+        <label for="exampleFormControlInput1"><b> Livello di seniority:</b></label>
         <div class="form-check">
           <div *ngFor="let seniority of seniorities | async" class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> {{seniority.description}}
+            <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> {{seniority.level}}
 
           </div>
 
@@ -70,38 +70,18 @@
         </div>
       </div>
       
-      <div class="col" style="text-align: left;">
+      <div class="col" style="text-align: left;" >
         <div class="form-group">
           <br>
           <div>
             <label for="exampleFormControlInput1"><b>Legenda:</b></label>
           </div>
-          <label for="exampleFormControlInput1"><b>Junior developer:</b></label>
+          <div  *ngFor="let seniority of seniorities | async">
+          <label for="exampleFormControlInput1"><b>{{seniority.level}}</b></label>
           <p>
-            Junior developers are developers who are just starting out in their careers and may not have hands-on
-            experience in web or software development.
-            They're still learning how to code and may need direct instruction or guidance from their team. Junior
-            developers are expected to follow instructions,
-            identify issues and ask for help when they face an issue above their experience level.
+            {{seniority.description}}
           </p>
-
-          <label for="exampleFormControlInput1"><b>Mid-level developer:</b></label>
-          <p>
-            Mid-level developers have the skills and experience to work independently and have real-world experience in
-            completing or managing projects.
-            They have a strong knowledge of best practices and have done enough coding to quickly analyze data and
-            recognize the best solution.
-          </p>
-
-          <label for="exampleFormControlInput1"><b>Senior-level developer:</b></label>
-          <p>
-            Senior developers make strategic decisions about how software should be designed and provide expert-level
-            solutions to challenging issues.
-            They can make significant changes to a program's architecture and teach other developers how to be more
-            efficient and consistent. Senior developers have strong
-            communication skills and are able to work quickly, document their updates and explain the reasoning for how
-            they execute different software functions.
-          </p>
+        </div>
         </div>
       </div>
     </div>
