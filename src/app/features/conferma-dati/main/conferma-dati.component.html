@@ -1,6 +1,3 @@
-<!doctype html>
-<html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -9,10 +6,11 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
   <title>Hello, world!</title>
 </head>
+
 <body>
+  <form [formGroup]="candidateForm" (ngSubmit)="goCandidate()">
   <!--FORM NOME & COGNOME --------------------------------------------->
   <div class="container">
     <div class="row">
@@ -20,80 +18,83 @@
       <div class="col" style="text-align: left;">
         <div class="form-group">
           <label for="exampleFormControlInput1"><b>Nome:</b></label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome" formControlName="name">
         </div>
       </div>
+
       <div class="col" style="text-align: left;">
         <div class="form-group">
           <label for="exampleFormControlInput2"><b>Cognome:</b></label>
-          <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Cognome">
+          <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Cognome" formControlName="surname">
         </div>
       </div>
 
+    </div>
+  </div>
+<!--RIGA SKILL--------------------------------------------->
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div>
+            <mat-form-field appearance="fill" class="skill">
+              <mat-label>Skill</mat-label>
+              <mat-select [formControl]="skill" multiple>
+                <mat-option *ngFor="let skill of skills | async" [value]="skill" >{{skill.description}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <br>
-  <!--FORM SENIORITY & SKILLS --------------------------------------------->
+    
+  <!--TABELLA LEGENDA E SENIORITY --------------------------------------------->
   <div class="container">
     <div class="row">
-      <div class="col" style="text-align: left;">
-        <div>
-          <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Skill</mat-label>
-            <mat-select [formControl]="skill" multiple>
-              <mat-option *ngFor="let skill of skills | async" [value]="skill">{{skill.description}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
 
       <div class="col" style="text-align: left;">
-        <label for="exampleFormControlInput1"><b> Livello di seniority:</b></label>
-        <div class="form-check">
-          <div *ngFor="let seniority of seniorities | async" class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> {{seniority.level}}
-
+        <div class="form-group">
+          <div class="col" style="text-align: left;">
+            <label for="exampleFormControlInput1"><b> Livello di seniority:</b></label>
+            <div class="form-check">
+              <div *ngFor="let seniority of seniorities | async" class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" value="option1" formControlName="idSeniority"> {{seniority.level}}
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
-
-    </div>
-  </div>
-
-  <!--TABELLA INFO --------------------------------------------->
-  <div class="container">
-    <div class="row">
 
       <div class="col" style="text-align: left;">
         <div class="form-group">
-        </div>
-      </div>
-      
-      <div class="col" style="text-align: left;" >
-        <div class="form-group">
-          <br>
           <div>
             <label for="exampleFormControlInput1"><b>Legenda:</b></label>
           </div>
-          <div  *ngFor="let seniority of seniorities | async">
-          <label for="exampleFormControlInput1"><b>{{seniority.level}}</b></label>
-          <p>
-            {{seniority.description}}
-          </p>
-        </div>
+          <div *ngFor="let seniority of seniorities | async">
+            <label for="exampleFormControlInput1"><b>{{seniority.level}}</b></label>
+            <p>
+              {{seniority.description}}
+            </p>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
+  
   <br>
+
   <!--TASTO CONFERMA --------------------------------------------->
   <div class="container">
     <div class="row">
+
       <div class="col" style="text-align: center;">
         <div class="form-group">
         </div>
       </div>
+
       <div class="col" style="text-align: center;">
         <div class="form-group">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -105,7 +106,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Dati salvati</h5>
+                  <h1 class="modal-title" id="exampleModalLabel">Dati salvati</h1>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -115,7 +116,7 @@
                   quando sei pronto ad avviare il test fai click su "Conferma"
                 </div>
                 <div class="modal-footer">
-                  <button type="button" routerLink="/questionario" class="btn btn-primary"
+                  <button type="submit"  class="btn btn-primary"
                     data-dismiss="modal">Conferma</button>
                 </div>
               </div>
@@ -123,12 +124,15 @@
           </div>
         </div>
       </div>
+
       <div class="col" style="text-align: center;">
         <div class="form-group">
         </div>
       </div>
+      
     </div>
   </div>
+</form>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -141,4 +145,3 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 </body>
-</html>

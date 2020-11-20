@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { reducers } from './redux';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SenioritiesEffects } from './redux/seniority/seniority.effects';
+import { CandidatesEffects } from './redux/Candidate/candidate.effects';
+import { reducers } from './redux';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,7 @@ import { SenioritiesEffects } from './redux/seniority/seniority.effects';
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects]),
+    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

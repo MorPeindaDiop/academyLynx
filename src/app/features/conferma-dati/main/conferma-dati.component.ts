@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Observable } from 'rxjs';
 import { first, switchMap } from 'rxjs/operators';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
+import { Candidate } from 'src/app/core/model/Candidate';
 import { Response } from 'src/app/core/model/Response';
 import { Seniority } from 'src/app/core/model/Seniority';
 import { Skill } from 'src/app/core/model/Skill';
@@ -28,10 +29,10 @@ export class ConfermaDatiComponent implements OnInit {
   dbSkill = [];
   senioritys: Observable<Response>;
   dbSeniority = [];
-
+  candidateForm: FormGroup;
   skill = new FormControl();
 
-  constructor(private store: Store, private http: HttpCommunicationsService, private confermaDatiService: ConfermaDatiService) {
+  constructor(private store: Store, private http: HttpCommunicationsService, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
 
   }
 
@@ -39,6 +40,12 @@ export class ConfermaDatiComponent implements OnInit {
     this.confermaDatiService.retrieveAllSkills();
     this.confermaDatiService.retrieveAllSeniorities();
 
+    this.candidateForm = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      idSeniority: ['', Validators.required],
+      dataTest: [new Date, Validators.required],
+    })
   }
 
   get skills(): Observable<Skill[]> {
@@ -48,40 +55,12 @@ export class ConfermaDatiComponent implements OnInit {
   get seniorities(): Observable<Seniority[]> {
     return this.store.pipe(select(selectSeniorities));
   }
-
-
-  // richiesta() {
-
-  //   this.skills=this.http.retrieveGetCall< Response >("skill/findAll");
-  //   this.skills.pipe().subscribe((skill) =>
-  //     skill.result.forEach((item)=> this.dropdownListSkill.push(item))
-  //     );
-  //   console.log("this.dropdownListSkill nel costruttore");
-  //   console.log(this.dropdownListSkill);
-
-  //   this.senioritys=this.http.retrieveGetCall< Response >("seniority/findAll");
-  //   this.senioritys.pipe().subscribe((seniority) =>
-  //     seniority.result.forEach((item)=> this.dropdownListSeniority.push(item)),
-  //     );
-  //   console.log("this.dropdownListSeniority nel costruttore");
-  //   console.log(this.dropdownListSeniority);
-
-  // }
-
-  // cicloFor() : Promise<any> {
-  //   return new Promise((resolve) => {
-  //     console.log("ciclo for");
-  //     for(let i=0; i<this.dropdownListSkill.length;i+3){
-  //       this.skill1.push([this.dropdownListSkill[i],this.dropdownListSkill[i+1]]);
-  //       console.log("ciao");
-  //       console.log(this.skill1);
-  //     }
-  //     console.log("fine ciclo for");
-  //       resolve(this.skill1)
-  //     }
-  //   );
-
-  // }
-
+  
+  goCandidate(){
+    let candidate: Candidate={
+      ...this.candidateForm.value()
+    }
+    this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.dataTest, candidate.idSeniority);
+  }
 
 }

@@ -4,8 +4,11 @@ export interface Candidate {
     id: number;
     name: string;
     surname: string;
-    dataTest: Date;
     idSeniority: number;
-    score: number;
+    dataTest: Date;
+    nCorrectAnswer: number;
+    weightedScore: number;
+    arithmeticScore: number;
+    fields: [];
     time: Time;
 }
