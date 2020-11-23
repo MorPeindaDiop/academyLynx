@@ -19,20 +19,11 @@ import { ConfermaDatiService } from '../services/conferma-dati.service';
   styleUrls: ['./conferma-dati.component.scss']
 })
 export class ConfermaDatiComponent implements OnInit {
-  skill1 = [];
-  dropdownListSkill = [];
-  dropdownListSeniority = [];
-  selectedItems = [];
-  dropdownSettings: IDropdownSettings;
-  isDropdown = false;
-  //skills : Observable < Response > ;
-  dbSkill = [];
-  senioritys: Observable<Response>;
-  dbSeniority = [];
+  
   candidateForm: FormGroup;
   skill = new FormControl();
 
-  constructor(private store: Store, private http: HttpCommunicationsService, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
+  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
 
   }
 
@@ -47,21 +38,25 @@ export class ConfermaDatiComponent implements OnInit {
     })
   }
 
+  changeClient(event) {
+    console.log(event);
+  }
+  
   get skills(): Observable<Skill[]> {
     return this.store.pipe(select(selectSkills));
   }
-
+  
   get seniorities(): Observable<Seniority[]> {
     return this.store.pipe(select(selectSeniorities));
   }
   
   goCandidate(){
+    console.log(this.skill);
     let candidate: Candidate={
       ...this.candidateForm.value
     }
     console.log(candidate)
-    this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.idSeniority);
-    console.log(this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.idSeniority))
+    this.confermaDatiService.createCandidate(candidate);
   }
 
 }

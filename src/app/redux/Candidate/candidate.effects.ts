@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response';
-import { retrieveAllCandidates, initCandidates, createCandidate, createCandidateSuccess } from './candidate.actions';
+import { retrieveAllCandidates, initCandidates, createCandidate } from './candidate.actions';
 import { Candidate } from 'src/app/core/model/Candidate';
 
 @Injectable()
@@ -19,31 +19,21 @@ export class CandidatesEffects {
     }
 
     createCandidate(candidate: Candidate): Observable<Response> {
-        return this.http.retrievePostCall<Response>("candidate/create", { candidate })
-    }
-
-    formatCandidate(candidate: Candidate): Candidate {
-        return { name: candidate.name, surname: candidate.surname, idSeniority: candidate.idSeniority } as Candidate;
+        return this.http.retrievePostCall<Response>("candidate/create",  candidate )
     }
 
     createCandidate$ = createEffect(() => this.actions$.pipe(
         ofType(createCandidate),
-        switchMap(candidate => this.createCandidate(candidate).pipe(
-            switchMap(response => of(this.formatCandidate(response.result)).pipe(
-                map((formattedCandidate) => createCandidateSuccess({ candidate: formattedCandidate }))
-            ))
+        switchMap(candidate => this.createCandidate(candidate.candidate).pipe(
+            map(() => retrieveAllCandidates()),
+            tap((action) => {
+                sessionStorage.setItem("candidate", JSON.stringify(action));
+                this.router.navigateByUrl('/questionario');
+                console.log("candidate effects")
+                console.log(candidate)
+            }))
         ))
-    ));
-
-    createCandidateSuccess$ = createEffect(() => this.actions$.pipe(
-        ofType(createCandidateSuccess),
-        map(() => retrieveAllCandidates()),
-        tap((action) => {
-            sessionStorage.setItem("candidate", JSON.stringify(action))
-            this.router.navigateByUrl('/questionario');
-        })
-    ));
-
+    );
 
     getAllCandidates$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllCandidates),
