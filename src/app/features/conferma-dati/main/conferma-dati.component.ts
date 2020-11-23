@@ -43,8 +43,7 @@ export class ConfermaDatiComponent implements OnInit {
     this.candidateForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      idSeniority: ['', Validators.required],
-      dataTest: [new Date, Validators.required],
+      idSeniority: [new Number, Validators.required]
     })
   }
 
@@ -58,9 +57,11 @@ export class ConfermaDatiComponent implements OnInit {
   
   goCandidate(){
     let candidate: Candidate={
-      ...this.candidateForm.value()
+      ...this.candidateForm.value
     }
-    this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.dataTest, candidate.idSeniority);
+    console.log(candidate)
+    this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.idSeniority);
+    console.log(this.confermaDatiService.createCandidate(candidate.name, candidate.surname, candidate.idSeniority))
   }
 
 }

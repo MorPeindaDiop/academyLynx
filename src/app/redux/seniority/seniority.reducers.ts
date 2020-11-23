@@ -5,18 +5,16 @@ import { initSeniorities } from './seniority.actions';
 
 
 export interface SenioritiesState {
-    response: Response;
     seniorities: Seniority[];
 }
 
 export const initialState: SenioritiesState = {
-    response: null, 
     seniorities: []
 };
 
 export const senioritiesReducer = createReducer(
     initialState,
-    on(initSeniorities, (state, { response }) => ( { ...state, response: response, seniorities: response.result } )),
+    on(initSeniorities, (state, { response }) => ( { ...state, seniorities: response.result } )),
     );
 
 export function reducer(state: SenioritiesState , action: Action) {

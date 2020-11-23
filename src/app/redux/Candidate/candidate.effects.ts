@@ -18,17 +18,17 @@ export class CandidatesEffects {
         return this.http.retrieveGetCall<Response>("candidate/findAll")
     }
 
-    createCandidate(name: string, surname: string, dataTest: Date, idSeniority: number): Observable<Response> {
-        return this.http.retrievePostCall<Response>("candidate/create", { name, surname, dataTest, idSeniority })
+    createCandidate(candidate: Candidate): Observable<Response> {
+        return this.http.retrievePostCall<Response>("candidate/create", { candidate })
     }
 
     formatCandidate(candidate: Candidate): Candidate {
-        return { name: candidate.name, surname: candidate.surname, dataTest: candidate.dataTest, idSeniority: candidate.idSeniority } as Candidate;
+        return { name: candidate.name, surname: candidate.surname, idSeniority: candidate.idSeniority } as Candidate;
     }
 
     createCandidate$ = createEffect(() => this.actions$.pipe(
         ofType(createCandidate),
-        switchMap(action => this.createCandidate(action.name, action.surname, action.dataTest, action.idSeniority).pipe(
+        switchMap(candidate => this.createCandidate(candidate).pipe(
             switchMap(response => of(this.formatCandidate(response.result)).pipe(
                 map((formattedCandidate) => createCandidateSuccess({ candidate: formattedCandidate }))
             ))
@@ -40,6 +40,7 @@ export class CandidatesEffects {
         map(() => retrieveAllCandidates()),
         tap((action) => {
             sessionStorage.setItem("candidate", JSON.stringify(action))
+            this.router.navigateByUrl('/questionario');
         })
     ));
 

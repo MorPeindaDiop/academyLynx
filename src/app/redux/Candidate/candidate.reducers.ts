@@ -4,18 +4,18 @@ import { Response } from 'src/app/core/model/Response';
 import { initCandidates } from './candidate.actions';
 
 export interface CandidatesState {
-    response: Response;
     candidates: Candidate[];
+    error: String;
 }
 
 export const initialState: CandidatesState = {
-    response: null, 
-    candidates: []
+    candidates: [],
+    error: ""
 };
 
 export const candidatesReducer = createReducer(
     initialState,
-    on(initCandidates, (state, { response }) => ( { ...state, response: response, candidates: response.result } )),
+    on(initCandidates, (state, { response }) => ( { ...state, candidates: response.result, error: response.error } )),
     );
 
 export function reducer(state: CandidatesState , action: Action) {
