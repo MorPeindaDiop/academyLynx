@@ -5,7 +5,7 @@ import { CandidatesState } from './candidate.reducers';
 
 export const selectCandidatesState = (state: AppState) => state.candidatesState;
 
-export const selectSkills = createSelector(
+export const selectCandidates = createSelector(
     selectCandidatesState,
     (state: CandidatesState) => state.candidates
 );
