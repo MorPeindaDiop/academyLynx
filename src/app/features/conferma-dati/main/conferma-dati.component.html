@@ -39,8 +39,8 @@
           <div>
             <mat-form-field appearance="fill" class="skill">
               <mat-label>Skill</mat-label>
-              <mat-select [formControl]="skill" multiple>
-                <mat-option *ngFor="let skill of skills | async" [value]="skill" >{{skill.description}}</mat-option>
+              <mat-select [formControl]="skill" multiple (change)="changeClient($event.value)">
+                <mat-option *ngFor="let skill of skills | async" [value]="skill.id" >{{skill.description}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
