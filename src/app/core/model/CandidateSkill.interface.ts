@@ -1,4 +1,4 @@
 export interface CandidateSkill {
-    idUser: number;
+    idCandidate: number;
     idSkill: number;
 }

@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Response } from 'src/app/core/model/Response';
+import { Response } from 'src/app/core/model/Response.interface';
 import { Seniority } from 'src/app/core/model/Seniority';
 import { initSeniorities } from './seniority.actions';
 

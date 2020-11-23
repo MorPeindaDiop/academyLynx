@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Observable } from 'rxjs';
-import { first, switchMap } from 'rxjs/operators';
-import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
-import { Candidate } from 'src/app/core/model/Candidate';
-import { Response } from 'src/app/core/model/Response';
-import { Seniority } from 'src/app/core/model/Seniority';
-import { Skill } from 'src/app/core/model/Skill';
+import { Candidate } from 'src/app/core/model/Candidate.interface';
+
 import { selectSeniorities } from 'src/app/redux/seniority';
 import { selectSkills } from 'src/app/redux/skill';
+import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { ConfermaDatiService } from '../services/conferma-dati.service';
+import { Skill } from 'src/app/core/model/Skill';
+import { Seniority } from 'src/app/core/model/Seniority';
+import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 
 @Component({
   selector: 'app-conferma-dati',
@@ -22,6 +21,7 @@ export class ConfermaDatiComponent implements OnInit {
   
   candidateForm: FormGroup;
   skill = new FormControl();
+  idCandidate: number;
 
   constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
 
@@ -37,10 +37,6 @@ export class ConfermaDatiComponent implements OnInit {
       idSeniority: [new Number, Validators.required]
     })
   }
-
-  changeClient(event) {
-    console.log(event);
-  }
   
   get skills(): Observable<Skill[]> {
     return this.store.pipe(select(selectSkills));
@@ -50,13 +46,31 @@ export class ConfermaDatiComponent implements OnInit {
     return this.store.pipe(select(selectSeniorities));
   }
   
+  
+  
   goCandidate(){
-    console.log(this.skill);
     let candidate: Candidate={
       ...this.candidateForm.value
     }
     console.log(candidate)
     this.confermaDatiService.createCandidate(candidate);
+
+    //this.createCandidateSkill();
+  }
+  
+  createCandidateSkill() {
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
+    
+    console.log(this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id}))
+
+    for (let idSkill of this.skill.value) {
+      let candSkill: CandidateSkill = {
+        idCandidate: this.idCandidate,
+        idSkill: idSkill
+      }
+      this.confermaDatiService.createCandidateSkill(candSkill)
+    }
+    console.log(this.skill.value);
   }
 
 }

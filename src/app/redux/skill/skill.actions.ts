@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Response } from 'src/app/core/model/Response';
+import { Response } from '../../core/model/Response.interface';
 
 export const retrieveAllSkills = createAction('[Skill] skills');
 export const initSkills = createAction('[Skill] init skills', props<{response: Response}>());

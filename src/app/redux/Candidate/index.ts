@@ -10,8 +10,7 @@ export const selectCandidates = createSelector(
     (state: CandidatesState) => state.candidates
 );
 
-// export const getCurrentNavigatedProduct = createSelector(
-//     selectSkillsState,
-//     selectRouteParams,
-//     (state: ProductsState, params: Params) => state.products.find(item => item.id === Number(params['id']))
-// );
+export const getCurrentCandidate = createSelector(
+    selectCandidatesState,
+    (state: CandidatesState) => state.currentCandidate
+);

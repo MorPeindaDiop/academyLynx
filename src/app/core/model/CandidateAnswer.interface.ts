@@ -1,5 +1,5 @@
 export interface CandidateAnswer {
-    idUser: number;
+    idCandidate: number;
     idQuestion: number;
     answer: boolean;
 }

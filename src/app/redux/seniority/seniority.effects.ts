@@ -5,7 +5,7 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
 import { switchMap, map } from 'rxjs/operators';
-import { Response } from 'src/app/core/model/Response';
+import { Response } from 'src/app/core/model/Response.interface';
 import { initSeniorities, retrieveAllSeniorities } from './seniority.actions';
 
 @Injectable()

@@ -15,7 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SenioritiesEffects } from './redux/seniority/seniority.effects';
-import { CandidatesEffects } from './redux/Candidate/candidate.effects';
+import { CandidatesEffects } from './redux/candidate/candidate.effects';
+import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
 import { reducers } from './redux';
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { reducers } from './redux';
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects]),
+    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

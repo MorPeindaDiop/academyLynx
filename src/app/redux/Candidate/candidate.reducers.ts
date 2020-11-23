@@ -1,24 +1,24 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Candidate } from 'src/app/core/model/Candidate';
-import { Response } from 'src/app/core/model/Response';
-import { createCandidate, initCandidates } from './candidate.actions';
+import { Candidate } from 'src/app/core/model/Candidate.interface';
+import { Response } from 'src/app/core/model/Response.interface';
+import { createCandidate, createCandidateSuccess, initCandidates } from './candidate.actions';
 
 export interface CandidatesState {
     candidates: Candidate[];
-    //candidate: Candidate;
+    currentCandidate: Candidate;
     error: String;
 }
 
 export const initialState: CandidatesState = {
     candidates: [],
-    //candidate: null,
+    currentCandidate: null,
     error: ""
 };
 
 export const candidatesReducer = createReducer(
     initialState,
     on(initCandidates, (state, { response }) => ( { ...state, candidates: response.result, error: response.error } )),
-    //on(createCandidate, (state, { candidate }) => ( { ...state, candidate: candidate } )),
+    on(createCandidateSuccess, (state, { response }) => ( { ...state, currentCandidate: response.result } )),
     );
 
 export function reducer(state: CandidatesState , action: Action) {
