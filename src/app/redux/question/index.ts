@@ -4,7 +4,7 @@ import { AppState } from '..';
 import { selectRouteParams } from '../router';
 import { QuestionsState } from './question.reducers';
 
-export const selectQuestionsState = (state: AppState) => state.questionsState;
+export const selectQuestionsState = (state: AppState) => state.questionState;
 
 export const selectQuestions = createSelector(
     selectQuestionsState,
