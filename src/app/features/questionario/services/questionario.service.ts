@@ -9,7 +9,7 @@ export class QuestionarioService {
 
   constructor(private store: Store) { }
 
-  retrieveAllSkills() {
+  retrieveAllQuestions() {
     this.store.dispatch(retrieveAllQuestions())
   }
 

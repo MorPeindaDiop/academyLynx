@@ -15,7 +15,7 @@ import { QuestionarioService } from '../services/questionario.service';
 })
 export class QuestionarioComponent implements OnInit {
   myForm: FormGroup;
-
+  question = new FormControl();
 
   
   constructor(private store: Store, private questionService: QuestionarioService, private fb: FormBuilder) {
@@ -23,13 +23,15 @@ export class QuestionarioComponent implements OnInit {
   }
 
 
-  questions = [
+  questionsStatic = [
     {type: "name", description : "What is my destiny ?", isHidden:false},
     {type: "email", description : "What is your email ?", isHidden:true},
     {type: "message", description : "What is your message ?", isHidden:true}
   ]
 
-  ngOnInit() {
+  ngOnInit() : void{
+
+    this.questionService.retrieveAllQuestions;
     this.myForm = new FormGroup({
       name: new FormControl(''),
       email: new FormControl(''),
@@ -37,7 +39,7 @@ export class QuestionarioComponent implements OnInit {
     });
   }
 
-  get question(): Observable<Question[]> {
+  get questions(): Observable<Question[]> {
     return this.store.pipe(select(selectQuestions));
   }
 
