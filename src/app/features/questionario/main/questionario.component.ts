@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -7,43 +8,24 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./questionario.component.scss']
 })
 export class QuestionarioComponent implements OnInit {
+  myForm: FormGroup;
 
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings: IDropdownSettings;
-  isDropdown = false;
+  questions = [
+    {type: "name", description : "What is your name ?", isHidden:false},
+    {type: "email", description : "What is your email ?", isHidden:true},
+    {type: "message", description : "What is your message ?", isHidden:true}
+  ]
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-    this.isDropdown = true;
-
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+  ngOnInit() {
+    this.myForm = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl(''),
+      message: new FormControl('')
+    });
   }
-  onItemSelect(item: any) {
-    console.log(item);
+
+  onSubmit() {
+
   }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
+  
 }
