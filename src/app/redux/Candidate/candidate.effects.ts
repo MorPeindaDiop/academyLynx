@@ -50,7 +50,7 @@ export class CandidatesEffects {
         map(() => retrieveAllCandidates()),
             tap((action) => {
                 sessionStorage.setItem("candidate", JSON.stringify(action));
-                this.router.navigateByUrl('/questionario');
+                //this.router.navigateByUrl('/questionario');
             }))
         
     );
