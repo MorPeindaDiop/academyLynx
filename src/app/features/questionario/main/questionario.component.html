@@ -1,8 +1,8 @@
 <form>
-	<ng-container *ngFor="let item of questions | async ;let i = index">
+	<ng-container *ngFor="let item of questions;let i = index">
 		<div [hidden]="item.isHidden">
-			<app-question [question]="item">
-				
+			<app-question [question]="item.question">
+
 			</app-question>	
 	
 			<button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
