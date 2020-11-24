@@ -1,8 +1,19 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-	<ng-container *ngFor="let item of questions;let i = index">
+<form>
+	<ng-container *ngFor="let item of questions | async ;let i = index">
 		<div [hidden]="item.isHidden">
-			{{item.question_text}} <input [formControlName]="item.id"><br>
+			<app-question [question]="item">
+				
+			</app-question>	
+	
 			<button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
 		</div>
 	</ng-container>
 </form>
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+	<ng-container *ngFor="let item of questions | async ;let i = index">
+		<div [hidden]="item.isHidden">
+			{{item.question_text}} <input [formControlName]="item.question_text"><br>
+			<button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
+		</div>
+	</ng-container>
+</form> -->

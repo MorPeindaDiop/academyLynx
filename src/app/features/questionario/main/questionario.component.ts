@@ -31,7 +31,7 @@ export class QuestionarioComponent implements OnInit {
 
   ngOnInit() : void{
 
-    this.questionService.retrieveAllQuestions;
+    this.questionService.retrieveAllQuestions();
     this.myForm = new FormGroup({
       name: new FormControl(''),
       email: new FormControl(''),

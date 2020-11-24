@@ -4,6 +4,7 @@ export interface Question {
     id: number;
     type: string;
     question: string;
+    questionText: string;
     correctAnswerBoolean: boolean;
     correctAnswerText: string;
     wrongAnswers: string;
@@ -12,4 +13,5 @@ export interface Question {
     updateTime?: Date;
     creationUser?: string;
     updateUser?: string;
+    
 }
