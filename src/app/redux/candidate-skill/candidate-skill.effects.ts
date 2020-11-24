@@ -17,6 +17,10 @@ export class CandidateSkillsEffects {
     retreiveAllCandidates(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("candidateSkill/findAll")
     }
+    
+    /*retreiveLastCandidates(): Observable<Response> {
+        return this.http.retrieveGetCall<Response>("candidateSkill/findLast")
+    }*/
 
     createCandidateSkill(candidateSkill: CandidateSkill): Observable<Response> {
         return this.http.retrievePostCall<Response>("candidateSkill/create",  candidateSkill )
@@ -36,5 +40,12 @@ export class CandidateSkillsEffects {
             map((response) => initCandidateSkills({ response }))
         ))
     ));
+
+    /*getLastCandidates$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(retrieveAllCandidateSkills),
+        switchMap(() => this.retreiveLastCandidates().pipe(
+            map((response) => initCandidateSkills({ response }))
+        ))
+    ));*/
 
 }

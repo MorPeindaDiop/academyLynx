@@ -11,6 +11,7 @@ import { ConfermaDatiService } from '../services/conferma-dati.service';
 import { Skill } from 'src/app/core/model/Skill';
 import { Seniority } from 'src/app/core/model/Seniority';
 import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
+import { numbers } from '@material/select';
 
 @Component({
   selector: 'app-conferma-dati',
@@ -46,23 +47,25 @@ export class ConfermaDatiComponent implements OnInit {
     return this.store.pipe(select(selectSeniorities));
   }
   
+   delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
   
   
-  goCandidate(){
+  async goCandidate(){
     let candidate: Candidate={
       ...this.candidateForm.value
     }
     console.log(candidate)
     this.confermaDatiService.createCandidate(candidate);
-
+    await this.delay(5000);
+    this.createCandidateSkill();
     //this.createCandidateSkill();
   }
   
-  createCandidateSkill() {
+  async createCandidateSkill() {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
-    
     console.log(this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id}))
-
     for (let idSkill of this.skill.value) {
       let candSkill: CandidateSkill = {
         idCandidate: this.idCandidate,
