@@ -11,7 +11,7 @@ export class QuestionarioComponent implements OnInit {
   myForm: FormGroup;
 
   questions = [
-    {type: "name", description : "What is your name ?", isHidden:false},
+    {type: "name", description : "What is my destiny ?", isHidden:false},
     {type: "email", description : "What is your email ?", isHidden:true},
     {type: "message", description : "What is your message ?", isHidden:true}
   ]

@@ -6,6 +6,7 @@ import { candidatesReducer, CandidatesState } from './candidate/candidate.reduce
 import { candidateSkillsReducer, CandidateSkillsState } from './candidate-skill/candidate-skill.reducers';
 
 export interface AppState {
+    questionsState: any;
     router: RouterReducerState<any>;
     skillsState: SkillsState;
     senioritiesState: SenioritiesState;
