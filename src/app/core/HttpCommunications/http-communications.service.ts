@@ -27,6 +27,9 @@ export class HttpCommunicationsService {
       })
     } : undefined));
   }
+ 
+  
+
 
   retrieveDeleteCall<T>(endpoint: string): Observable<T> {
     return this.retrieveHttpCall<T>(new HttpRequest<T>('DELETE', this.host + endpoint));

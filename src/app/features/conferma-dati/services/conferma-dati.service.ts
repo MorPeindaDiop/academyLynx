@@ -29,4 +29,6 @@ export class ConfermaDatiService {
   createCandidateSkill(candidateSkill: CandidateSkill){
     this.store.dispatch(createCandidateSkill({candidateSkill}))
   }
+
+  
 }

@@ -22,6 +22,8 @@ export class CandidatesEffects {
         return this.http.retrievePostCall<Response>("candidate/create",  candidate )
     }
 
+   
+
     // createCandidate$ = createEffect(() => this.actions$.pipe(
     //     ofType(createCandidate),
     //     switchMap(candidate => this.createCandidate(candidate.candidate).pipe(
@@ -62,4 +64,14 @@ export class CandidatesEffects {
         ))
     ));
 
+
+    getLastCandidate$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(retrieveAllCandidates),
+        switchMap(() => this.retreiveAllCandidates().pipe(
+            map((response) => initCandidates({ response }))
+        ))
+    ));
+
+
+   
 }
