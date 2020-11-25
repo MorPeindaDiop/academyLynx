@@ -1,45 +1,56 @@
-<!-- domanda crocette -->
-<div class="row" *ngIf="question.type=='crocette'">
-    <div class="col">
-      <label for="exampleInputEmail1">
-        <li>{{question.questionText}}</li>
-      </label>
-      <div class="form-check" *ngFor="let answer of splitted">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-        <label class="form-check-label" for="exampleRadios1">
-            {{answer}}
-        </label>
+<div *ngFor="let item of questions;let i = index">
+  <div [hidden]="item.isHidden">
+    <form [formGroup]="rispostaForm" *ngIf="item.question.type=='crocette', split(item.question)" (ngSubmit)="addResponse()">
+    <!-- domanda crocette -->
+      <div class="row">
+        <div class="col">
+          <label for="exampleInputEmail1">
+            <li>{{item.question.questionText}}</li>
+          </label>
+          <div class="form-check" *ngFor="let answer of splitted">
+            <input class="form-check-input" type="radio" name="value" id="exampleRadios1" [value]="answer" formControlName="value">
+            <label class="form-check-label" for="exampleRadios1">
+                {{answer}}
+            </label>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
+    <!--vero falso-->
+    <form [formGroup]="rispostaForm" *ngIf="item.question.type=='vf'" (ngSubmit)="addResponse()">
+      <div class="row">
+        <div class="col">
+          <label for="exampleInputEmail1">
+            <li>{{item.question.questionText}}</li>
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="value" id="exampleRadios1" [value]="true" formControlName="value">
+            <label class="form-check-label" for="exampleRadios1">
+              Vero
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="value" id="exampleRadios2" [value]="false" formControlName="value">
+            <label class="form-check-label" for="exampleRadios2">
+              Falso
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+      <!--aperta-->
+    <form [formGroup]="rispostaForm" *ngIf="item.question.type=='aperta'" (ngSubmit)="addResponse()">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputEmail1">
+              <li>{{item.question.questionText}}</li>
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="value" formControlName="value">
+          </div>
+        </div>
+      </div>
+    </form>
+    <button type="submit" (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
   </div>
-<!--vero falso-->
-<div class="row" *ngIf="question.type=='vf'">
-    <div class="col">
-      <label for="exampleInputEmail1">
-        <li>{{question.questionText}}</li>
-      </label>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
-        <label class="form-check-label" for="exampleRadios1">
-          Vero
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="false">
-        <label class="form-check-label" for="exampleRadios2">
-          Falso
-        </label>
-      </div>
-    </div>
-  </div>
-  <!--aperta-->
-  <div class="row" *ngIf="question.type=='aperta'">
-    <div class="col">
-      <div class="form-group">
-        <label for="exampleInputEmail1">
-          <li>{{question.questionText}}</li>
-        </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      </div>
-    </div>
-  </div>
+</div>

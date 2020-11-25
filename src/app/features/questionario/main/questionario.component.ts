@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, SimpleChange } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/model/Question';
+import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
-import { ConfermaDatiService } from '../../conferma-dati/services/conferma-dati.service';
 import { QuestionarioService } from '../services/questionario.service';
 
 @Component({
@@ -14,24 +12,53 @@ import { QuestionarioService } from '../services/questionario.service';
   styleUrls: ['./questionario.component.scss']
 })
 export class QuestionarioComponent implements OnInit {
-  myForm: FormGroup;
-  question = new FormControl();
-  questions =[];
+  
+  rispostaForm: FormGroup;
+  questions = [];
+  idCandidate: number;
+
+  candidateAnswers: any[] = [];
+
+  splitted: string[]=[];
+  
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
   
   constructor(private store: Store, private questionService: QuestionarioService, private fb: FormBuilder) {
 
+    this.rispostaForm = this.fb.group({
+      idQuestion: ['', Validators.required],
+      value: ['', Validators.required]
+    })
+    
   }
 
-
+  ripristina() {
+    this.rispostaForm.reset()
+  }
   
   ngOnInit() : void{
+    
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
 
     this.questionService.retrieveAllQuestions();
-    this.myForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      message: new FormControl('')
-    });
+
     this.store.pipe(select(selectQuestions)).subscribe((question)=> {
       for(let item of question){
         
@@ -39,17 +66,30 @@ export class QuestionarioComponent implements OnInit {
         
       }
       console.log(this.questions)
-      return this.questions });
+      return this.questions
+    });
   }
-  
 
-  // get questions(): Observable<Question[]> {
-  //   return this.store.pipe(select(selectQuestions));
-  // }
+  split (question: Question) {
+    this.splitted = [];
+    this.splitted = question.wrongAnswers.split(";");
+    this.splitted.push(question.correctAnswerText);
+    this.shuffle(this.splitted);
+  }
 
+  ngOnChanges(changes: SimpleChange) {
+    console.log("changes")
+    console.log(changes)
 
-  onSubmit() {
+  }
 
+  addResponse() {
+    let candidateAnswer = {
+      ...this.rispostaForm.value
+    }
+    this.candidateAnswers.push(candidateAnswer)
+    console.log("addResponse()")
+    console.log(this.candidateAnswers)
   }
   
 }
