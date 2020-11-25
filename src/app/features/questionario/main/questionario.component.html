@@ -12,11 +12,11 @@
 							
 							<div class="form-check" *ngFor="let answer of splitted">
 								<div *ngIf="answer.idQuestion==item.question.id">
-									<div *ngFor="let item of answer.array">
+									<div *ngFor="let itemm of answer.array">
 										<input class="form-check-input" type="radio" name="value" id="exampleRadios1"
-											[value]="answer" formControlName="value">
+											[value]="itemm" formControlName="value">
 										<label class="form-check-label" for="exampleRadios1">
-											{{item}}
+											{{itemm}}
 										</label>
 
 									</div>	

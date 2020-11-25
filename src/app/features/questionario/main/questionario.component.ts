@@ -63,27 +63,27 @@ export class QuestionarioComponent implements OnInit {
       for(let item of question){
         
         this.questions.push({question: item, isHidden: (this.questions.length==0?false:true)})  
-        
+        this.split(item);
       }
       console.log(this.questions)
       return this.questions
     });
-    console.log(this.split());
-    this.split();
+    // console.log(this.split());
+    // this.split();
   }
 
-  split() {
+  split(question: Question) {
 
     //this.splitted = [];
-    for(let item of this.questions){
-      if(item.question.type=='crocette'){
-        let answers=item.question.wrongAnswers.split(";");
-        answers.push(item.question.correctAnswerText);
+    // for(let item of this.questions){
+      if(question.type=='crocette'){
+        let answers=question.wrongAnswers.split(";");
+        answers.push(question.correctAnswerText);
         this.shuffle(answers);
-        this.splitted.push({idQuestion: item.question.id, array: answers});
+        this.splitted.push({idQuestion: question.id, array: answers});
         console.log("splitted: ", this.splitted);
       }
-    }
+    //}
   }
 
   ngOnChanges(changes: SimpleChange) {
