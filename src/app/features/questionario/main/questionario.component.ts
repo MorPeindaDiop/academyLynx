@@ -19,7 +19,7 @@ export class QuestionarioComponent implements OnInit {
 
   candidateAnswers: any[] = [];
 
-  splitted: string[]=[];
+  splitted=[];
   
   shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -58,7 +58,7 @@ export class QuestionarioComponent implements OnInit {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
 
     this.questionService.retrieveAllQuestions();
-
+    
     this.store.pipe(select(selectQuestions)).subscribe((question)=> {
       for(let item of question){
         
@@ -68,13 +68,22 @@ export class QuestionarioComponent implements OnInit {
       console.log(this.questions)
       return this.questions
     });
+    console.log(this.split());
+    this.split();
   }
 
-  split (question: Question) {
-    this.splitted = [];
-    this.splitted = question.wrongAnswers.split(";");
-    this.splitted.push(question.correctAnswerText);
-    this.shuffle(this.splitted);
+  split() {
+
+    //this.splitted = [];
+    for(let item of this.questions){
+      if(item.question.type=='crocette'){
+        let answers=item.question.wrongAnswers.split(";");
+        answers.push(item.question.correctAnswerText);
+        this.shuffle(answers);
+        this.splitted.push({idQuestion: item.question.id, array: answers});
+        console.log("splitted: ", this.splitted);
+      }
+    }
   }
 
   ngOnChanges(changes: SimpleChange) {
