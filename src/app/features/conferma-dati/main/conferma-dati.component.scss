@@ -13,3 +13,6 @@ body {
 .skill {
   width: 49%;
 }
+input.ng-touched.ng-invalid{
+  border: 1px solid red;
+}

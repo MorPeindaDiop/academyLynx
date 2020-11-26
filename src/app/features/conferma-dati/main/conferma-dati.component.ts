@@ -27,7 +27,17 @@ export class ConfermaDatiComponent implements OnInit {
   constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
 
   }
+  keyPressAlpha(event) {
 
+    var inp = String.fromCharCode(event.keyCode);
+
+    if (/[a-zA-Z]/.test(inp)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.confermaDatiService.retrieveAllSkills();
     this.confermaDatiService.retrieveAllSeniorities();
@@ -35,8 +45,10 @@ export class ConfermaDatiComponent implements OnInit {
     this.candidateForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      idSeniority: [new Number, Validators.required]
+      idSeniority: ['', Validators.required],
     })
+
+    
   }
   
   get skills(): Observable<Skill[]> {
