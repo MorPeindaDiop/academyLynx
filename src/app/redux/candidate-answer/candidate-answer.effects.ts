@@ -14,8 +14,6 @@ import { setCandidateScore } from '../candidate/candidate.actions';
 @Injectable()
 export class CandidateAnswersEffects {
 
-    idCandidate: number;
-
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllCandidateAnswers(): Observable<Response> {
@@ -29,7 +27,7 @@ export class CandidateAnswersEffects {
     createCandidateAnswer$ = createEffect(() => this.actions$.pipe(
         ofType(createCandidateAnswer),
         switchMap(candidateAnswer => this.createCandidateAnswer(candidateAnswer.candidateResponse).pipe(
-            switchMap((idCandidate) => [retrieveAllCandidateAnswers(), this.idCandidate = idCandidate.result],
+            switchMap((idCandidate) => [retrieveAllCandidateAnswers(), setCandidateScore({idCandidate: idCandidate.result })],
             )
         ))
     ));
@@ -37,7 +35,7 @@ export class CandidateAnswersEffects {
     getAllCandidateAnswers$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllCandidateAnswers),
         switchMap(() => this.retreiveAllCandidateAnswers().pipe(
-            switchMap((response) => [initCandidateAnswers({ response }), setCandidateScore({idCandidate: this.idCandidate })])
+            switchMap((response) => [initCandidateAnswers({ response })])
         ))
     ));
 }
