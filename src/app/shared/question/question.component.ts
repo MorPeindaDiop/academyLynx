@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Question } from 'src/app/core/model/Question';
 
 @Component({
@@ -8,9 +9,15 @@ import { Question } from 'src/app/core/model/Question';
 })
 export class QuestionComponent implements OnInit {
 
+  rispostaForm: FormGroup;
 
   @Input()
-  question: Question;
+  questions: any;
+
+  value: string;
+
+  candidateAnswer: any[] = [];
+
   splitted: string[]=[];
   
   shuffle(array) {
@@ -32,19 +39,45 @@ export class QuestionComponent implements OnInit {
     return array;
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+
+    this.rispostaForm = this.fb.group({
+      idQuestion: ['', Validators.required],
+      value: [this.value, Validators.required]
+    })
+  }
 
   
 
   ngOnInit(): void { 
     console.log("siamo dentro al componente question");
-    console.log(this.question);
-    if(this.question.wrongAnswers!=null){
-      this.splitted = this.question.wrongAnswers.split(";");
-      this.splitted.push(this.question.correctAnswerText);
-      this.shuffle(this.splitted);
-    }
+    console.log(this.questions);
+    // console.log(this.value);
+    // if(this.questions.question.wrongAnswers!=null){
+      
+    // }
+
+    // console.log("this.rispostaForm.value")
+    // console.log(this.rispostaForm.value)
     
+  }
+
+  split (question: Question) {
+    this.splitted = [];
+    this.splitted = question.wrongAnswers.split(";");
+    this.splitted.push(question.correctAnswerText);
+    this.shuffle(this.splitted);
+  }
+
+  ngOnChanges(changes: SimpleChange) {
+    console.log("question component")
+    console.log(changes)
+
+  }
+
+  addResponse() {
+    this.candidateAnswer.push(this.rispostaForm.value)
+    console.log(this.candidateAnswer)
   }
 
 }

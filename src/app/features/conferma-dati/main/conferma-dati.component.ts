@@ -60,12 +60,10 @@ export class ConfermaDatiComponent implements OnInit {
     this.confermaDatiService.createCandidate(candidate);
     await this.delay(5000);
     this.createCandidateSkill();
-    //this.createCandidateSkill();
   }
   
   async createCandidateSkill() {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
-    console.log(this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id}))
     for (let idSkill of this.skill.value) {
       let candSkill: CandidateSkill = {
         idCandidate: this.idCandidate,
@@ -73,7 +71,6 @@ export class ConfermaDatiComponent implements OnInit {
       }
       this.confermaDatiService.createCandidateSkill(candSkill)
     }
-    console.log(this.skill.value);
   }
 
 }

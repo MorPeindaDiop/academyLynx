@@ -9,4 +9,3 @@ export const initCandidateSkills = createAction('[CandidateSkill] init candidate
 
 //crea candidato
 export const createCandidateSkill = createAction('[CandidateSkill] create candidate skill', props<{candidateSkill: CandidateSkill}>());
-export const createCandidateSuccess = createAction('[CandidateSkill] create candidate skill success', props<{response: Response}>());
