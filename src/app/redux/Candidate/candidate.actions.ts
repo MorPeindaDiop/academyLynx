@@ -11,5 +11,5 @@ export const createCandidate = createAction('[Candidate] create candidate', prop
 export const createCandidateSuccess = createAction('[Candidate] create candidate success', props<{response: Response}>());
 
 //score
-export const setCandidateScore = createAction('[CandidateScore] candidateScore', props<{idCandidate: number}>());
+export const setCandidateScore = createAction('[Candidate] candidateScore', props<{idCandidate: number}>());
 export const initCandidateSuccess = createAction('[Candidate] init candidate success', props<{response: Response}>());

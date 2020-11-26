@@ -6,20 +6,22 @@ import { createCandidate, createCandidateSuccess, initCandidates, initCandidateS
 export interface CandidatesState {
     candidates: Candidate[];
     currentCandidate: Candidate;
+    currentCandidateScore: Candidate;
     error: String;
 }
 
 export const initialState: CandidatesState = {
     candidates: [],
     currentCandidate: null,
-    error: ""
+    error: "",
+    currentCandidateScore: null
 };
 
 export const candidatesReducer = createReducer(
     initialState,
     on(initCandidates, (state, { response }) => ( { ...state, candidates: response.result, error: response.error } )),
     on(createCandidateSuccess, (state, { response }) => ( { ...state, currentCandidate: response.result } )),
-    on(initCandidateSuccess, (state, { response }) => ( { ...state, currentCandidate: response.result } )),
+    on(initCandidateSuccess, (state, { response }) => ( { ...state, currentCandidateScore: response.result } )),
     );
 
 export function reducer(state: CandidatesState , action: Action) {
