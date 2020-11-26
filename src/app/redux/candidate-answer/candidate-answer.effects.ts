@@ -18,7 +18,7 @@ export class CandidateAnswersEffects {
         return this.http.retrieveGetCall<Response>("candidateAnswer/findAll")
     }
 
-    createCandidateAnswer(candidateAnswer: CandidateAnswer): Observable<Response> {
+    createCandidateAnswer(idCandidate: number, candidateResponse: any[]): Observable<Response> {
         return this.http.retrievePostCall<Response>("candidateAnswer/create",  candidateAnswer )
     }
 

@@ -7,5 +7,7 @@ export const retrieveAllCandidateAnswers = createAction('[CandidateAnswer] candi
 export const initCandidateAnswers = createAction('[CandidateAnswer] init candidate answers', props<{response: Response}>());
 
 
-//crea candidato
-export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{candidateAnswer: CandidateAnswer}>());
+//crea aswr
+export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{idCandidate: number, candidateResponse: any[]}>());
+
+
