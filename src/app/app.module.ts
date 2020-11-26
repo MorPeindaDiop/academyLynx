@@ -7,6 +7,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CoreModule } from './core/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './redux';
@@ -43,7 +44,8 @@ import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answ
       logOnly: environment.production,
     }),
     BrowserAnimationsModule,
-    
+    ReactiveFormsModule,
+
   ],
   exports:[MatFormFieldModule],
   providers: [],

@@ -19,14 +19,25 @@ import { numbers } from '@material/select';
   styleUrls: ['./conferma-dati.component.scss']
 })
 export class ConfermaDatiComponent implements OnInit {
-  
+
   candidateForm: FormGroup;
   skill = new FormControl();
   idCandidate: number;
+  angForm: FormGroup;
+
 
   constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
-
+    this.createForm();
   }
+
+  createForm() {
+    this.angForm = this.fb.group({
+       name: ['', Validators.required ],
+       address: ['', Validators.required ],
+      // senioruty: ['', Validators.required ]
+    });
+  }
+
 
   ngOnInit(): void {
     this.confermaDatiService.retrieveAllSkills();
@@ -37,21 +48,22 @@ export class ConfermaDatiComponent implements OnInit {
       surname: ['', Validators.required],
       idSeniority: [new Number, Validators.required]
     })
+
   }
-  
+
   get skills(): Observable<Skill[]> {
     return this.store.pipe(select(selectSkills));
   }
-  
+
   get seniorities(): Observable<Seniority[]> {
     return this.store.pipe(select(selectSeniorities));
   }
-  
+
    delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
-  
-  
+
+
   async goCandidate(){
     let candidate: Candidate={
       ...this.candidateForm.value
@@ -61,7 +73,7 @@ export class ConfermaDatiComponent implements OnInit {
     await this.delay(5000);
     this.createCandidateSkill();
   }
-  
+
   async createCandidateSkill() {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
     for (let idSkill of this.skill.value) {
