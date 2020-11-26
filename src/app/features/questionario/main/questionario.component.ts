@@ -1,6 +1,7 @@
 import { Component, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
+import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { Question } from 'src/app/core/model/Question';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
@@ -16,8 +17,8 @@ export class QuestionarioComponent implements OnInit {
   rispostaForm: FormGroup;
   questions = [];
   idCandidate: number;
-
-  candidateAnswers: any[] = [];
+  
+  candidateResponse: CandidateResponse[] = [];
 
   splitted=[];
   
@@ -44,7 +45,7 @@ export class QuestionarioComponent implements OnInit {
 
     this.rispostaForm = this.fb.group({
       idQuestion: ['', Validators.required],
-      value: ['', Validators.required]
+      candidateResponse: ['', Validators.required]
     })
     
   }
@@ -92,13 +93,15 @@ export class QuestionarioComponent implements OnInit {
 
   }
 
-  addResponse() {
-    let candidateAnswer = {
-      ...this.rispostaForm.value
+  addResponse(id: number) {
+    let candidateAnswer: CandidateResponse = {
+      idQuestion: id,
+      candidateResponse: this.rispostaForm.value.candidateResponse
     }
-    this.candidateAnswers.push(candidateAnswer)
+
+    this.candidateResponse.push(candidateAnswer)
     console.log("addResponse()")
-    console.log(this.candidateAnswers)
+    console.log(this.candidateResponse)
   }
   
 }
