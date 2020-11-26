@@ -12,4 +12,4 @@ export const createCandidateSuccess = createAction('[Candidate] create candidate
 
 //score
 export const setCandidateScore = createAction('[CandidateScore] candidateScore', props<{idCandidate: number}>());
-export const initCandidateSuccess = createAction('[Candidate] create candidate success', props<{response: Response}>());
+export const initCandidateSuccess = createAction('[Candidate] init candidate success', props<{response: Response}>());

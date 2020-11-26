@@ -19,11 +19,11 @@ export class RisultatoComponent implements OnInit {
   constructor(private store: Store, private risultatoService: RisultatoService) {
     
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.candidate = candidate; });
-    //this.risultatoService.setScoreCandidate(this.idCandidate);
+    //this.risultatoService.setScoreCandidate(this.candidate.id)
     
    }
 
   ngOnInit(): void {
-    
+    //this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.candidate = candidate; });
   }
 }

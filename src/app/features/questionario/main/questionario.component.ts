@@ -109,7 +109,7 @@ export class QuestionarioComponent implements OnInit {
 
   goResult(){
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
-    this.questionarioService.setScoreCandidate(this.idCandidate);
+    // this.questionarioService.setScoreCandidate(this.idCandidate);
     this.router.navigateByUrl('/risultato');
 
   }
