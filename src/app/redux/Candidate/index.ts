@@ -14,3 +14,8 @@ export const getCurrentCandidate = createSelector(
     selectCandidatesState,
     (state: CandidatesState) => state.currentCandidate
 );
+
+export const getCurrentCandidateScore = createSelector(
+    selectCandidatesState,
+    (state: CandidatesState) => state.currentCandidateScore
+);

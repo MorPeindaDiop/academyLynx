@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Candidate } from 'src/app/core/model/Candidate.interface';
+import { getCurrentCandidate, getCurrentCandidateScore } from 'src/app/redux/candidate';
+import { RisultatoService } from '../services/risultato.service';
 
 @Component({
   selector: 'app-risultato',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RisultatoComponent implements OnInit {
 
-  constructor() { }
+  idCandidate: number;
+  arithmeticScore: number;
+  weightedScore: number;
+  candidate: Candidate;
+
+  constructor(private store: Store, private risultatoService: RisultatoService) {
+    
+    this.store.pipe(select(getCurrentCandidateScore)).subscribe((candidate)=> {return this.candidate = candidate; });
+    //this.risultatoService.setScoreCandidate(this.candidate.id)
+    
+   }
 
   ngOnInit(): void {
+    //this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.candidate = candidate; });
   }
-
 }
