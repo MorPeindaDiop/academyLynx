@@ -5,6 +5,7 @@ import { senioritiesReducer, SenioritiesState } from './seniority/seniority.redu
 import { candidatesReducer, CandidatesState } from './candidate/candidate.reducers';
 import { candidateSkillsReducer, CandidateSkillsState } from './candidate-skill/candidate-skill.reducers';
 import { questionsReducer, QuestionsState } from './question/question.reducers';
+import { candidateAnswersReducer, CandidateAnswersState } from './candidate-answer/candidate-answer.reducers';
 
 export interface AppState {
     router: RouterReducerState<any>;
@@ -13,6 +14,7 @@ export interface AppState {
     candidatesState: CandidatesState;
     candidateSkillsState: CandidateSkillsState;
     questionState: QuestionsState;
+    candidateAnswer: CandidateAnswersState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -22,4 +24,5 @@ export const reducers: ActionReducerMap<AppState> = {
     candidatesState: candidatesReducer,
     candidateSkillsState: candidateSkillsReducer,
     questionState: questionsReducer,
+    candidateAnswer: candidateAnswersReducer,
 };

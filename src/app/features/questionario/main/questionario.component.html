@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
 	<div class="square">
 		<form>
@@ -18,3 +19,76 @@
 </div>
 
 
+=======
+<ng-container>
+	<form [formGroup]="rispostaForm">
+		<div *ngFor="let item of questions;let i = index">
+			<div [hidden]="item.isHidden">
+				<div *ngIf="item.question.type=='crocette'">
+					<!-- domanda crocette -->
+					<div class="row">
+						<div class="col">
+							<label for="exampleInputEmail1">
+								<li>{{item.question.questionText}}</li>
+							</label>
+							
+							<div class="form-check" *ngFor="let answer of splitted">
+								<div *ngIf="answer.idQuestion==item.question.id">
+									<div *ngFor="let itemm of answer.array">
+										<input class="form-check-input" type="radio" name="value" id="exampleRadios1"
+											[value]="itemm" formControlName="value">
+										<label class="form-check-label" for="exampleRadios1">
+											{{itemm}}
+										</label>
+
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--vero falso-->
+				<div *ngIf="item.question.type=='vf'">
+					<div class="row">
+						<div class="col">
+							<label for="exampleInputEmail1">
+								<li>{{item.question.questionText}}</li>
+							</label>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="value" id="exampleRadios1"
+									[value]="true" formControlName="value">
+								<label class="form-check-label" for="exampleRadios1">
+									Vero
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="value" id="exampleRadios2"
+									[value]="false" formControlName="value">
+								<label class="form-check-label" for="exampleRadios2">
+									Falso
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--aperta-->
+				<div *ngIf="item.question.type=='aperta'">
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="exampleInputEmail1">
+									<li>{{item.question.questionText}}</li>
+								</label>
+								<input type="text" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" formControlName="value">
+							</div>
+						</div>
+					</div>
+				</div>
+				<button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse()">Next</button>
+				<!-- <input type="submit" value="submit"> -->
+			</div>
+		</div>
+	</form>
+</ng-container>
+>>>>>>> pietroProva
