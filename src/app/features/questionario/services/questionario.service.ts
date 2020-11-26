@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { CandidateAnswer } from 'src/app/core/model/CandidateAnswer.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { createCandidateAnswer } from 'src/app/redux/candidate-answer/candidate-answer.actions';
+import { setCandidateScore } from 'src/app/redux/candidate/candidate.actions';
 import { retrieveAllQuestions } from 'src/app/redux/question/question.actions';
 
 @Injectable({
@@ -17,7 +18,11 @@ export class QuestionarioService {
   }
 
   createCandidateAnswer( candidateResponse: CandidateResponse[]) {
-    this.store.dispatch(createCandidateAnswer({candidateResponse}))//aggiunta graffe che potrebbero dare errore
+    this.store.dispatch(createCandidateAnswer({candidateResponse}))
+  }
+
+  setScoreCandidate(idCandidate: number) {
+    this.store.dispatch(setCandidateScore({idCandidate}))
   }
 
 }

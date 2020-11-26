@@ -9,3 +9,7 @@ export const initCandidates = createAction('[Candidate] init candidates', props<
 //crea candidato
 export const createCandidate = createAction('[Candidate] create candidate', props<{candidate: Candidate}>());
 export const createCandidateSuccess = createAction('[Candidate] create candidate success', props<{response: Response}>());
+
+//score
+export const setCandidateScore = createAction('[CandidateScore] candidateScore', props<{idCandidate: number}>());
+export const initCandidateSuccess = createAction('[Candidate] create candidate success', props<{response: Response}>());
