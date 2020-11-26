@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CandidateAnswer } from 'src/app/core/model/CandidateAnswer.interface';
+import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { createCandidateAnswer } from 'src/app/redux/candidate-answer/candidate-answer.actions';
 import { retrieveAllQuestions } from 'src/app/redux/question/question.actions';
 
@@ -15,8 +16,8 @@ export class QuestionarioService {
     this.store.dispatch(retrieveAllQuestions())
   }
 
-  createCandidateAnswer(candidateAnswer: CandidateAnswer) {
-    this.store.dispatch(createCandidateAnswer({candidateAnswer}))
+  createCandidateAnswer( candidateResponse: CandidateResponse[]) {
+    this.store.dispatch(createCandidateAnswer({candidateResponse}))//aggiunta graffe che potrebbero dare errore
   }
 
 }

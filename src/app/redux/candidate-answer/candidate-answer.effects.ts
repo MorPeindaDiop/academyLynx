@@ -8,6 +8,7 @@ import { switchMap, map, tap } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
 import { createCandidateAnswer, retrieveAllCandidateAnswers, initCandidateAnswers } from './candidate-answer.actions';
 import { CandidateAnswer } from 'src/app/core/model/CandidateAnswer.interface';
+import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 
 @Injectable()
 export class CandidateAnswersEffects {
@@ -18,13 +19,13 @@ export class CandidateAnswersEffects {
         return this.http.retrieveGetCall<Response>("candidateAnswer/findAll")
     }
 
-    createCandidateAnswer(candidateAnswer: CandidateAnswer): Observable<Response> {
-        return this.http.retrievePostCall<Response>("candidateAnswer/create",  candidateAnswer )
+    createCandidateAnswer(candidateResponse: CandidateResponse[]): Observable<Response> {
+        return this.http.retrievePostCall<Response>("candidateAnswer/create",  candidateResponse )
     }
 
     createCandidateAnswer$ = createEffect(() => this.actions$.pipe(
         ofType(createCandidateAnswer),
-        switchMap(candidateAnswer => this.createCandidateAnswer(candidateAnswer.candidateAnswer).pipe(
+        switchMap(candidateAnswer => this.createCandidateAnswer(candidateAnswer.candidateResponse).pipe(
             map(() => retrieveAllCandidateAnswers(),
             )
         ))

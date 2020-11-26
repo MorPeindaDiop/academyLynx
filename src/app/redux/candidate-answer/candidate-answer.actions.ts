@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { CandidateAnswer } from '../../core/model/CandidateAnswer.interface';
 import { Response } from '../../core/model/Response.interface';
 
@@ -8,4 +9,5 @@ export const initCandidateAnswers = createAction('[CandidateAnswer] init candida
 
 
 //crea candidato
-export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{candidateAnswer: CandidateAnswer}>());
+export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{candidateResponse: CandidateResponse[]}>());
+
