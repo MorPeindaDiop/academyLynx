@@ -19,13 +19,13 @@ export class CandidateAnswersEffects {
         return this.http.retrieveGetCall<Response>("candidateAnswer/findAll")
     }
 
-    createCandidateAnswer(idCandidate: number, candidateResponse: CandidateResponse[]): Observable<Response> {
-        return this.http.retrievePostCall<Response>("candidateAnswer/create",  {idCandidate, candidateResponse} )
+    createCandidateAnswer(candidateResponse: CandidateResponse[]): Observable<Response> {
+        return this.http.retrievePostCall<Response>("candidateAnswer/create",  candidateResponse )
     }
 
     createCandidateAnswer$ = createEffect(() => this.actions$.pipe(
         ofType(createCandidateAnswer),
-        switchMap(candidateAnswer => this.createCandidateAnswer(candidateAnswer.idCandidate, candidateAnswer.candidateResponse).pipe(
+        switchMap(candidateAnswer => this.createCandidateAnswer(candidateAnswer.candidateResponse).pipe(
             map(() => retrieveAllCandidateAnswers(),
             )
         ))

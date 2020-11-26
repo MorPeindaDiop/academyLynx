@@ -9,5 +9,5 @@ export const initCandidateAnswers = createAction('[CandidateAnswer] init candida
 
 
 //crea candidato
-export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{idCandidate: number, candidateResponse: CandidateResponse[]}>());
+export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{candidateResponse: CandidateResponse[]}>());
 

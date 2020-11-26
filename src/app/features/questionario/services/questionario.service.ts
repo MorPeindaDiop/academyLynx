@@ -16,8 +16,8 @@ export class QuestionarioService {
     this.store.dispatch(retrieveAllQuestions())
   }
 
-  createCandidateAnswer(idCandidate: number, candidateResponse: CandidateResponse[]) {
-    this.store.dispatch(createCandidateAnswer({idCandidate, candidateResponse}))//aggiunta graffe che potrebbero dare errore
+  createCandidateAnswer( candidateResponse: CandidateResponse[]) {
+    this.store.dispatch(createCandidateAnswer({candidateResponse}))//aggiunta graffe che potrebbero dare errore
   }
 
 }

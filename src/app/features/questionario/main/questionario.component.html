@@ -14,7 +14,7 @@
 								<div *ngIf="answer.idQuestion==item.question.id">
 									<div *ngFor="let itemm of answer.array">
 										<input class="form-check-input" type="radio" name="candidateResponse" id="exampleRadios1"
-											[candidateResponse]="itemm" formControlName="candidateResponse">
+											[value]="itemm" formControlName="candidateResponse">
 										<label class="form-check-label" for="exampleRadios1">
 											{{itemm}}
 										</label>
@@ -34,14 +34,14 @@
 							</label>
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="candidateResponse" id="exampleRadios1"
-									[candidateResponse]="true" formControlName="candidateResponse">
+									[value]="true" formControlName="candidateResponse">
 								<label class="form-check-label" for="exampleRadios1">
 									Vero
 								</label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="candidateResponse" id="exampleRadios2"
-									[candidateResponse]="false" formControlName="candidateResponse">
+									[value]="false" formControlName="candidateResponse">
 								<label class="form-check-label" for="exampleRadios2">
 									Falso
 								</label>
@@ -63,7 +63,8 @@
 						</div>
 					</div>
 				</div>
-				<button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)">Next</button>
+				<button *ngIf="i+1!=questions.length" (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)">Next</button>
+				<button *ngIf="i+1==questions.length" (click)="goResult()">RISULTATO</button>
 				<!-- <input type="submit" candidateResponse="submit"> -->
 			</div>
 		</div>

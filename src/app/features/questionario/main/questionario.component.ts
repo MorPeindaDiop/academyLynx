@@ -1,5 +1,6 @@
 import { Component, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { Question } from 'src/app/core/model/Question';
@@ -41,7 +42,7 @@ export class QuestionarioComponent implements OnInit {
     return array;
   }
   
-  constructor(private store: Store, private questionService: QuestionarioService, private fb: FormBuilder) {
+  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
 
     this.rispostaForm = this.fb.group({
       idQuestion: ['', Validators.required],
@@ -58,7 +59,7 @@ export class QuestionarioComponent implements OnInit {
     
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.idCandidate = candidate.id});
 
-    this.questionService.retrieveAllQuestions();
+    this.questionarioService.retrieveAllQuestions();
     
     this.store.pipe(select(selectQuestions)).subscribe((question)=> {
       for(let item of question){
@@ -95,6 +96,7 @@ export class QuestionarioComponent implements OnInit {
 
   addResponse(id: number) {
     let candidateAnswer: CandidateResponse = {
+      idCandidate: this.idCandidate,
       idQuestion: id,
       candidateResponse: this.rispostaForm.value.candidateResponse
     }
@@ -102,6 +104,14 @@ export class QuestionarioComponent implements OnInit {
     this.candidateResponse.push(candidateAnswer)
     console.log("addResponse()")
     console.log(this.candidateResponse)
+    
   }
+
+  goResult(){
+    this.questionarioService.createCandidateAnswer(this.candidateResponse)
+    this.router.navigateByUrl('/risultato');
+  }
+
+
   
 }
