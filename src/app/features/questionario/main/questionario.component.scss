@@ -62,3 +62,9 @@ li {
 .domanda{
   font-size: 22px;
 }
+input.ng-touched.ng-invalid{
+  border: 1px solid red;
+}
+span{
+  color: red;
+}

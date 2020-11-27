@@ -1,6 +1,6 @@
 <ng-container>
 
-	<form [formGroup]="rispostaForm">
+	<form [formGroup]="rispostaForm" >
 		<div class="container">
 			<div class="square">
 				<div *ngFor="let item of questions;let i = index">
@@ -22,8 +22,10 @@
 												<label class="form-check-label" for="exampleRadios1">
 													{{itemm}}
 												</label>
-
+												
 											</div>
+											<br>
+											<!-- <span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Seleziona la risposta corretta</span> -->
 										</div>
 									</div>
 								</div>
@@ -50,6 +52,8 @@
 											Falso
 										</label>
 									</div>
+									<br>
+									<!-- <span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Seleziona la risposta corretta</span> -->
 								</div>
 							</div>
 								
@@ -63,21 +67,24 @@
 											<li class="domanda">{{item.question.questionText}}</li>
 										</label>
 										<input type="text" class="form-control" id="exampleInputEmail1"
-											aria-describedby="emailHelp" formControlName="candidateResponse" required>
-											<!-- <span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Inserisci la risposta</span> -->
+											aria-describedby="emailHelp" formControlName="candidateResponse" >
+											<br>
+											
 										</div>
 								</div>
 							</div>
 						</div>
+						<span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Inserisci la risposta</span>
 						<br>
 						<div class="prova">
 
 
 
-							<button *ngIf="i+1!=questions.length"
-								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)">AVANTI</button>
-							<button *ngIf="i+1==questions.length"
-								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
+							<button type="submit"  *ngIf="i+1!=questions.length"
+								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)"
+								 [disabled]="rispostaForm.valid">AVANTI</button>
+							<button *ngIf="i+1==questions.length" 
+								(click)="addResponse(item.question.id);goResult()" >RISULTATO</button>
 							<!-- <input type="submit" candidateResponse="submit"> -->
 
 

@@ -27,6 +27,8 @@ export class ConfermaDatiComponent implements OnInit {
   constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
 
   }
+
+  
   keyPressAlpha(event) {
 
     var inp = String.fromCharCode(event.keyCode);
