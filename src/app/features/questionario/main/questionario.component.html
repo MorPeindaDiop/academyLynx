@@ -1,9 +1,8 @@
-<div class="container">
-	<div class="square">
+<ng-container>
 
-
-		<ng-container>
-			<form [formGroup]="rispostaForm">
+	<form [formGroup]="rispostaForm">
+		<div class="container">
+			<div class="square">
 				<div *ngFor="let item of questions;let i = index">
 					<div [hidden]="item.isHidden">
 						<div *ngIf="item.question.type=='crocette'">
@@ -53,6 +52,7 @@
 									</div>
 								</div>
 							</div>
+								
 						</div>
 						<!--aperta-->
 						<div *ngIf="item.question.type=='aperta'">
@@ -63,24 +63,29 @@
 											<li class="domanda">{{item.question.questionText}}</li>
 										</label>
 										<input type="text" class="form-control" id="exampleInputEmail1"
-											aria-describedby="emailHelp" formControlName="candidateResponse">
-									</div>
+											aria-describedby="emailHelp" formControlName="candidateResponse" required>
+											<!-- <span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Inserisci la risposta</span> -->
+										</div>
 								</div>
 							</div>
 						</div>
 						<br>
-						<div class="row">
-							
-						<button *ngIf="i+1!=questions.length"
-							(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)">Next</button>
-						<button *ngIf="i+1==questions.length"
-							(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
-						<!-- <input type="submit" candidateResponse="submit"> -->
-					
-					</div>
+						<div class="prova">
+
+
+
+							<button *ngIf="i+1!=questions.length"
+								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)">AVANTI</button>
+							<button *ngIf="i+1==questions.length"
+								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
+							<!-- <input type="submit" candidateResponse="submit"> -->
+
+
+						</div>
 					</div>
 				</div>
-			</form>
-		</ng-container>
-	</div>
-</div>
+
+			</div>
+		</div>
+	</form>
+</ng-container>
