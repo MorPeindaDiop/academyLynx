@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
 import { switchMap, map } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
-import { createSkill, initSkills, retrieveAllSkills } from './skill.actions';
+import { createSkill, deleteSkill, initSkills, retrieveAllSkills } from './skill.actions';
 import { Skill } from 'src/app/core/model/Skill.interface';
 
 @Injectable()
@@ -22,6 +22,10 @@ export class SkillsEffects{
         return this.http.retrievePostCall<Response>("skill/create", skill)
     }
 
+    deleteSkill(id: number): Observable<Response> {
+        return this.http.retrievePostCall<Response>("skill/delete", id)
+    }
+
     getAllSkills$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllSkills),
         switchMap(() => this.retreiveAllSkills().pipe(
@@ -29,9 +33,17 @@ export class SkillsEffects{
         ))
     ));
 
-    createCandidate$ = createEffect(() => this.actions$.pipe(
+    createSkill$ = createEffect(() => this.actions$.pipe(
         ofType(createSkill),
         switchMap(skill => this.createSkill(skill.skill).pipe(
+            map(() => retrieveAllSkills()),
+            )
+        ))
+    );
+
+    deleteSkill$ = createEffect(() => this.actions$.pipe(
+        ofType(deleteSkill),
+        switchMap(id => this.deleteSkill(id.id).pipe(
             map(() => retrieveAllSkills()),
             )
         ))

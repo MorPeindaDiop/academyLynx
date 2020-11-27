@@ -6,6 +6,7 @@ import { SkillComponent } from './main/skill.component';
 import { SkillService } from './services/skill.service';
 import { DetailComponent } from './detail/detail.component';
 import { CreateComponent } from './create/create.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     CommonModule,
-    SkillRoutingModule
+    SkillRoutingModule,
+    SharedModule
   ],
   providers: [
     SkillService

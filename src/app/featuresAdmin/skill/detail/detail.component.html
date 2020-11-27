@@ -1,4 +1,12 @@
-<p>detail works!</p>
-<div>{{ skill.description }}</div>
-
-<!-- <form [formGroup]="skillForm"></form> -->
+<h1>EDIT SKILL</h1>
+<form [formGroup]="skillForm" (ngSubmit)="save()">
+    <div>
+        <label><b>ID:</b></label>
+        <div formControlName="id">{{ skill.id }}</div>
+    </div>
+    <div>
+        <label for="description"><b>Description:</b></label>
+        <input type="text" class="form-control" id="description" placeholder="Description" formControlName="description">
+    </div>
+    <button type="submit">SAVE</button>
+</form>

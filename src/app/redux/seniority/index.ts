@@ -1,6 +1,7 @@
 import { Params } from '@angular/router';
 import { createSelector } from '@ngrx/store';
 import { AppState } from '..';
+import { selectRouteParams } from '../router';
 import { SenioritiesState } from './seniority.reducers';
 
 export const selectSenioritiesState = (state: AppState) => state.senioritiesState;
@@ -10,8 +11,8 @@ export const selectSeniorities = createSelector(
     (state: SenioritiesState) => state.seniorities
 );
 
-// export const getCurrentNavigatedProduct = createSelector(
-//     selectSkillsState,
-//     selectRouteParams,
-//     (state: ProductsState, params: Params) => state.products.find(item => item.id === Number(params['id']))
-// );
+export const getCurrentNavigatedSeniority = createSelector(
+    selectSenioritiesState,
+    selectRouteParams,
+    (state: SenioritiesState, params: Params) => state.seniorities.find(item => item.id === Number(params['id']))
+);

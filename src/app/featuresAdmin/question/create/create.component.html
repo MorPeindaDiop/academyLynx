@@ -1,0 +1,43 @@
+<h1>CREATE QUESTION</h1>
+<form [formGroup]="questionForm" (ngSubmit)="save()">
+    <div>
+        <label><b>Type:</b></label>
+        <select placeholder="Type" formControlName="type" #type>
+            <option value="vf">Vero o falso</option>
+            <option value="crocette">Risposta multipla</option>
+            <option value="aperta">Risposta aperta</option>
+        </select>
+    </div>
+    <div *ngIf="type.value!=''">
+        <div>
+            <label><b>Difficulty:</b></label>
+            <input type="text" placeholder="Difficulty" formControlName="difficulty">
+        </div>
+        <div>
+            <label><b>Question text:</b></label>
+            <input type="text"placeholder="Question text" formControlName="questionText">
+        </div>
+        <div *ngIf="type.value!='vf'">
+            <label><b>Correct answer:</b></label>
+            <input type="text"placeholder="Correct answer" formControlName="correctAnswerText">
+        </div>
+        <div *ngIf="type.value=='vf'">
+            <label><b>Correct answer:</b></label>
+            <br>
+            <!-- <input type="text" placeholder="Correct answer" formControlName="correctAnswerBoolean"> -->
+            
+            <input type="radio" id="true" value="true" formControlName="correctAnswerBoolean">
+            <label for="true">True</label><br>
+            <input type="radio" id="false" value="false" formControlName="correctAnswerBoolean">
+            <label for="false">False</label><br>
+        </div>
+        <div *ngIf="type.value=='crocette'">
+            <label><b>Wrong answers:</b></label>
+            <!-- <input type="text" placeholder="Wrong answers" formControlName="wrongAnswers"> -->
+            <input type="text" placeholder="Wrong answer 1" [value]='answer1'>
+            <input type="text" placeholder="Wrong answer 2" [value]='answer2'>
+            <input type="text" placeholder="Wrong answer 3" [value]='answer3'>
+        </div>
+    </div>
+    <button type="submit">SAVE</button>
+</form>
