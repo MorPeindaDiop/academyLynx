@@ -51,9 +51,7 @@ export class CandidatesEffects {
             }))
         
     );
-
-
-
+    
     getAllCandidates$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllCandidates),
         switchMap(() => this.retreiveAllCandidates().pipe(
@@ -61,14 +59,4 @@ export class CandidatesEffects {
         ))
     ));
 
-
-    getLastCandidate$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(retrieveAllCandidates),
-        switchMap(() => this.retreiveAllCandidates().pipe(
-            map((response) => initCandidates({ response }))
-        ))
-    ));
-
-
-   
 }

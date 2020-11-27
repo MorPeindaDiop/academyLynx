@@ -1,4 +1,13 @@
-<p>skill works!</p>
-<div *ngFor="let skill of skills | async">
-    {{ skill.description }}
-</div>
+<h1>Skill</h1>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let skill of skills | async">
+        <td>{{ skill.id }}</td>
+        <td>{{ skill.description }}</td>
+        <td><button [routerLink]="['detail', skill.id]">Edit</button></td>
+    </tr>
+</table>

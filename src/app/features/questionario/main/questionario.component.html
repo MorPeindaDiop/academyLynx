@@ -91,7 +91,13 @@
 						</div>
 					</div>
 				</div>
+<<<<<<< HEAD
 
+=======
+				<button *ngIf="i+1!=questions.length" (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : true; addResponse(item.question.id)">Next</button>
+				<button *ngIf="i+1==questions.length" (click)="addResponse(item.question.id);goResult()">RISULTATO</button>
+				<!-- <input type="submit" candidateResponse="submit"> -->
+>>>>>>> origin/randomQuestion
 			</div>
 		</div>
 	</form>
