@@ -18,7 +18,7 @@ export class QuestionarioComponent implements OnInit {
   rispostaForm: FormGroup;
   questions = [];
   idCandidate: number;
-  
+  i: number;
   candidateResponse: CandidateResponse[] = [];
 
   splitted=[];
@@ -40,6 +40,10 @@ export class QuestionarioComponent implements OnInit {
     }
   
     return array;
+  }
+
+  randomQuestion(question){
+    
   }
   
   constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
@@ -63,9 +67,13 @@ export class QuestionarioComponent implements OnInit {
     
     this.store.pipe(select(selectQuestions)).subscribe((question)=> {
       for(let item of question){
-        
+        if(this.i<question.length){
+
+        }
+          
         this.questions.push({question: item, isHidden: (this.questions.length==0?false:true)})  
         this.split(item);
+        this.i++;
       }
       console.log(this.questions)
       return this.questions
