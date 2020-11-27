@@ -11,8 +11,8 @@ export const selectSkills = createSelector(
     (state: SkillsState) => state.skills
 );
 
-// export const getCurrentNavigatedProduct = createSelector(
-//     selectSkillsState,
-//     selectRouteParams,
-//     (state: ProductsState, params: Params) => state.products.find(item => item.id === Number(params['id']))
-// );
+export const getCurrentNavigatedSkill = createSelector(
+    selectSkillsState,
+    selectRouteParams,
+    (state: SkillsState, params: Params) => state.skills.find(item => item.id === Number(params['id']))
+);

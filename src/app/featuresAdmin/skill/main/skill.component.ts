@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Skill } from 'src/app/core/model/Skill';
+import { Skill } from 'src/app/core/model/Skill.interface';
 import { selectSkills } from 'src/app/redux/skill';
 import { SkillService } from '../services/skill.service';
 

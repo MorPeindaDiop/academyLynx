@@ -18,7 +18,7 @@ export class QuestionarioComponent implements OnInit {
   rispostaForm: FormGroup;
   questions = [];
   idCandidate: number;
-  i: number;
+  //i: number;
   candidateResponse: CandidateResponse[] = [];
 
   splitted=[];
@@ -67,13 +67,13 @@ export class QuestionarioComponent implements OnInit {
     
     this.store.pipe(select(selectQuestions)).subscribe((question)=> {
       for(let item of question){
-        if(this.i<question.length){
+        // if(this.i<question.length){
 
-        }
+        // }
           
         this.questions.push({question: item, isHidden: (this.questions.length==0?false:true)})  
         this.split(item);
-        this.i++;
+        //this.i++;
       }
       console.log(this.questions)
       return this.questions
@@ -94,12 +94,6 @@ export class QuestionarioComponent implements OnInit {
         console.log("splitted: ", this.splitted);
       }
     //}
-  }
-
-  ngOnChanges(changes: SimpleChange) {
-    console.log("changes")
-    console.log(changes)
-
   }
 
   addResponse(id: number) {
