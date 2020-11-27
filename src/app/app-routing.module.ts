@@ -11,6 +11,8 @@ const routes: Routes = [
   { path: 'risultato', loadChildren: () => import('./features/risultato/risultato.module').then(m => m.RisultatoModule) },
   { path: '', redirectTo: '/form', pathMatch: 'full' },
   { path: 'admin/skill', loadChildren: () => import('./featuresAdmin/skill/skill.module').then(m => m.SkillModule) },
+  { path: 'admin/seniority', loadChildren: () => import('./featuresAdmin/seniority/seniority.module').then(m => m.SeniorityModule) },
+  { path: 'admin/question', loadChildren: () => import('./featuresAdmin/question/question.module').then(m => m.QuestionModule) },
 ];
 
 @NgModule({

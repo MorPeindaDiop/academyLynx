@@ -8,3 +8,6 @@ export const initSkills = createAction('[Skill] init skills', props<{response: R
 
 //create skill
 export const createSkill = createAction('[Skill] create skill', props<{skill: Skill}>());
+
+//delete skill
+export const deleteSkill = createAction('[Skill] delete skill', props<{id: number}>());

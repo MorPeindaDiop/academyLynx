@@ -11,8 +11,8 @@ export const selectQuestions = createSelector(
     (state: QuestionsState) => state.questions
 );
 
-// export const getCurrentNavigatedProduct = createSelector(
-//     selectQuestionsState,
-//     selectRouteParams,
-//     (state: ProductsState, params: Params) => state.products.find(item => item.id === Number(params['id']))
-// );
+export const getCurrentNavigatedQuestion = createSelector(
+    selectQuestionsState,
+    selectRouteParams,
+    (state: QuestionsState, params: Params) => state.questions.find(item => item.id === Number(params['id']))
+);

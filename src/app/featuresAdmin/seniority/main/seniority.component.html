@@ -1,0 +1,20 @@
+<h1>Seniority</h1>
+<button routerLink="create">Create new Seniority</button>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Level</th>
+        <th>Description</th>
+        <th>Difficoltà minima</th>
+        <th>Difficoltà massima</th>
+    </tr>
+    <tr *ngFor="let seniority of seniorities | async">
+        <td>{{ seniority.id }}</td>
+        <td>{{ seniority.level }}</td>
+        <td>{{ seniority.description }}</td>
+        <td>{{ seniority.minDifficulty }}</td>
+        <td>{{ seniority.maxDifficulty }}</td>
+        <td><button [routerLink]="['detail', seniority.id]">Edit</button></td>
+        <td><button (click)="delete(seniority.id)">Delete</button></td>
+    </tr>
+</table>

@@ -21,8 +21,4 @@ export class QuestionarioService {
     this.store.dispatch(createCandidateAnswer({candidateResponse}))
   }
 
-  // setScoreCandidate(idCandidate: number) {
-  //   this.store.dispatch(setCandidateScore({idCandidate}))
-  // }
-
 }

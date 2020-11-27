@@ -23,4 +23,8 @@ export class SkillComponent implements OnInit {
     return this.store.pipe(select(selectSkills));
   }
 
+  delete(id: number) {
+    this.skillService.deleteSkill(id)
+  }
+
 }

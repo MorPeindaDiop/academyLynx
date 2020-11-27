@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Skill } from 'src/app/core/model/Skill.interface';
-import { createSkill, retrieveAllSkills } from 'src/app/redux/skill/skill.actions';
+import { createSkill, deleteSkill, retrieveAllSkills } from 'src/app/redux/skill/skill.actions';
 
 @Injectable()
 export class SkillService {
@@ -14,6 +14,10 @@ export class SkillService {
 
   createSkill(skill: Skill) {
     this.store.dispatch(createSkill({skill}))
+  }
+
+  deleteSkill(id : number) {
+    this.store.dispatch(deleteSkill({id}))
   }
 
 }
