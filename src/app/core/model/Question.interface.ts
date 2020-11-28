@@ -1,5 +1,3 @@
-import { Time } from '@angular/common';
-
 export interface Question {
     id: number;
     type: string;
@@ -12,5 +10,4 @@ export interface Question {
     updateTime?: Date;
     creationUser?: string;
     updateUser?: string;
-    
 }

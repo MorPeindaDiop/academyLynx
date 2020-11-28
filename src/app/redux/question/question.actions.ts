@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 import { Response } from '../../core/model/Response.interface';
 
 //all questions

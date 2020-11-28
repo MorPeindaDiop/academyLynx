@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Response } from 'src/app/core/model/Response.interface';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 import { initQuestions, retrieveAllQuestions } from './question.actions';
 
 export interface QuestionsState {

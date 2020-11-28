@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'admin/skill', loadChildren: () => import('./featuresAdmin/skill/skill.module').then(m => m.SkillModule) },
   { path: 'admin/seniority', loadChildren: () => import('./featuresAdmin/seniority/seniority.module').then(m => m.SeniorityModule) },
   { path: 'admin/question', loadChildren: () => import('./featuresAdmin/question/question.module').then(m => m.QuestionModule) },
+  { path: 'admin/field', loadChildren: () => import('./featuresAdmin/field/field.module').then(m => m.FieldModule) },
 ];
 
 @NgModule({

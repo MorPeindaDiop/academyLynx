@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentNavigatedSeniority } from 'src/app/redux/seniority';
 import { SeniorityService } from '../services/seniority.service';
 

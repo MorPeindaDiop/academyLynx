@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { createSeniority, deleteSeniority, retrieveAllSeniorities } from 'src/app/redux/seniority/seniority.actions';
 
 @Injectable({

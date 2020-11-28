@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
 import { QuestionarioService } from '../services/questionario.service';

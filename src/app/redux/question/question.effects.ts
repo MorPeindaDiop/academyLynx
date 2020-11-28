@@ -7,7 +7,7 @@ import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-
 import { switchMap, map } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
 import { createQuestion, deleteQuestion, initQuestions, retrieveAllQuestions } from './question.actions';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 
 @Injectable()
 export class QuestionsEffects{

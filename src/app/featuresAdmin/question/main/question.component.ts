@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 import { selectQuestions } from 'src/app/redux/question';
 import { QuestionService } from '../services/question.service';
 

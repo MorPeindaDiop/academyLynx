@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Response } from 'src/app/core/model/Response.interface';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 
 //all seniorities
 export const retrieveAllSeniorities = createAction('[Seniority] Seniorities');

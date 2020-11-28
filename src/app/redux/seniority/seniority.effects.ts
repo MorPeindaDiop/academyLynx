@@ -7,7 +7,7 @@ import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-
 import { switchMap, map } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
 import { createSeniority, deleteSeniority, initSeniorities, retrieveAllSeniorities } from './seniority.actions';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 
 @Injectable()
 export class SenioritiesEffects{

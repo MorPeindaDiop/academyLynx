@@ -9,7 +9,7 @@ import { selectSkills } from 'src/app/redux/skill';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { ConfermaDatiService } from '../services/conferma-dati.service';
 import { Skill } from 'src/app/core/model/Skill.interface';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { numbers } from '@material/select';
 

@@ -23,6 +23,7 @@ import { CandidatesEffects } from './redux/candidate/candidate.effects';
 import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
 import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
+import { FieldsEffects } from './redux/field/field.effects';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,15 @@ import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answ
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
+    EffectsModule.forRoot([
+      SkillsEffects,
+      SenioritiesEffects,
+      CandidatesEffects,
+      CandidateSkillsEffects,
+      QuestionsEffects,
+      CandidateAnswersEffects,
+      FieldsEffects,
+    ]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
