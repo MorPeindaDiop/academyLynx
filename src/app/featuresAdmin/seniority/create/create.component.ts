@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Seniority } from 'src/app/core/model/Seniority';
 import { SeniorityService } from '../services/seniority.service';
 

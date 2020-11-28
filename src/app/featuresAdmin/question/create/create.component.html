@@ -31,12 +31,11 @@
             <input type="radio" id="false" value="false" formControlName="correctAnswerBoolean">
             <label for="false">False</label><br>
         </div>
-        <div *ngIf="type.value=='crocette'">
+        <div *ngIf="type.value=='crocette'" formGroupName="wrongAnswers">
             <label><b>Wrong answers:</b></label>
-            <!-- <input type="text" placeholder="Wrong answers" formControlName="wrongAnswers"> -->
-            <input type="text" placeholder="Wrong answer 1" [value]='answer1'>
-            <input type="text" placeholder="Wrong answer 2" [value]='answer2'>
-            <input type="text" placeholder="Wrong answer 3" [value]='answer3'>
+            <input type="text" placeholder="Wrong answer 1" formControlName="answer1">
+            <input type="text" placeholder="Wrong answer 2" formControlName="answer2">
+            <input type="text" placeholder="Wrong answer 3" formControlName="answer3">
         </div>
     </div>
     <button type="submit">SAVE</button>

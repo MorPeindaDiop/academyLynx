@@ -11,12 +11,7 @@ import { QuestionService } from '../services/question.service';
 })
 export class CreateComponent implements OnInit {
 
-  answer1: string = '';
-  answer2: string = '';
-  answer3: string = '';
-  wrongAnswers: string;
   questionForm: FormGroup;
-  //wrongAnswersForm: FormGroup;
 
   constructor(private fb: FormBuilder, private questionService: QuestionService, private router: Router) {
     
@@ -27,7 +22,11 @@ export class CreateComponent implements OnInit {
       difficulty: ['', Validators.required],
       correctAnswerBoolean: ['', Validators.required],
       correctAnswerText: ['', Validators.required],
-      wrongAnswers: [this.answer1 + ";" + this.answer2 + ";" +this.answer3, Validators.required],
+      wrongAnswers: this.fb.group({ 
+        answer1: ['', Validators.required],
+        answer2: ['', Validators.required],
+        answer3: ['', Validators.required],
+      }),
     })
     
   }
@@ -37,12 +36,16 @@ export class CreateComponent implements OnInit {
 
   save() {
     console.log("oook")
-    console.log(this.answer1)
-    console.log(this.answer2)
-    console.log(this.answer3)
+    console.log(this.questionForm.value)
 
     let question: Question = {
-      ...this.questionForm.value
+      id: this.questionForm.value.id,
+      type: this.questionForm.value.type,
+      questionText: this.questionForm.value.questionText,
+      difficulty: this.questionForm.value.difficulty,
+      correctAnswerBoolean: this.questionForm.value.correctAnswerBoolean,
+      correctAnswerText: this.questionForm.value.correctAnswerText,
+      wrongAnswers: this.questionForm.value.wrongAnswers.answer1 + ";" + this.questionForm.value.wrongAnswers.answer2 + ";" + this.questionForm.value.wrongAnswers.answer3
     }
     this.questionService.createQuestion(question);
     this.router.navigateByUrl('/admin/question');

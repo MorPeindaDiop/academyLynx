@@ -2,23 +2,23 @@
 <form [formGroup]="seniorityForm" (ngSubmit)="save()">
     <div>
         <label><b>ID:</b></label>
-        <div formControlName="id">{{ seniority.id }}</div>
+        <div>{{ seniority.id }}</div>
     </div>
     <div>
-        <label for="description"><b>Level:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Level" formControlName="level">
+        <label><b>Level:</b></label>
+        <input type="text" placeholder="Level" formControlName="level">
     </div>
     <div>
-        <label for="description"><b>Description:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Description" formControlName="description">
+        <label><b>Description:</b></label>
+        <input type="text" placeholder="Description" formControlName="description">
     </div>
     <div>
-        <label for="description"><b>Minimal difficulty:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Minimal difficulty" formControlName="minDifficulty">
+        <label><b>Minimal difficulty:</b></label>
+        <input type="text" placeholder="Minimal difficulty" formControlName="minDifficulty">
     </div>
     <div>
-        <label for="description"><b>Maximum difficulty:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="maxDifficulty">
+        <label><b>Maximum difficulty:</b></label>
+        <input type="text" placeholder="Maximum difficulty" formControlName="maxDifficulty">
     </div>
     <button type="submit">SAVE</button>
 </form>
