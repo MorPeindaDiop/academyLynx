@@ -19,8 +19,8 @@ export class RisultatoComponent implements OnInit {
   nQuestion: number;
 
   constructor(private store: Store) {
-    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate)=> {return this.candidate = candidate; });
-    console.log( /**/  this.store.pipe(select(selectQuestions)).subscribe((domanda)=>{return this.nQuestion=domanda.length;}) /**/  );
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate; });
+    console.log( /**/  this.store.pipe(select(selectQuestions)).subscribe((domanda) => { return this.nQuestion = domanda.length; }) /**/);
   }
 
   ngOnInit(): void { }

@@ -14,19 +14,23 @@
     </div>
     <div>
         <label for="description"><b>Question text:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Minimal difficulty" formControlName="questionText">
+        <input type="text" class="form-control" id="description" placeholder="Minimal difficulty"
+            formControlName="questionText">
     </div>
     <div *ngIf="question.type!='vf'">
         <label for="description"><b>Correct answer:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="correctAnswerText">
+        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty"
+            formControlName="correctAnswerText">
     </div>
     <div *ngIf="question.type=='vf'">
         <label for="description"><b>Correct answer:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="correctAnswerBoolean">
+        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty"
+            formControlName="correctAnswerBoolean">
     </div>
     <div *ngIf="question.type=='crocette'">
         <label for="description"><b>Wrong answers:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="wrongAnswers">
+        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty"
+            formControlName="wrongAnswers">
     </div>
     <button type="submit">SAVE</button>
 </form>

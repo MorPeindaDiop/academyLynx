@@ -16,10 +16,9 @@ export const initialState: CandidateSkillsState = {
 
 export const candidateSkillsReducer = createReducer(
     initialState,
-    on(initCandidateSkills, (state, { response }) => ( { ...state, candidateSkills: response.result, error: response.error } )),
-    //on(createCandidateSuccess, (state, { response }) => ( { ...state, currentCandidateSkill: response.result } )),
-    );
+    on(initCandidateSkills, (state, { response }) => ({ ...state, candidateSkills: response.result, error: response.error })),
+);
 
-export function reducer(state: CandidateSkillsState , action: Action) {
+export function reducer(state: CandidateSkillsState, action: Action) {
     return candidateSkillsReducer(state, action);
 }

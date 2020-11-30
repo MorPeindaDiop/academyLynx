@@ -10,11 +10,11 @@ import { createQuestion, deleteQuestion, initQuestions, retrieveAllQuestions } f
 import { Question } from 'src/app/core/model/Question';
 
 @Injectable()
-export class QuestionsEffects{
-    
-    constructor(private actions$: Actions, private http: HttpCommunicationsService,private router: Router){}
+export class QuestionsEffects {
 
-    retreiveAllQuestions():Observable<Response>{
+    constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
+
+    retreiveAllQuestions(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("question/findAll")
     }
 
@@ -29,7 +29,7 @@ export class QuestionsEffects{
     getAllQuestions$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllQuestions),
         switchMap(() => this.retreiveAllQuestions().pipe(
-            map((response) => initQuestions({response}))
+            map((response) => initQuestions({ response }))
         ))
     ));
 
@@ -37,7 +37,7 @@ export class QuestionsEffects{
         ofType(createQuestion),
         switchMap(question => this.createQuestion(question.question).pipe(
             map(() => retrieveAllQuestions()),
-            )
+        )
         ))
     );
 
@@ -45,7 +45,7 @@ export class QuestionsEffects{
         ofType(deleteQuestion),
         switchMap(id => this.deleteQuestion(id.id).pipe(
             map(() => retrieveAllQuestions()),
-            )
+        )
         ))
     );
 

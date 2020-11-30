@@ -17,7 +17,6 @@ export const initialState: CandidateAnswersState = {
 export const candidateAnswersReducer = createReducer(
     initialState,
     on(initCandidateAnswers, (state, { response }) => ( { ...state, candidateAnswers: response.result, error: response.error } )),
-    //on(createCandidateSuccess, (state, { response }) => ( { ...state, currentCandidateSkill: response.result } )),
     );
 
 export function reducer(state: CandidateAnswersState , action: Action) {

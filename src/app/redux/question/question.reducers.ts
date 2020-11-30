@@ -1,5 +1,4 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Response } from 'src/app/core/model/Response.interface';
 import { Question } from 'src/app/core/model/Question';
 import { initQuestions, retrieveAllQuestions } from './question.actions';
 
@@ -13,9 +12,9 @@ export const initialState: QuestionsState = {
 
 export const questionsReducer = createReducer(
     initialState,
-    on(initQuestions, (state, { response }) => ( { ...state, questions: response.result } )),
-    );
+    on(initQuestions, (state, { response }) => ({ ...state, questions: response.result })),
+);
 
-export function reducer(state: QuestionsState , action: Action) {
+export function reducer(state: QuestionsState, action: Action) {
     return questionsReducer(state, action);
 }

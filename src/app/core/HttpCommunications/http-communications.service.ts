@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import {HttpClient, HttpEvent, HttpEventType, HttpParams, HttpRequest, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 @Injectable(
-  
+
 )
 export class HttpCommunicationsService {
 
   private host = 'http://localhost:8090/lynx/rest/';
-  
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -27,8 +27,6 @@ export class HttpCommunicationsService {
       })
     } : undefined));
   }
- 
-  
 
 
   retrieveDeleteCall<T>(endpoint: string): Observable<T> {

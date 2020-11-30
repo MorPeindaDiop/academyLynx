@@ -6,10 +6,10 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Hello, world!</title>
+  
 </head>
 
-  <form [formGroup]="candidateForm" (ngSubmit)="goCandidate()">
+<form [formGroup]="candidateForm" (ngSubmit)="goCandidate()">
   <!--FORM NOME & COGNOME --------------------------------------------->
   <div class="container">
     <div class="row">
@@ -17,22 +17,26 @@
       <div class="col" style="text-align: left;">
         <div class="form-group">
           <label for="exampleFormControlInput1"><b>Nome:</b></label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome" formControlName="name" (keypress)="keyPressAlpha($event)">
-          <span *ngIf="candidateForm.get('name').touched && candidateForm.get('name').hasError('required')">Enter name</span>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome"
+            formControlName="name" (keypress)="keyPressAlpha($event)">
+          <span *ngIf="candidateForm.get('name').touched && candidateForm.get('name').hasError('required')">Enter
+            name</span>
         </div>
       </div>
 
       <div class="col" style="text-align: left;">
         <div class="form-group">
           <label for="exampleFormControlInput2"><b>Cognome:</b></label>
-          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Cognome" formControlName="surname" (keypress)="keyPressAlpha($event)">
-          <span *ngIf="candidateForm.get('surname').touched && candidateForm.get('surname').hasError('required')">Enter surname</span>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Cognome"
+            formControlName="surname" (keypress)="keyPressAlpha($event)">
+          <span *ngIf="candidateForm.get('surname').touched && candidateForm.get('surname').hasError('required')">Enter
+            surname</span>
         </div>
       </div>
 
     </div>
   </div>
-<!--RIGA SKILL--------------------------------------------->
+  <!--RIGA SKILL--------------------------------------------->
   <div>
     <div class="container">
       <div class="row">
@@ -40,8 +44,8 @@
           <div>
             <mat-form-field appearance="fill" class="skill">
               <mat-label>Skill</mat-label>
-              <mat-select [formControl]="skill" multiple >
-                <mat-option *ngFor="let skill of skills | async" [value]="skill.id" >{{skill.description}}</mat-option>
+              <mat-select [formControl]="skill" multiple>
+                <mat-option *ngFor="let skill of skills | async" [value]="skill.id">{{skill.description}}</mat-option>
                 <!-- <span *ngIf="candidateForm.get('skill').touched && candidateForm.get('skill').hasError('required')">Enter skill</span> -->
               </mat-select>
             </mat-form-field>
@@ -62,8 +66,11 @@
             <label for="exampleFormControlInput1"><b> Livello di seniority:</b></label>
             <div class="form-check">
               <div *ngFor="let seniority of seniorities | async" class="form-check">
-                <input class="form-check-input" type="radio" name="idSeniority" value="{{seniority.id}}" formControlName="idSeniority"> {{seniority.level}}
-                <span *ngIf="candidateForm.get('idSeniority').touched && candidateForm.get('idSeniority').hasError('required')">Enter idSeniority</span>
+                <input class="form-check-input" type="radio" name="idSeniority" value="{{seniority.id}}"
+                  formControlName="idSeniority"> {{seniority.level}}
+                <span
+                  *ngIf="candidateForm.get('idSeniority').touched && candidateForm.get('idSeniority').hasError('required')">Enter
+                  idSeniority</span>
               </div>
             </div>
           </div>
@@ -86,7 +93,7 @@
 
     </div>
   </div>
-  
+
   <br>
 
   <!--TASTO CONFERMA --------------------------------------------->
@@ -100,7 +107,8 @@
 
       <div class="col" style="text-align: center;">
         <div class="form-group">
-          <button type="submit"  class="btn btn-primary"  [disabled]="!candidateForm.valid || skill.value==null" data-toggle="modal" data-target="#exampleModal" > 
+          <button type="submit" class="btn btn-primary" [disabled]="!candidateForm.valid || skill.value==null"
+            data-toggle="modal" data-target="#exampleModal">
             Conferma
           </button>
           <!-- BANNER CONFERMA DATI ------------------------------------------------>
@@ -119,8 +127,8 @@
                   quando sei pronto ad avviare il test fai click su "Conferma"
                 </div>
                 <div class="modal-footer">
-                  <button type="button"  class="btn btn-primary"
-                    data-dismiss="modal" routerLink="/questionario">Conferma</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    routerLink="/questionario">Conferma</button>
                 </div>
               </div>
             </div>
@@ -132,19 +140,15 @@
         <div class="form-group">
         </div>
       </div>
-      
+
     </div>
   </div>
 </form>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

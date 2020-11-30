@@ -20,13 +20,10 @@ export class RisultatoGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.candidate != null) {
       if (this.candidate.weightedScore >= 0) {
-        //this.router.navigateByUrl("/risultato");
         return true;
       }
       return false;
     } else {
-      //this.store.dispatch(deleteCandidate({idCandidate: this.candidate.id}));
-      //console.log(this.candidate.id)
       this.router.navigateByUrl("/form");
       return false;
     }

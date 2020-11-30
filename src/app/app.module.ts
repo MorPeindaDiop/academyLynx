@@ -37,7 +37,7 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
+    EffectsModule.forRoot([SkillsEffects, SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -47,10 +47,10 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
     BackButtonDisableModule.forRoot({
       preserveScrollPosition: true
     })
-  
-    
+
+
   ],
-  exports:[MatFormFieldModule],
+  exports: [MatFormFieldModule],
   providers: [],
   bootstrap: [AppComponent]
 })
