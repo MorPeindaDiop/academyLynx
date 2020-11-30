@@ -1,14 +1,12 @@
 body {
-    position: relative;
-    margin: 0;
-    padding-bottom: 1rem;
-    min-height: 100%;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-  }
-.prova{
-  padding-bottom: 4%;
+  position: relative;
+  margin: 0;
+  padding-bottom: 1rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
-.container{
+
+.container {
   background-color: rgb(248, 249, 250);
   margin-top: 2%;
   margin-bottom: 4%;
@@ -20,22 +18,23 @@ body {
   border-radius: 2%;
 }
 
-.square{
+.square {
   border-radius: 10px, 10px, 10px, 10px;
   height: 70%;
   width: 60%;
 }
 
-.prova{
+.posizioneBottone {
   margin: 0;
   position: absolute;
   top: 70%;
   left: 50%;
   -ms-transform: translate(-70%, -50%);
   transform: translate(-70%, -50%);
-  
+  padding-bottom: 4%;
 }
-button{
+
+button {
   display: inline-block;
   text-align: center;
   white-space: nowrap;
@@ -51,20 +50,24 @@ button{
   border: 1px solid #006FE6;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #0063CC;
- border-color: #0056B3;
+  border-color: #0056B3;
 }
+
 li {
   list-style: none;
 }
 
-.domanda{
+.domanda {
   font-size: 22px;
 }
-input.ng-touched.ng-invalid{
+
+input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
-span{
+
+span {
   color: red;
 }

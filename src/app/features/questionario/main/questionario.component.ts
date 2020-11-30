@@ -61,7 +61,7 @@ export class QuestionarioComponent implements OnInit {
     this.rispostaForm.reset()
   }
 
-   ngOnInit() {
+  ngOnInit() {
 
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
 
@@ -69,7 +69,7 @@ export class QuestionarioComponent implements OnInit {
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
-        this.allQuestions.push( item )
+        this.allQuestions.push(item)
 
         //this.questions.push({question: item, isHidden: (this.questions.length==0?false:true)})  )
 
@@ -79,23 +79,14 @@ export class QuestionarioComponent implements OnInit {
       this.shuffle(this.allQuestions);
       console.log(this.allQuestions)
       for (var i = 0; i < this.allQuestions.length; i++) {
-        this.questions.push({question: this.allQuestions[i], isHidden: (i == 0 ? false : true)})
-        
+        this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
-
-
-
       return this.questions
     });
-    // console.log(this.split());
-    // this.split();
   }
 
-  
   split(question: Question) {
 
-    //this.splitted = [];
-    // for(let item of this.questions){
     if (question.type == 'crocette') {
       let answers = question.wrongAnswers.split(";");
       answers.push(question.correctAnswerText);
@@ -103,7 +94,6 @@ export class QuestionarioComponent implements OnInit {
       this.splitted.push({ idQuestion: question.id, array: answers });
       console.log("splitted: ", this.splitted);
     }
-    //}
   }
 
   addResponse(id: number) {
@@ -116,7 +106,6 @@ export class QuestionarioComponent implements OnInit {
     this.candidateResponse.push(candidateAnswer)
     console.log("addResponse()")
     console.log(this.candidateResponse)
-
   }
 
   goResult() {
@@ -125,7 +114,4 @@ export class QuestionarioComponent implements OnInit {
     this.router.navigateByUrl('/risultato');
 
   }
-
-
-
 }

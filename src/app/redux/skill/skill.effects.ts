@@ -10,9 +10,9 @@ import { createSkill, deleteSkill, initSkills, retrieveAllSkills } from './skill
 import { Skill } from 'src/app/core/model/Skill.interface';
 
 @Injectable()
-export class SkillsEffects{
-    
-    constructor(private actions$: Actions, private http: HttpCommunicationsService,private router: Router){}
+export class SkillsEffects {
+
+    constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllSkills(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("skill/findAll")
@@ -29,7 +29,7 @@ export class SkillsEffects{
     getAllSkills$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllSkills),
         switchMap(() => this.retreiveAllSkills().pipe(
-            map((response) => initSkills({response}))
+            map((response) => initSkills({ response }))
         ))
     ));
 
@@ -37,7 +37,7 @@ export class SkillsEffects{
         ofType(createSkill),
         switchMap(skill => this.createSkill(skill.skill).pipe(
             map(() => retrieveAllSkills()),
-            )
+        )
         ))
     );
 
@@ -45,7 +45,7 @@ export class SkillsEffects{
         ofType(deleteSkill),
         switchMap(id => this.deleteSkill(id.id).pipe(
             map(() => retrieveAllSkills()),
-            )
+        )
         ))
     );
 

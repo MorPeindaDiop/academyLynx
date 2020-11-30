@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
-
 import { HttpClientModule } from '@angular/common/http';
 import { HttpCommunicationsService } from './HttpCommunications/http-communications.service';
-
-
-
 
 
 @NgModule({
