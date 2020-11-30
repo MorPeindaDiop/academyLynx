@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DomandeGuard } from './domande.guard';
+import { RisultatoGuard } from './risultato.guard';
 
-describe('DomandeGuard', () => {
-  let guard: DomandeGuard;
+describe('RisultatoGuard', () => {
+  let guard: RisultatoGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(DomandeGuard);
+    guard = TestBed.inject(RisultatoGuard);
   });
 
   it('should be created', () => {
