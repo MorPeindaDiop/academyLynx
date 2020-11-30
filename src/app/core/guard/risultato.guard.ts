@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { candidateAnswersReducer } from 'src/app/redux/candidate-answer/candidate-answer.reducers';
+import { deleteCandidate } from 'src/app/redux/candidate/candidate.actions';
 import { Candidate } from '../model/Candidate.interface';
 
 @Injectable({
@@ -24,6 +25,8 @@ export class RisultatoGuard implements CanActivate {
       }
       return false;
     } else {
+      //this.store.dispatch(deleteCandidate({idCandidate: this.candidate.id}));
+      //console.log(this.candidate.id)
       this.router.navigateByUrl("/form");
       return false;
     }

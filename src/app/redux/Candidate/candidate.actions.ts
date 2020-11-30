@@ -12,3 +12,6 @@ export const createCandidate = createAction('[Candidate] create candidate', prop
 
 //score
 export const setCandidateScore = createAction('[Candidate] candidateScore', props<{idCandidate: number}>());
+
+//delete candidato
+export const deleteCandidate = createAction('[Candidate] deleteCandidate', props<{idCandidate: number}>());

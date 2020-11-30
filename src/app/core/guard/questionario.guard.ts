@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
+import { deleteCandidate } from 'src/app/redux/candidate/candidate.actions';
 import { Candidate } from '../model/Candidate.interface';
 
 @Injectable({
