@@ -1,0 +1,20 @@
+<h1>Question</h1>
+<button routerLink="create">Create new Question</button>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Difficulty</th>
+        <th>Question text</th>
+        <th>Correct Answer</th>
+        <th>Wrong Answers</th>
+    </tr>
+    <tr *ngFor="let question of questions | async">
+        <td>{{ question.id }}</td>
+        <td>{{ question.difficulty }}</td>
+        <td>{{ question.questionText }}</td>
+        <td>{{ question.type == "vf" ? question.correctAnswerBoolean : question.correctAnswerText }}</td>
+        <td>{{ question.wrongAnswers != '' ? question.wrongAnswers : "-" }}</td>
+        <td><button [routerLink]="['detail', question.id]">Edit</button></td>
+        <td><button (click)="delete(question.id)">Delete</button></td>
+    </tr>
+</table>

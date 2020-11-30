@@ -1,0 +1,18 @@
+.modal-backdrop {
+  background-color: red;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 2rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.skill {
+  width: 49%;
+}
+input.ng-touched.ng-invalid{
+  border: 1px solid red;
+}

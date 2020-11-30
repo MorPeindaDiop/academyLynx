@@ -1,0 +1,14 @@
+<h1>Skill</h1>
+<button routerLink="create">Create new Skill</button>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    <tr *ngFor="let skill of skills | async">
+        <td>{{ skill.id }}</td>
+        <td>{{ skill.description }}</td>
+        <td><button [routerLink]="['detail', skill.id]">Edit</button></td>
+        <td><button (click)="delete(skill.id)">Delete</button></td>
+    </tr>
+</table>

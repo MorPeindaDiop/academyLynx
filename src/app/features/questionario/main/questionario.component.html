@@ -1,0 +1,100 @@
+<ng-container>
+
+	<form [formGroup]="rispostaForm" >
+		<div class="container">
+			<div class="square">
+				<div *ngFor="let item of questions;let i = index">
+					<div [hidden]="item.isHidden">
+						<div *ngIf="item.question.type=='crocette'">
+							<!-- domanda crocette -->
+							<div class="row">
+								<div class="col">
+									<label for="exampleInputEmail1">
+										<li class="domanda">{{item.question.questionText}}</li>
+									</label>
+
+									<div class="form-check" *ngFor="let answer of splitted">
+										<div *ngIf="answer.idQuestion==item.question.id">
+											<div *ngFor="let itemm of answer.array">
+												<input class="form-check-input" type="radio" name="candidateResponse"
+													id="exampleRadios1" [value]="itemm"
+													formControlName="candidateResponse">
+												<label class="form-check-label" for="exampleRadios1">
+													{{itemm}}
+												</label>
+												
+											</div>
+											<br>
+											<span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Seleziona la risposta corretta</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--vero falso-->
+						<div *ngIf="item.question.type=='vf'">
+							<div class="row">
+								<div class="col">
+									<label for="exampleInputEmail1">
+										<li class="domanda">{{item.question.questionText}}</li>
+									</label>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="candidateResponse"
+											id="exampleRadios1" [value]="true" formControlName="candidateResponse">
+										<label class="form-check-label" for="exampleRadios1">
+											Vero
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="candidateResponse"
+											id="exampleRadios2" [value]="false" formControlName="candidateResponse">
+										<label class="form-check-label" for="exampleRadios2">
+											Falso
+										</label>
+									</div>
+									<br>
+									<span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Seleziona la risposta corretta</span>
+								</div>
+							</div>
+								
+						</div>
+						<!--aperta-->
+						<div *ngIf="item.question.type=='aperta'">
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="exampleInputEmail1">
+											<li class="domanda">{{item.question.questionText}}</li>
+										</label>
+										<input type="text" class="form-control" id="exampleInputEmail1"
+											aria-describedby="emailHelp" formControlName="candidateResponse" >
+											<br>
+											<span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Inserisci la risposta</span>
+										</div>
+								</div>
+							</div>
+						</div>
+						
+						<br>
+						<div class="prova">
+
+
+
+							<button type="submit"  *ngIf="i+1!=questions.length"
+								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)"
+								 [disabled]="rispostaForm.valid">AVANTI</button>
+							<button *ngIf="i+1==questions.length" 
+								(click)="addResponse(item.question.id);goResult()" >RISULTATO</button>
+							<!-- <input type="submit" candidateResponse="submit"> -->
+
+
+						</div>
+					</div>
+					<!-- <button *ngIf="i+1!=questions.length" (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : true; addResponse(item.question.id)">Next</button>
+					<button *ngIf="i+1==questions.length" (click)="addResponse(item.question.id);goResult()">RISULTATO</button> -->
+					<!-- <input type="submit" candidateResponse="submit"> -->
+				</div>
+			</div>
+		</div>
+	</form>
+</ng-container>

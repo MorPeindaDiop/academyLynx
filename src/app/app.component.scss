@@ -7,9 +7,25 @@ img {
   margin-left: 5mm;
 }
 
-footer {
-  position: absolute;
-  width: 100%;
-  height: 2.5rem;
+// footer {
+//   padding-top: 4%;
+//   width: 100%;
+//   height: 2.5rem;
+// }
+// footer {
+  
+//   //width: 100%;
+//   bottom: 0;
+//     left: 0;
+//     position: relative;
+//     right: 0;
+//  }
+footer .container{
+  position: relative;
 }
-
+.container{
+  margin: 0 auto;
+}
+.titolo{
+  margin-top: 3%;;
+}
