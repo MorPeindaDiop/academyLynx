@@ -24,10 +24,12 @@ import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.
 import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
 import { FieldsEffects } from './redux/field/field.effects';
+import { DetailComponent } from './featuredAdmin/candidate/detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,

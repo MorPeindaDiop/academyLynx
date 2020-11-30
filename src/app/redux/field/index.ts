@@ -6,7 +6,7 @@ import { FieldssState } from './field.reducers';
 
 export const selectFieldsState = (state: AppState) => state.fieldsState;
 
-export const selectSeniorities = createSelector(
+export const selectFields = createSelector(
     selectFieldsState,
     (state: FieldssState) => state.fields
 );

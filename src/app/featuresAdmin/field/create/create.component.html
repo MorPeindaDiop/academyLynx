@@ -1,1 +1,19 @@
-<p>create works!</p>
+<h1>CREATE FIELD</h1>
+<form [formGroup]="fieldForm" (ngSubmit)="save()">
+    <div>
+        <label><b>Description:</b></label>
+        <input type="text" placeholder="Description" formControlName="description">
+    </div>
+    <div>
+        <label><b>Reg_Exp:</b></label>
+        <input type="text" placeholder="Reg_Exp" formControlName="reg_exp">
+    </div>
+    <div>
+        <label><b>Enabled:</b></label><br>
+        <input type="radio" id="true" value="true" formControlName="enabled">
+        <label for="true">True</label><br>
+        <input type="radio" id="false" value="false" formControlName="enabled">
+        <label for="false">False</label><br>
+    </div>
+    <button type="submit">SAVE</button>
+</form>
