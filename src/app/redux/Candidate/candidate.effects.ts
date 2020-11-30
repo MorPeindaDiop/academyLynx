@@ -48,10 +48,9 @@ export class CandidatesEffects {
     deleteCandidate$ = createEffect(() => this.actions$.pipe(
         ofType(deleteCandidate),
         switchMap(idCandidate => this.deleteCandidate(idCandidate.idCandidate).pipe(
-            map(() => retrieveAllCandidates()),
-        )
+            map(() => retrieveAllCandidates())
         ))
-    );
+    ));
 
     setScoreCandidate$ = createEffect(() => this.actions$.pipe(
         ofType(setCandidateScore),

@@ -23,8 +23,8 @@ export class CandidateComponent implements OnInit {
     return this.store.pipe(select(selectCandidates));
   }
 
-  // delete(id: number) {
-  //   this.candidateService.deleteCandidate(id)
-  // }
+  delete(id: number) {
+    this.candidateService.deleteCandidate(id)
+  }
 
 }

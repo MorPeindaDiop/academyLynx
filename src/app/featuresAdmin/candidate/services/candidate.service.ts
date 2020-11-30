@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
-import { createCandidate, retrieveAllCandidates } from 'src/app/redux/candidate/candidate.actions';
+import { createCandidate, deleteCandidate, retrieveAllCandidates } from 'src/app/redux/candidate/candidate.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class CandidateService {
     this.store.dispatch(createCandidate({candidate}))
   }
 
-  // deleteCandidate(id : number) {
-  //   this.store.dispatch(deleteCandidate({id}))
-  // }
+  deleteCandidate(idCandidate : number) {
+    this.store.dispatch(deleteCandidate({idCandidate}))
+  }
 
 }

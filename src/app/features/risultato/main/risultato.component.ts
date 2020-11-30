@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
-import { Question } from 'src/app/core/model/Question';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
 
