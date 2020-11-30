@@ -3,29 +3,27 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
-import { candidateAnswersReducer } from 'src/app/redux/candidate-answer/candidate-answer.reducers';
 import { Candidate } from '../model/Candidate.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RisultatoGuard implements CanActivate {
+export class FormGuard implements CanActivate {
   candidate: Candidate;
   constructor(private store: Store, private router: Router) {
-    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate })
+    this.store.pipe(select(getCurrentCandidate)).subscribe(candidate => {return this.candidate=candidate});
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.candidate != null) {
-      if (this.candidate.weightedScore >= 0) {
-        //this.router.navigateByUrl("/risultato");
+      if (this.candidate == null) {
+        //this.router.navigateByUrl("/questionario");
+        console.log("bella per andrea")
         return true;
       }
-      return false;
-    } else {
       this.router.navigateByUrl("/form");
+      console.log("bella per andrea1")
       return false;
-    }
   }
+  
 }

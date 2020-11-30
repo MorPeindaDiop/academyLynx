@@ -23,6 +23,7 @@ import { CandidatesEffects } from './redux/candidate/candidate.effects';
 import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
 import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,10 @@ import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answ
       logOnly: environment.production,
     }),
     BrowserAnimationsModule,
+    BackButtonDisableModule.forRoot({
+      preserveScrollPosition: true
+    })
+  
     
   ],
   exports:[MatFormFieldModule],
