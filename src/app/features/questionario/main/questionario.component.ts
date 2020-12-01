@@ -7,7 +7,7 @@ import { Question } from 'src/app/core/model/Question.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
 import { QuestionarioService } from '../services/questionario.service';
-import { CountdownComponent, CountdownModule } from 'ngx-countdown';
+
 
 @Component({
   selector: 'app-questionario',
@@ -116,6 +116,6 @@ export class QuestionarioComponent implements OnInit {
 
   }
 
-  
+ 
    
 }

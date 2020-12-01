@@ -25,7 +25,7 @@ import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
 import { FieldsEffects } from './redux/field/field.effects';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
-import { CountdownModule } from 'ngx-countdown';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { CountdownModule } from 'ngx-countdown';
   ],
   imports: [
     BrowserModule,
-    CountdownModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
