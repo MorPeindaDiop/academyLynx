@@ -2,11 +2,11 @@
 <form [formGroup]="skillForm" (ngSubmit)="save()">
     <div>
         <label><b>ID:</b></label>
-        <div formControlName="id">{{ skill.id }}</div>
+        <div>{{ skill.id }}</div>
     </div>
     <div>
-        <label for="description"><b>Description:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Description" formControlName="description">
+        <label><b>Description:</b></label>
+        <input type="text" placeholder="Description" formControlName="description">
     </div>
     <button type="submit">SAVE</button>
 </form>

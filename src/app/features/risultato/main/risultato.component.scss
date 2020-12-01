@@ -1,24 +1,21 @@
 .grid-container {
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 4%;
-    background-color: rgb(248, 249, 250);
-    padding: 10px;
-    width: 80%;
-    height: 80%;
-    min-height: 50%;
-    margin:0 auto;
-    font-family: "Arial Black", Gadget, sans-serif;
-  }
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 4%;
+  background-color: rgb(248, 249, 250);
+  padding: 10px;
+  width: 80%;
+  height: 80%;
+  min-height: 50%;
+  margin: 0 auto;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
 
-  .grid-container > div {
-    //background-color: rgba(255, 255, 255, 0.8);
-    //border: 1px solid black;
-    text-align: center;
-    //font-size: 20px;
-  }
-  .testo{
-    font-family: "Arial Black", Gadget, sans-serif;
-  }
- 
+.grid-container>div {
+  text-align: center;
+}
+
+.testo {
+  font-family: "Arial Black", Gadget, sans-serif;
+}

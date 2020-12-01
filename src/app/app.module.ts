@@ -23,6 +23,8 @@ import { CandidatesEffects } from './redux/candidate/candidate.effects';
 import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
 import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
+import { FieldsEffects } from './redux/field/field.effects';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 @NgModule({
   declarations: [
@@ -36,16 +38,29 @@ import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answ
     NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([SkillsEffects,SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
+    EffectsModule.forRoot([
+      SkillsEffects,
+      SenioritiesEffects,
+      CandidatesEffects,
+      CandidateSkillsEffects,
+      QuestionsEffects,
+      CandidateAnswersEffects,
+      FieldsEffects,
+    ]),
+    EffectsModule.forRoot([SkillsEffects, SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
     BrowserAnimationsModule,
-    
+    BackButtonDisableModule.forRoot({
+      preserveScrollPosition: true
+    })
+
+
   ],
-  exports:[MatFormFieldModule],
+  exports: [MatFormFieldModule],
   providers: [],
   bootstrap: [AppComponent]
 })

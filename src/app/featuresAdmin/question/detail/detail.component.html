@@ -2,31 +2,33 @@
 <form [formGroup]="questionForm" (ngSubmit)="save()">
     <div>
         <label><b>ID:</b></label>
-        <div formControlName="id">{{ question.id }}</div>
+        <div>{{ question.id }}</div>
     </div>
     <div>
-        <label for="description"><b>difficulty:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Description" formControlName="difficulty">
+        <label><b>Difficulty:</b></label>
+        <input type="text" placeholder="Difficulty" formControlName="difficulty">
     </div>
     <div>
-        <label for="description"><b>Type:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Level" formControlName="type">
+        <label><b>Type:</b></label>
+        <input type="text" placeholder="Type" formControlName="type">
     </div>
     <div>
-        <label for="description"><b>Question text:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Minimal difficulty" formControlName="questionText">
+        <label><b>Question text:</b></label>
+        <input type="text" placeholder="Question text" formControlName="questionText">
     </div>
     <div *ngIf="question.type!='vf'">
-        <label for="description"><b>Correct answer:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="correctAnswerText">
+        <label><b>Correct answer:</b></label>
+        <input type="text" placeholder="Correct answer" formControlName="correctAnswerText">
     </div>
     <div *ngIf="question.type=='vf'">
-        <label for="description"><b>Correct answer:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="correctAnswerBoolean">
+        <label><b>Correct answer:</b></label>
+        <input type="text" placeholder="Correct answer" formControlName="correctAnswerBoolean">
     </div>
-    <div *ngIf="question.type=='crocette'">
-        <label for="description"><b>Wrong answers:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Maximum difficulty" formControlName="wrongAnswers">
+    <div *ngIf="question.type=='crocette'" formGroupName="wrongAnswers">
+        <label><b>Wrong answers:</b></label>
+        <input type="text" placeholder="Wrong answer 1" formControlName="answer1">
+        <input type="text" placeholder="Wrong answer 2" formControlName="answer2">
+        <input type="text" placeholder="Wrong answer 3" formControlName="answer3">
     </div>
     <button type="submit">SAVE</button>
 </form>

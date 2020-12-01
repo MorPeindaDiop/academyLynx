@@ -1,6 +1,5 @@
-export interface CandidateResponse{
+export interface CandidateResponse {
     idCandidate: number,
     idQuestion: number,
     candidateResponse: string
-    
 }

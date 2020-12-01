@@ -7,14 +7,14 @@ import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-
 import { switchMap, map } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
 import { createSeniority, deleteSeniority, initSeniorities, retrieveAllSeniorities } from './seniority.actions';
-import { Seniority } from 'src/app/core/model/Seniority';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 
 @Injectable()
-export class SenioritiesEffects{
-    
-    constructor(private actions$: Actions, private http: HttpCommunicationsService,private router: Router){}
+export class SenioritiesEffects {
 
-    retreiveAllSeniorities():Observable<Response>{
+    constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
+
+    retreiveAllSeniorities(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("seniority/findAll")
     }
 
@@ -29,7 +29,7 @@ export class SenioritiesEffects{
     getAllSeniorities$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllSeniorities),
         switchMap(() => this.retreiveAllSeniorities().pipe(
-            map((response) => initSeniorities({response}))
+            map((response) => initSeniorities({ response }))
         ))
     ));
 
@@ -37,7 +37,7 @@ export class SenioritiesEffects{
         ofType(createSeniority),
         switchMap(seniority => this.createSeniority(seniority.seniority).pipe(
             map(() => retrieveAllSeniorities()),
-            )
+        )
         ))
     );
 
@@ -45,7 +45,7 @@ export class SenioritiesEffects{
         ofType(deleteSeniority),
         switchMap(id => this.deleteSeniority(id.id).pipe(
             map(() => retrieveAllSeniorities()),
-            )
+        )
         ))
     );
 

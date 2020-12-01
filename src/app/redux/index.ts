@@ -6,6 +6,7 @@ import { candidatesReducer, CandidatesState } from './candidate/candidate.reduce
 import { candidateSkillsReducer, CandidateSkillsState } from './candidate-skill/candidate-skill.reducers';
 import { questionsReducer, QuestionsState } from './question/question.reducers';
 import { candidateAnswersReducer, CandidateAnswersState } from './candidate-answer/candidate-answer.reducers';
+import { fieldsReducer, FieldssState } from './field/field.reducers';
 
 export interface AppState {
     router: RouterReducerState<any>;
@@ -14,7 +15,8 @@ export interface AppState {
     candidatesState: CandidatesState;
     candidateSkillsState: CandidateSkillsState;
     questionState: QuestionsState;
-    candidateAnswer: CandidateAnswersState
+    candidateAnswer: CandidateAnswersState;
+    fieldsState: FieldssState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -25,4 +27,5 @@ export const reducers: ActionReducerMap<AppState> = {
     candidateSkillsState: candidateSkillsReducer,
     questionState: questionsReducer,
     candidateAnswer: candidateAnswersReducer,
+    fieldsState: fieldsReducer,
 };

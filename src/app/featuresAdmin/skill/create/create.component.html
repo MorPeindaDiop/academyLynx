@@ -1,8 +1,8 @@
 <h1>CREATE SKILL</h1>
 <form [formGroup]="skillForm" (ngSubmit)="save()">
     <div>
-        <label for="description"><b>Description:</b></label>
-        <input type="text" class="form-control" id="description" placeholder="Description" formControlName="description">
+        <label><b>Description:</b></label>
+        <input type="text" placeholder="Description" formControlName="description">
     </div>
     <button type="submit">SAVE</button>
 </form>

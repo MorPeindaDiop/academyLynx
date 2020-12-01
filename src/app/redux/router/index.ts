@@ -5,9 +5,9 @@ import { AppState } from '..';
 //export const selectRouteState = (state: AppState) => state.router;
 
 export const selectRouter = createFeatureSelector<
-        AppState,
-        RouterReducerState<any>
-    >('router');
+    AppState,
+    RouterReducerState<any>
+>('router');
 
 export const {
     selectCurrentRoute,   // select the current route

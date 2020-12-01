@@ -1,0 +1,21 @@
+<h1>Candidate</h1>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <!-- <th>Difficoltà minima</th>
+        <th>Difficoltà massima</th> -->
+        <th></th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let candidate of candidates | async">
+        <td>{{ candidate.id }}</td>
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.surname }}</td>
+        <!-- <td>{{ candidate.minDifficulty }}</td>
+        <td>{{ candidate.maxDifficulty }}</td> -->
+        <td><button [routerLink]="['detail', candidate.id]">Edit</button></td>
+        <td><button (click)="delete(candidate.id)">Delete</button></td>
+    </tr>
+</table>

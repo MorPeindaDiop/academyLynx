@@ -19,7 +19,7 @@ export class CandidateSkillsEffects {
     }
 
     createCandidateSkill(candidateSkill: CandidateSkill): Observable<Response> {
-        return this.http.retrievePostCall<Response>("candidateSkill/create",  candidateSkill )
+        return this.http.retrievePostCall<Response>("candidateSkill/create", candidateSkill)
     }
 
     createCandidateSkill$ = createEffect(() => this.actions$.pipe(

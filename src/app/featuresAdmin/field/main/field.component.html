@@ -1,0 +1,22 @@
+<h1>Field</h1>
+<button routerLink="create">Create new Field</button>
+<table class="table8">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Reg_Exp</th>
+        <th>Enabled</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let field of fields | async">
+        <td>{{ field.id }}</td>
+        <td>{{ field.description }}</td>
+        <td>{{ field.reg_exp }}</td>
+        <td>{{ field.enabled }}</td>
+        <td><button (click)="changeEnable(field)">{{ field.enabled ? 'Disable' : 'Enable' }}</button></td>
+        <td><button [routerLink]="['detail', field.id]">Edit</button></td>
+        <td><button (click)="delete(field.id)">Delete</button></td>
+    </tr>
+</table>

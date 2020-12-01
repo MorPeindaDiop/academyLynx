@@ -30,10 +30,6 @@ export class DetailComponent implements OnInit {
       description: this.skill.description
     });
   }
-  
-  get currentSkill(): Observable<Skill> {
-    return this.store.pipe(select(getCurrentNavigatedSkill));
-  }
 
   ngOnInit(): void {
     

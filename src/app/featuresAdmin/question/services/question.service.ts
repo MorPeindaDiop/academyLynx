@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Question } from 'src/app/core/model/Question';
+import { Question } from 'src/app/core/model/Question.interface';
 import { createQuestion, deleteQuestion, retrieveAllQuestions } from 'src/app/redux/question/question.actions';
 
 @Injectable({
