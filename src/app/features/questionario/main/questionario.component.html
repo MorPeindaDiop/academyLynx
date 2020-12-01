@@ -81,14 +81,17 @@
 							</div>
 						</div>
 						<br>
-
+						<form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
 						<div class="posizioneBottone">
+							
 							<button type="submit" *ngIf="i+1!=questions.length"
 								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)"
 								[disabled]="rispostaForm.valid">AVANTI</button>
+							
 							<button *ngIf="i+1==questions.length"
 								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
 						</div>
+					</form>
 					</div>
 				</div>
 			</div>
