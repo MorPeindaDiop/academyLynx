@@ -26,8 +26,6 @@ export class CandidatesEffects {
         return this.http.retrievePostCall<Response>("score/createScore", idCandidate)
     }
 
-    
-
     deleteCandidate(idCandidate: number): Observable<Response> {
         return this.http.retrievePostCall<Response>("candidate/delete", idCandidate)
     }

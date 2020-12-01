@@ -6,7 +6,7 @@ import { Response } from 'src/app/core/model/Response.interface';
 export const retrieveAllCandidates = createAction('[Candidate] candidates');
 export const initCandidates = createAction('[Candidate] init candidates', props<{response: Response}>());
 export const initCandidate = createAction('[Candidate] init candidate success', props<{response: Response}>());
-export const setCandidateTime = createAction('[Candidate] candidateTime', props<{idCandidate: number}>());
+
 
 
 //crea candidato
