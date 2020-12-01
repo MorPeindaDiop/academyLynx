@@ -1,5 +1,5 @@
 <ng-container>
-
+	<countdown #cd [config]="config" (event)="handleEvent($event)"></countdown>
 	<form [formGroup]="rispostaForm">
 		<div class="container">
 			<div class="square">
