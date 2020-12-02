@@ -10,16 +10,16 @@
 						<div *ngIf="item.question.type=='crocette'">
 							<div class="row">
 								<div class="col">
-									<label for="exampleInputEmail1">
+									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
 									</label>
 									<div class="form-check" *ngFor="let answer of splitted">
 										<div *ngIf="answer.idQuestion==item.question.id">
 											<div *ngFor="let itemm of answer.array">
-												<input class="form-check-input" type="radio" name="candidateResponse"
-													id="exampleRadios1" [value]="itemm"
+												<input class="form-check-input" type="radio"
+													id="{{itemm}}" [value]="itemm"
 													formControlName="candidateResponse">
-												<label class="form-check-label" for="exampleRadios1">
+												<label class="form-check-label" for="{{itemm}}">
 													{{itemm}}
 												</label>
 											</div>
@@ -34,20 +34,20 @@
 						<div *ngIf="item.question.type=='vf'">
 							<div class="row">
 								<div class="col">
-									<label for="exampleInputEmail1">
+									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
 									</label>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="candidateResponse"
-											id="exampleRadios1" [value]="true" formControlName="candidateResponse">
-										<label class="form-check-label" for="exampleRadios1">
+										<input class="form-check-input" type="radio"
+											id="{{item.question.id}}1" value="true" formControlName="candidateResponse">
+										<label class="form-check-label" for="{{item.question.id}}1">
 											Vero
 										</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="candidateResponse"
-											id="exampleRadios2" [value]="false" formControlName="candidateResponse">
-										<label class="form-check-label" for="exampleRadios2">
+										<input class="form-check-input" type="radio"
+											id="{{item.question.id}}2" value="false" formControlName="candidateResponse">
+										<label class="form-check-label" for="{{item.question.id}}2">
 											Falso
 										</label>
 									</div>

@@ -2,10 +2,13 @@ import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { Question } from 'src/app/core/model/Question.interface';
+import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
+import { selectSeniorities } from 'src/app/redux/seniority';
 import { QuestionarioService } from '../services/questionario.service';
 
 
@@ -19,35 +22,24 @@ export class QuestionarioComponent implements OnInit {
   rispostaForm: FormGroup;
   allQuestions = [];
   questions = [];
-  idCandidate: number;
+  candidate: Candidate;
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
+  seniority: Seniority;
 
   splitted = [];
 
   shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
-
       array[currentIndex] = array[randomIndex];
-
       array[randomIndex] = temporaryValue;
-      // console.log("array random index",array[randomIndex])
     }
-
     return array;
   }
-
-
 
   constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
 
@@ -58,32 +50,37 @@ export class QuestionarioComponent implements OnInit {
 
   }
 
-  ripristina() {
-    this.rispostaForm.reset()
-  }
-
   ngOnInit() {
 
-    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
+
+    this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
+      for (let seniority of seniorities) {
+        if (seniority.id == this.candidate.idSeniority) {
+          return this.seniority = seniority;
+        }
+      }
+    })
+
+    console.log(this.seniority)
 
     this.questionarioService.retrieveAllQuestions();
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
-        this.allQuestions.push(item)
-
-        //this.questions.push({question: item, isHidden: (this.questions.length==0?false:true)})  )
-
+        if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty) {
+          this.allQuestions.push(item)
+        }
         this.split(item);
-        //this.i++;
       }
+
       this.shuffle(this.allQuestions);
-      console.log(this.allQuestions)
       for (var i = 0; i < this.allQuestions.length; i++) {
         this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
       return this.questions
     });
+    console.log(this.allQuestions)
   }
 
   split(question: Question) {
@@ -93,27 +90,23 @@ export class QuestionarioComponent implements OnInit {
       answers.push(question.correctAnswerText);
       this.shuffle(answers);
       this.splitted.push({ idQuestion: question.id, array: answers });
-      console.log("splitted: ", this.splitted);
     }
   }
 
   addResponse(id: number) {
     let candidateAnswer: CandidateResponse = {
-      idCandidate: this.idCandidate,
+      idCandidate: this.candidate.id,
       idQuestion: id,
-      candidateResponse: this.rispostaForm.value.candidateResponse
+      candidateResponse: this.rispostaForm.value.candidateResponse != null ? this.rispostaForm.value.candidateResponse : ''
     }
 
     this.candidateResponse.push(candidateAnswer)
-    console.log("addResponse()")
-    console.log(this.candidateResponse)
+    this.rispostaForm.reset();
   }
 
   goResult() {
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
-    //this.questionarioService.setScoreCandidate(this.idCandidate);
     this.router.navigateByUrl('/risultato');
-
   }
 
  

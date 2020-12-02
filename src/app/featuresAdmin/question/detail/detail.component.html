@@ -5,12 +5,12 @@
         <div>{{ question.id }}</div>
     </div>
     <div>
-        <label><b>Difficulty:</b></label>
-        <input type="text" placeholder="Difficulty" formControlName="difficulty">
+        <label><b>Type:</b></label>
+        <div>{{ question.type == 'vf' ? 'Vero o Falso':  question.type == 'crocette' ? 'Risposta multipla' : 'Risposta aperta'}}</div>
     </div>
     <div>
-        <label><b>Type:</b></label>
-        <input type="text" placeholder="Type" formControlName="type">
+        <label><b>Difficulty:</b></label>
+        <input type="text" placeholder="Difficulty" formControlName="difficulty">
     </div>
     <div>
         <label><b>Question text:</b></label>
@@ -21,8 +21,11 @@
         <input type="text" placeholder="Correct answer" formControlName="correctAnswerText">
     </div>
     <div *ngIf="question.type=='vf'">
-        <label><b>Correct answer:</b></label>
-        <input type="text" placeholder="Correct answer" formControlName="correctAnswerBoolean">
+        <label><b>Correct answer:</b></label><br>
+        <input type="radio" id="true" value="true" formControlName="correctAnswerBoolean">
+        <label for="true">True</label><br>
+        <input type="radio" id="false" value="false" formControlName="correctAnswerBoolean">
+        <label for="false">False</label><br>
     </div>
     <div *ngIf="question.type=='crocette'" formGroupName="wrongAnswers">
         <label><b>Wrong answers:</b></label>

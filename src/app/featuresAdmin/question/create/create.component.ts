@@ -43,9 +43,9 @@ export class CreateComponent implements OnInit {
       type: this.questionForm.value.type,
       questionText: this.questionForm.value.questionText,
       difficulty: this.questionForm.value.difficulty,
-      correctAnswerBoolean: this.questionForm.value.correctAnswerBoolean,
-      correctAnswerText: this.questionForm.value.correctAnswerText,
-      wrongAnswers: this.questionForm.value.wrongAnswers.answer1 + ";" + this.questionForm.value.wrongAnswers.answer2 + ";" + this.questionForm.value.wrongAnswers.answer3
+      correctAnswerBoolean: (this.questionForm.value.type == 'vf' ? this.questionForm.value.correctAnswerBoolean: null),
+      correctAnswerText: (this.questionForm.value.type == 'vf' ? null:  this.questionForm.value.correctAnswerText),
+      wrongAnswers: (this.questionForm.value.type == 'crocette' ? this.questionForm.value.wrongAnswers.answer1 + ";" + this.questionForm.value.wrongAnswers.answer2 + ";" + this.questionForm.value.wrongAnswers.answer3 : null)
     }
     this.questionService.createQuestion(question);
     this.router.navigateByUrl('/admin/question');
