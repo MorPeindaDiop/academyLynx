@@ -72,6 +72,25 @@
 								</div>
 							</div>
 						</div>
+						<!--
+							image
+						-->
+						<div *ngIf="item.question.type=='immagine'">
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="exampleInputEmail1">
+											
+											<li class="domanda">{{item.question.questionText}}</li>
+										<img src="{{item.question.imgUrl}}" alt="">
+										</label>
+										<input type="text" class="form-control" id="exampleInputEmail1"
+											aria-describedby="emailHelp" formControlName="candidateResponse">
+										<br>
+									</div>
+								</div>
+							</div>
+						</div>
 						<br>
 						<form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
 						<div class="posizioneBottone">
