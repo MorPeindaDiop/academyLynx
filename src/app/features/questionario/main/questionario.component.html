@@ -14,6 +14,9 @@
 									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
 									</label>
+									<div *ngIf="item.question.imgUrl!=null">
+										<img src="{{item.question.imgUrl}}" alt="" width="50%">
+									</div>
 									<div class="form-check" *ngFor="let answer of splitted">
 										<div *ngIf="answer.idQuestion==item.question.id">
 											<div *ngFor="let itemm of answer.array">
@@ -38,6 +41,9 @@
 									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
 									</label>
+									<div *ngIf="item.question.imgUrl!=null">
+										<img src="{{item.question.imgUrl}}" alt="" width="50%">
+									</div>
 									<div class="form-check">
 										<input class="form-check-input" type="radio"
 											id="{{item.question.id}}1" value="true" formControlName="candidateResponse">
@@ -65,6 +71,9 @@
 										<label for="exampleInputEmail1">
 											<li class="domanda">{{item.question.questionText}}</li>
 										</label>
+										<div *ngIf="item.question.imgUrl!=null">
+											<img src="{{item.question.imgUrl}}" alt="" width="50%">
+										</div>
 										<input type="text" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp" formControlName="candidateResponse">
 										<br>
@@ -73,7 +82,7 @@
 							</div>
 						</div>
 						<!--image-->
-						<div *ngIf="item.question.type=='immagine'">
+						<!-- <div *ngIf="item.question.type=='immagine'">
 							<div class="row">
 								<div class="col">
 									<div class="form-group">
@@ -87,7 +96,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<br>
 						<form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
 						<div class="posizioneBottone">

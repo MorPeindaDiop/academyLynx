@@ -74,7 +74,7 @@ export class CreateComponent implements OnInit {
       difficulty: this.questionForm.value.difficulty,
       idSkill: this.questionForm.value.idSkill,
       correctAnswerBoolean: (this.questionForm.value.type == 'vf' ? this.questionForm.value.correctAnswerBoolean: null),
-      imgUrl: this.questionForm.value.type=='immagine'? this.url: null,
+      imgUrl: this.url!=null? this.url: null,
       correctAnswerText: (this.questionForm.value.type == 'vf' ? null:  this.questionForm.value.correctAnswerText),
       wrongAnswers: (this.questionForm.value.type == 'crocette' ? this.questionForm.value.wrongAnswers.answer1 + ";" + this.questionForm.value.wrongAnswers.answer2 + ";" + this.questionForm.value.wrongAnswers.answer3 : null)
     }

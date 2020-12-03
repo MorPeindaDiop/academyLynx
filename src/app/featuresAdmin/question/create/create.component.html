@@ -6,7 +6,6 @@
             <option value="vf">Vero o falso</option>
             <option value="crocette">Risposta multipla</option>
             <option value="aperta">Risposta aperta</option>
-            <option value="immagine">Immagine</option>
         </select>
     </div>
    
@@ -24,6 +23,10 @@
         <div>
             <label><b>Question text:</b></label>
             <input type="text" placeholder="Question text" formControlName="questionText">
+        </div>
+        <div formGroupName="imgUrl">
+            <img [src]="url" height="200"> <br/>
+            <input type='file' (change)="onSelectFile($event)">
         </div>
         <div *ngIf="type.value!='vf'">
             <label><b>Correct answer:</b></label>
@@ -44,12 +47,6 @@
             <input type="text" placeholder="Wrong answer 1" formControlName="answer1">
             <input type="text" placeholder="Wrong answer 2" formControlName="answer2">
             <input type="text" placeholder="Wrong answer 3" formControlName="answer3">
-        </div>
-        <div *ngIf="type.value=='immagine'" formGroupName="imgUrl">
-   
-            <img [src]="url" height="200"> <br/>
-            <input type='file' (change)="onSelectFile($event)">
-    
         </div>
     </div>
     <button type="submit">SAVE</button>

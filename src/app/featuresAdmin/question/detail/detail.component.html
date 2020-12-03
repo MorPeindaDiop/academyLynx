@@ -22,6 +22,10 @@
         <label><b>Question text:</b></label>
         <input type="text" placeholder="Question text" formControlName="questionText">
     </div>
+    <div formGroupName="imgUrl">
+        <img [src]="url" height="200"> <br/>
+        <input type='file' (change)="onSelectFile($event)">
+    </div>
     <div *ngIf="question.type!='vf'">
         <label><b>Correct answer:</b></label>
         <input type="text" placeholder="Correct answer" formControlName="correctAnswerText">
