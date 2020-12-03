@@ -2,6 +2,7 @@ import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { CountdownComponent } from 'ngx-countdown';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
 import { Question } from 'src/app/core/model/Question.interface';
@@ -26,7 +27,7 @@ export class QuestionarioComponent implements OnInit {
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
-
+  
   splitted = [];
 
   shuffle(array) {
@@ -42,6 +43,10 @@ export class QuestionarioComponent implements OnInit {
   }
 
   constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
+    
+    setTimeout(() => {
+      this.goResult()
+    }, 1800000);
 
     this.rispostaForm = this.fb.group({
       idQuestion: ['', Validators.required],
@@ -62,8 +67,6 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
-    console.log(this.seniority)
-
     this.questionarioService.retrieveAllQuestions();
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
@@ -80,7 +83,6 @@ export class QuestionarioComponent implements OnInit {
       }
       return this.questions
     });
-    console.log(this.allQuestions)
   }
 
   split(question: Question) {
@@ -105,6 +107,7 @@ export class QuestionarioComponent implements OnInit {
   }
 
   goResult() {
+    console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
   }
