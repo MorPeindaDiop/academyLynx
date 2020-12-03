@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/model/Question.interface';
+import { Skill } from 'src/app/core/model/Skill.interface';
+import { selectSkills } from 'src/app/redux/skill';
 import { QuestionService } from '../services/question.service';
 
 @Component({
@@ -12,10 +16,11 @@ import { QuestionService } from '../services/question.service';
 export class CreateComponent implements OnInit {
 
   questionForm: FormGroup;
-
-
-  constructor(private fb: FormBuilder, private questionService: QuestionService, private router: Router) {
+  
+  constructor(private fb: FormBuilder, private questionService: QuestionService, private router: Router, private store: Store) {
     
+    this.questionService.retrieveAllSkills();
+
     this.questionForm = this.fb.group({
       id: ['', Validators.required],
       type: ['', Validators.required],
@@ -24,6 +29,7 @@ export class CreateComponent implements OnInit {
       correctAnswerBoolean: ['', Validators.required],
       correctAnswerText: ['', Validators.required],
       imgUrl: ['', Validators.required],
+      idSkill: ['', Validators.required],
       wrongAnswers: this.fb.group({ 
         answer1: ['', Validators.required],
         answer2: ['', Validators.required],
@@ -33,7 +39,13 @@ export class CreateComponent implements OnInit {
     
   }
   
+  get skills(): Observable<Skill[]> {
+    return this.store.pipe(select(selectSkills));
+  }
+
+
   ngOnInit(): void {
+    
   }
 
   url: string | ArrayBuffer;
@@ -60,6 +72,7 @@ export class CreateComponent implements OnInit {
       type: this.questionForm.value.type,
       questionText: this.questionForm.value.questionText,
       difficulty: this.questionForm.value.difficulty,
+      idSkill: this.questionForm.value.idSkill,
       correctAnswerBoolean: (this.questionForm.value.type == 'vf' ? this.questionForm.value.correctAnswerBoolean: null),
       imgUrl: this.questionForm.value.type=='immagine'? this.url: null,
       correctAnswerText: (this.questionForm.value.type == 'vf' ? null:  this.questionForm.value.correctAnswerText),

@@ -6,6 +6,7 @@ export interface Question {
     correctAnswerText: string;
     wrongAnswers: string;
     difficulty: number;
+    idSkill: number;
     creation_time?: Date;
     updateTime?: Date;
     creationUser?: string;

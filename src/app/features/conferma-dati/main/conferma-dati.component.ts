@@ -10,6 +10,7 @@ import { ConfermaDatiService } from '../services/conferma-dati.service';
 import { Skill } from 'src/app/core/model/Skill.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ConfermaDatiComponent implements OnInit {
   skill = new FormControl();
   idCandidate: number;
 
-  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder) {
+  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder, private router: Router) {
 
   }
 
@@ -62,20 +63,25 @@ export class ConfermaDatiComponent implements OnInit {
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-
-
+  
   async goCandidate() {
     let candidate: Candidate = {
       ...this.candidateForm.value
     }
     console.log(candidate)
     this.confermaDatiService.createCandidate(candidate);
-    await this.delay(5000);
-    this.createCandidateSkill();
+    await this.delay(50);
+    this.selectCurrentCandidate();
   }
 
-  async createCandidateSkill() {
+  selectCurrentCandidate() {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
+    console.log(this.idCandidate)
+    this.createCandidateSkill()
+  }
+
+  createCandidateSkill() {
+    
     for (let idSkill of this.skill.value) {
       let candSkill: CandidateSkill = {
         idCandidate: this.idCandidate,
@@ -84,4 +90,9 @@ export class ConfermaDatiComponent implements OnInit {
       this.confermaDatiService.createCandidateSkill(candSkill)
     }
   }
+
+  goToQuestionario() {    
+    this.router.navigateByUrl('/questionario');
+  }
+ 
 }

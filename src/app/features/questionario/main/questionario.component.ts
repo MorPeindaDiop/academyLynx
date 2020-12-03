@@ -5,11 +5,13 @@ import { select, Store } from '@ngrx/store';
 import { CountdownComponent } from 'ngx-countdown';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
+import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { Question } from 'src/app/core/model/Question.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
 import { selectSeniorities } from 'src/app/redux/seniority';
+import { selectCandidatesSkill } from 'src/app/redux/candidate-skill';
 import { QuestionarioService } from '../services/questionario.service';
 
 
@@ -27,6 +29,7 @@ export class QuestionarioComponent implements OnInit {
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
+  candidateSkills: number[] = [];
   
   splitted = [];
 
@@ -67,14 +70,24 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
+    this.store.pipe(select(selectCandidatesSkill)).subscribe((candidateSkills) => {
+      for (let candidateSkill of candidateSkills) {
+        if (candidateSkill.idCandidate == this.candidate.id) {
+          this.candidateSkills.push(candidateSkill.idSkill)
+        }
+      }
+    })
+
     this.questionarioService.retrieveAllQuestions();
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
-        if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty) {
-          this.allQuestions.push(item)
+        for (let idSkill of this.candidateSkills) {
+          if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty && item.idSkill == idSkill) {
+            this.allQuestions.push(item)
+            this.split(item);
+          }
         }
-        this.split(item);
       }
 
       this.shuffle(this.allQuestions);
@@ -111,7 +124,5 @@ export class QuestionarioComponent implements OnInit {
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
   }
-
- 
    
 }

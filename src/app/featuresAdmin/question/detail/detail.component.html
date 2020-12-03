@@ -13,6 +13,12 @@
         <input type="text" placeholder="Difficulty" formControlName="difficulty">
     </div>
     <div>
+        <label for="skills">Skill:</label>
+        <select id="skills" formControlName="idSkill">
+        <option *ngFor="let skill of skills | async" value="{{skill.id}}" >{{skill.description}}</option>
+        </select>
+    </div>
+    <div>
         <label><b>Question text:</b></label>
         <input type="text" placeholder="Question text" formControlName="questionText">
     </div>
