@@ -7,9 +7,5 @@ export interface Question {
     wrongAnswers: string;
     difficulty: number;
     idSkill: number;
-    creation_time?: Date;
-    updateTime?: Date;
-    creationUser?: string;
-    updateUser?: string;
     imgUrl?: string | ArrayBuffer;
 }

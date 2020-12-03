@@ -72,19 +72,16 @@
 								</div>
 							</div>
 						</div>
-						<!--
-							image
-						-->
+						<!--image-->
 						<div *ngIf="item.question.type=='immagine'">
 							<div class="row">
 								<div class="col">
 									<div class="form-group">
-										<label for="exampleInputEmail1">
-											
+										<label>
 											<li class="domanda">{{item.question.questionText}}</li>
-										<img src="{{item.question.imgUrl}}" alt="">
+										<img src="{{item.question.imgUrl}}" alt="" width="50%">
 										</label>
-										<input type="text" class="form-control" id="exampleInputEmail1"
+										<input type="text" class="form-control"
 											aria-describedby="emailHelp" formControlName="candidateResponse">
 										<br>
 									</div>
