@@ -10,4 +10,5 @@ export interface Question {
     updateTime?: Date;
     creationUser?: string;
     updateUser?: string;
+    imgUrl?: string | ArrayBuffer;
 }
