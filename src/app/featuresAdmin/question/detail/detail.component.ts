@@ -20,6 +20,8 @@ export class DetailComponent implements OnInit {
   wrongAnswerForm: FormGroup;
   question: Question;
 
+  url: string | ArrayBuffer;
+
   constructor(private store: Store, private fb: FormBuilder, private questionService: QuestionService, private router: Router) {
     this.store.pipe(select(getCurrentNavigatedQuestion)).subscribe((question => this.question = question));
     
@@ -52,6 +54,8 @@ export class DetailComponent implements OnInit {
         }),
       });
     }
+
+    this.url = this.question.imgUrl;
     
     this.questionForm.patchValue({
       id: this.question.id,
@@ -73,7 +77,7 @@ export class DetailComponent implements OnInit {
     
   }
 
-  url: string | ArrayBuffer;
+  
 
     onSelectFile(event) { // called each time file input changes
         if (event.target.files && event.target.files[0]) {
@@ -94,11 +98,15 @@ export class DetailComponent implements OnInit {
       idSkill: this.questionForm.value.idSkill,
       questionText: this.questionForm.value.questionText,
       difficulty: this.questionForm.value.difficulty,
-      imgUrl: this.url!=null? this.url: null,
+      
       correctAnswerBoolean: (this.questionForm.value.type == 'vf' ? this.questionForm.value.correctAnswerBoolean: null),
       correctAnswerText: (this.questionForm.value.type == 'vf' ? null:  this.questionForm.value.correctAnswerText),
       wrongAnswers: (this.questionForm.value.type == 'crocette' ? this.questionForm.value.wrongAnswers.answer1 + ";" + this.questionForm.value.wrongAnswers.answer2 + ";" + this.questionForm.value.wrongAnswers.answer3 : null)
     }
+
+    if (this.url!=null) {
+      editQuestion.imgUrl = this.url
+      }
     this.questionService.createQuestion(editQuestion);
     this.router.navigateByUrl('/admin/question');
   }
