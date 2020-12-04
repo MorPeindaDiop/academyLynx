@@ -32,9 +32,9 @@
     </div>
     <div *ngIf="question.type=='vf'">
         <label><b>Correct answer:</b></label><br>
-        <input type="radio" id="true" value="true" formControlName="correctAnswerBoolean">
+        <input type="radio" id="true" [value]="true" formControlName="correctAnswerBoolean">
         <label for="true">True</label><br>
-        <input type="radio" id="false" value="false" formControlName="correctAnswerBoolean">
+        <input type="radio" id="false" [value]="false" formControlName="correctAnswerBoolean">
         <label for="false">False</label><br>
     </div>
     <div *ngIf="question.type=='crocette'" formGroupName="wrongAnswers">
@@ -44,4 +44,5 @@
         <input type="text" placeholder="Wrong answer 3" formControlName="answer3">
     </div>
     <button type="submit">SAVE</button>
+    <button type="button" routerLink="/admin/question">ANNULLA</button>
 </form>
