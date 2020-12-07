@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'admin/question', loadChildren: () => import('./featuresAdmin/question/question.module').then(m => m.QuestionModule) },
   { path: 'admin/field', loadChildren: () => import('./featuresAdmin/field/field.module').then(m => m.FieldModule) },
   { path: 'admin/candidate', loadChildren: () => import('./featuresAdmin/candidate/candidate.module').then(m => m.CandidateModule) },
+  {path: 'admin/panel', loadChildren: ()=> import('./featuresAdmin/panel/panel.module').then(m=>m.PanelModule)},
   { path: '', redirectTo: '/form', pathMatch: 'full' }
 ];
 
