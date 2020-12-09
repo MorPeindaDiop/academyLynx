@@ -2,13 +2,16 @@ import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { CountdownComponent } from 'ngx-countdown';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
+import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { Question } from 'src/app/core/model/Question.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { selectQuestions } from 'src/app/redux/question';
 import { selectSeniorities } from 'src/app/redux/seniority';
+import { selectCandidatesSkill } from 'src/app/redux/candidate-skill';
 import { QuestionarioService } from '../services/questionario.service';
 
 
@@ -26,7 +29,8 @@ export class QuestionarioComponent implements OnInit {
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
-
+  candidateSkills: number[] = [];
+  
   splitted = [];
 
   shuffle(array) {
@@ -42,6 +46,10 @@ export class QuestionarioComponent implements OnInit {
   }
 
   constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
+    
+    setTimeout(() => {
+      this.goResult()
+    }, 1800000);
 
     this.rispostaForm = this.fb.group({
       idQuestion: ['', Validators.required],
@@ -62,16 +70,24 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
-    console.log(this.seniority)
+    this.store.pipe(select(selectCandidatesSkill)).subscribe((candidateSkills) => {
+      for (let candidateSkill of candidateSkills) {
+        if (candidateSkill.idCandidate == this.candidate.id) {
+          this.candidateSkills.push(candidateSkill.idSkill)
+        }
+      }
+    })
 
     this.questionarioService.retrieveAllQuestions();
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
-        if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty) {
-          this.allQuestions.push(item)
+        for (let idSkill of this.candidateSkills) {
+          if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty && item.idSkill == idSkill) {
+            this.allQuestions.push(item)
+            this.split(item);
+          }
         }
-        this.split(item);
       }
 
       this.shuffle(this.allQuestions);
@@ -80,7 +96,6 @@ export class QuestionarioComponent implements OnInit {
       }
       return this.questions
     });
-    console.log(this.allQuestions)
   }
 
   split(question: Question) {
@@ -105,10 +120,9 @@ export class QuestionarioComponent implements OnInit {
   }
 
   goResult() {
+    console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
   }
-
- 
    
 }

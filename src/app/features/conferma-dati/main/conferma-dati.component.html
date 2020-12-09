@@ -66,8 +66,11 @@
             <label for="exampleFormControlInput1"><b> Livello di seniority:</b></label>
             <div class="form-check">
               <div *ngFor="let seniority of seniorities | async" class="form-check">
-                <input class="form-check-input" type="radio" name="idSeniority" value="{{seniority.id}}"
-                  formControlName="idSeniority"> {{seniority.level}}
+                <input class="form-check-input" type="radio" id="{{seniority.id}}" value="{{seniority.id}}"
+                  formControlName="idSeniority"> 
+                  <label class="form-check-label" for="{{seniority.id}}">
+                    {{seniority.level}}
+                  </label>
                 <span
                   *ngIf="candidateForm.get('idSeniority').touched && candidateForm.get('idSeniority').hasError('required')">Enter
                   idSeniority</span>
@@ -131,8 +134,9 @@
                   Il candidato sia quindi sicuro di una risposta prima di cliccare "avanti". <br>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"
-                    routerLink="/questionario">Conferma</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goToQuestionario()"
+                   >Conferma</button>
+                   <!-- routerLink="/questionario" -->
                 </div>
               </div>
             </div>

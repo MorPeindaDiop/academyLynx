@@ -13,8 +13,18 @@
         <input type="text" placeholder="Difficulty" formControlName="difficulty">
     </div>
     <div>
+        <label for="skills">Skill:</label>
+        <select id="skills" formControlName="idSkill">
+        <option *ngFor="let skill of skills | async" value="{{skill.id}}" >{{skill.description}}</option>
+        </select>
+    </div>
+    <div>
         <label><b>Question text:</b></label>
         <input type="text" placeholder="Question text" formControlName="questionText">
+    </div>
+    <div formGroupName="imgUrl">
+        <img [src]="url" height="200"> <br/>
+        <input type='file' (change)="onSelectFile($event)">
     </div>
     <div *ngIf="question.type!='vf'">
         <label><b>Correct answer:</b></label>
@@ -22,9 +32,9 @@
     </div>
     <div *ngIf="question.type=='vf'">
         <label><b>Correct answer:</b></label><br>
-        <input type="radio" id="true" value="true" formControlName="correctAnswerBoolean">
+        <input type="radio" id="true" [value]="true" formControlName="correctAnswerBoolean">
         <label for="true">True</label><br>
-        <input type="radio" id="false" value="false" formControlName="correctAnswerBoolean">
+        <input type="radio" id="false" [value]="false" formControlName="correctAnswerBoolean">
         <label for="false">False</label><br>
     </div>
     <div *ngIf="question.type=='crocette'" formGroupName="wrongAnswers">
@@ -34,4 +44,5 @@
         <input type="text" placeholder="Wrong answer 3" formControlName="answer3">
     </div>
     <button type="submit">SAVE</button>
+    <button type="button" routerLink="/admin/question">ANNULLA</button>
 </form>

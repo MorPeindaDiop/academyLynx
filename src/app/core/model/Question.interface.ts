@@ -6,9 +6,6 @@ export interface Question {
     correctAnswerText: string;
     wrongAnswers: string;
     difficulty: number;
-    creation_time?: Date;
-    updateTime?: Date;
-    creationUser?: string;
-    updateUser?: string;
+    idSkill: number;
     imgUrl?: string | ArrayBuffer;
 }
