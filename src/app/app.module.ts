@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { EffectsModule } from '@ngrx/effects';
 import { SkillsEffects } from './redux/skill/skill.effects';
+import { LoginEffects } from './redux/login/login.effects';
 import { SenioritiesEffects } from './redux/seniority/seniority.effects';
 import { CandidatesEffects } from './redux/candidate/candidate.effects';
 import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
@@ -51,7 +52,7 @@ import { CountdownModule } from 'ngx-countdown';
       CandidateAnswersEffects,
       FieldsEffects,
     ]),
-    EffectsModule.forRoot([SkillsEffects, SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
+    EffectsModule.forRoot([SkillsEffects, SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects,LoginEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
