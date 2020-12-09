@@ -2,6 +2,7 @@ export interface Candidate {
     id?: number;
     name: string;
     surname: string;
+    email: string;
     idSeniority: number;
     dataTest: Date;
     ncorrectAnswer: number;

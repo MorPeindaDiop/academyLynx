@@ -6,17 +6,18 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  
+
 </head>
 
 <form [formGroup]="candidateForm" (ngSubmit)="goCandidate()">
   <!--FORM NOME & COGNOME --------------------------------------------->
   <div class="container">
+    <label class="dati"><b>Inserisci dati anagrafici:</b></label>
     <div class="row">
 
       <div class="col" style="text-align: left;">
         <div class="form-group">
-          <label for="exampleFormControlInput1"><b>Nome:</b></label>
+          <label for="exampleFormControlInput1">Nome:</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome"
             formControlName="name" (keypress)="keyPressAlpha($event)">
           <span *ngIf="candidateForm.get('name').touched && candidateForm.get('name').hasError('required')">Enter
@@ -26,7 +27,7 @@
 
       <div class="col" style="text-align: left;">
         <div class="form-group">
-          <label for="exampleFormControlInput2"><b>Cognome:</b></label>
+          <label for="exampleFormControlInput2">Cognome:</label>
           <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Cognome"
             formControlName="surname" (keypress)="keyPressAlpha($event)">
           <span *ngIf="candidateForm.get('surname').touched && candidateForm.get('surname').hasError('required')">Enter
@@ -34,12 +35,27 @@
         </div>
       </div>
 
+      <div class="col" style="text-align: left;">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Email:</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email"
+            formControlName="email" (keypress)="keyPressAlpha($event)">
+          <span *ngIf="candidateForm.get('email').touched && candidateForm.get('email').hasError('required')">Inserisci
+            email</span>
+          <span *ngIf="candidateForm.get('email').touched && candidateForm.get('email').hasError('email')">Inserisci
+            l'email correttamente</span>
+        </div>
+      </div>
     </div>
+
   </div>
+  <hr>
   <!--RIGA SKILL--------------------------------------------->
   <div>
     <div class="container">
+      <div class="dati"><b>Inserisci info sul questionario:</b></div><br>
       <div class="row">
+
         <div class="col">
           <div>
             <mat-form-field appearance="fill" class="skill">
@@ -55,7 +71,6 @@
     </div>
   </div>
   <br>
-  <br>
   <!--TABELLA LEGENDA E SENIORITY --------------------------------------------->
   <div class="container">
     <div class="row">
@@ -67,10 +82,10 @@
             <div class="form-check">
               <div *ngFor="let seniority of seniorities | async" class="form-check">
                 <input class="form-check-input" type="radio" id="{{seniority.id}}" value="{{seniority.id}}"
-                  formControlName="idSeniority"> 
-                  <label class="form-check-label" for="{{seniority.id}}">
-                    {{seniority.level}}
-                  </label>
+                  formControlName="idSeniority">
+                <label class="form-check-label" for="{{seniority.id}}">
+                  {{seniority.level}}
+                </label>
                 <span
                   *ngIf="candidateForm.get('idSeniority').touched && candidateForm.get('idSeniority').hasError('required')">Enter
                   idSeniority</span>
@@ -126,13 +141,20 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  I dati sono stati salvati, <br>
-                  quando sei pronto ad avviare il test fai click su "Conferma"
+                  I dati sono stati salvati. <br>
+                  Una volta cliccato su "Conferma", partirà un timer da 30 minuti,
+                  allo scadere del tempo, non si potranno più effettuare modifiche,
+                  il software vi indirezzerà automaticamente ad un pagina con il risultato finale del test <br>
+                  <b> ATTENZIONE </b><br>
+                  Durante il questionario si visulizzerà una domanda per volta, quando essa verrà confermata tramite il bottone "avanti"
+                  non si avrà la possibilità di tornare alla domanda precedente.
+                  <br>
+                  Quando sei pronto ad avviare il test fai click su "Conferma"
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goToQuestionario()"
-                   >Conferma</button>
-                   <!-- routerLink="/questionario" -->
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="goToQuestionario()">Conferma</button>
+                  <!-- routerLink="/questionario" -->
                 </div>
               </div>
             </div>
