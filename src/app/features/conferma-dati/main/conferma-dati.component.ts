@@ -45,7 +45,6 @@ export class ConfermaDatiComponent implements OnInit {
     this.confermaDatiService.retrieveAllSeniorities();
 
     this.candidateForm = this.fb.group({
-      skill: ['', Validators.required],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
