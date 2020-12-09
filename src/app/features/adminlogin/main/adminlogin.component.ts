@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/core/model/User.interface';
 import { selectUsers } from 'src/app/redux/login';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../../login/services/login.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-adminlogin',
+  templateUrl: './adminlogin.component.html',
+  styleUrls: ['./adminlogin.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AdminloginComponent implements OnInit {
 
   loginForm: FormGroup;
 
@@ -33,5 +33,4 @@ export class LoginComponent implements OnInit {
   get users(): Observable<User[]> {
     return this.store.pipe(select(selectUsers));
   }
-
 }
