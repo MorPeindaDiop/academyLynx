@@ -15,7 +15,7 @@ export const initalState: UsersState={
 
 export const userReducer= createReducer(
     initalState,
-    on(initUsers, (state, { response }) => ( { ...state, fields: response.result } )),
+    on(initUsers, (state, { user }) => ( { ...state, fields: user } )),
     );
 
     export function reducer(state: UsersState , action: Action) {
