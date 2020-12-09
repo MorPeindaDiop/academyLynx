@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'admin/candidate', loadChildren: () => import('./featuresAdmin/candidate/candidate.module').then(m => m.CandidateModule) },
   {path: 'admin/panel', loadChildren: ()=> import('./featuresAdmin/panel/panel.module').then(m=>m.PanelModule)},
   { path: 'login', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule) },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'adminlogin', loadChildren: () => import('./features/adminlogin/adminlogin.module').then(m => m.AdminloginModule) }
 ];
 
 @NgModule({
