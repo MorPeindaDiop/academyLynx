@@ -5,6 +5,7 @@ import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interfac
 import { createCandidateAnswer } from 'src/app/redux/candidate-answer/candidate-answer.actions';
 import { setCandidateScore } from 'src/app/redux/candidate/candidate.actions';
 import { retrieveAllQuestions } from 'src/app/redux/question/question.actions';
+import { retrieveAllSkills } from 'src/app/redux/skill/skill.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class QuestionarioService {
 
   createCandidateAnswer( candidateResponse: CandidateResponse[]) {
     this.store.dispatch(createCandidateAnswer({candidateResponse}))
+  }
+
+  retrieveAllSkills() {
+    this.store.dispatch(retrieveAllSkills())
   }
 
 }

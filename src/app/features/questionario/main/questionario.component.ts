@@ -13,6 +13,9 @@ import { selectQuestions } from 'src/app/redux/question';
 import { selectSeniorities } from 'src/app/redux/seniority';
 import { selectCandidatesSkill } from 'src/app/redux/candidate-skill';
 import { QuestionarioService } from '../services/questionario.service';
+import { Observable } from 'rxjs';
+import { Skill } from 'src/app/core/model/Skill.interface';
+import { selectSkills } from 'src/app/redux/skill';
 
 
 @Component({
@@ -56,9 +59,16 @@ export class QuestionarioComponent implements OnInit {
       candidateResponse: ['', Validators.required]
     })
 
+    this.questionarioService.retrieveAllSkills();
+
+  }
+
+  get skills(): Observable<Skill[]> {
+    return this.store.pipe(select(selectSkills));
   }
 
   ngOnInit() {
+    
 
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
 
@@ -124,5 +134,7 @@ export class QuestionarioComponent implements OnInit {
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
   }
+
+  
    
 }
