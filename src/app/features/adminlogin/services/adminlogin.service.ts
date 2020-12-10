@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrieveAllUsers } from 'src/app/redux/login/login.actions';
+import { loginUser, retrieveAllUsers } from 'src/app/redux/login/login.actions';
 
 
 @Injectable({
@@ -12,6 +12,10 @@ export class AdminLoginService {
 
   retrieveAllUsers() {
     this.store.dispatch(retrieveAllUsers())
+  }
+  executeLogin(username: string, password: string) {
+    this.store.dispatch(loginUser({username, password}))
+    //this.store.dispatch(retrieveAllProducts())
   }
   
   // retrieveAllSeniorities() {

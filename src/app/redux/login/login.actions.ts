@@ -4,7 +4,7 @@ import { User } from 'src/app/core/model/User.interface';
 
 export const retrieveAllUsers = createAction('[User] Users');
 
-export const initUsers = createAction('[User] init', props<{user: User}>());
-export const loginUser = createAction('[Auth] Login', props<{username: string, password: string}>());
-export const loginUserSuccess = createAction('[Auth] Login Success', props<{user: User}>());
-export const loginUserFailure = createAction('[Auth] Login Failure', props<{error: string}>());
+export const initUsers = createAction('[User] init', props<{user:User}>());
+export const loginUser = createAction('[User] Login', props<{username: string, password: string}>());
+export const loginUserSuccess = createAction('[User] Login Success', props<{user: User}>());
+export const loginUserFailure = createAction('[User] Login Failure', props<{error: string}>());

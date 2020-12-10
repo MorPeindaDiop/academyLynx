@@ -26,13 +26,19 @@ export class LoginEffects {
     checkUserAccount(username:string,password:string,users){
         return users.find(actualUser=>actualUser.username === username && actualUser.password === password);
      }
+     
+    
+    signInUser(username: string, password: string): Observable<Response> {
+      return this.http.retrievePostCall<Response>('user/signIn', {username, password});
+    }
+     
 
-  
+    
     //magia
     
     loginUser$=createEffect(()=>this.actions$.pipe(
         ofType(loginUser),
-        switchMap(action=>this.retreiveAllUsers().pipe(
+        switchMap(action=>this.signInUser(action.username,action.password).pipe(
           switchMap(users=>of(this.checkUserAccount(action.username,action.password,users)).pipe(
             map( user=>{
               if(typeof user === 'undefined'){
