@@ -141,20 +141,22 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  I dati sono stati salvati. <br>
-                  Una volta cliccato su "Conferma", partirà un timer da 30 minuti,
-                  allo scadere del tempo, non si potranno più effettuare modifiche,
-                  il software vi indirezzerà automaticamente ad un pagina con il risultato finale del test <br>
-                  <b> ATTENZIONE </b><br>
-                  Durante il questionario si visulizzerà una domanda per volta, quando essa verrà confermata tramite il bottone "avanti"
-                  non si avrà la possibilità di tornare alla domanda precedente.
-                  <br>
-                  Quando sei pronto ad avviare il test fai click su "Conferma"
+                  I dati sono stati salvati. 
                 </div>
-                <div class="modal-footer">
+                <div class="grid-container">
+                  <div>
                   <button type="button" class="btn btn-primary" data-dismiss="modal"
-                    (click)="goToQuestionario()">Conferma</button>
-                  <!-- routerLink="/questionario" -->
+                    (click)="goToQuestionario()">MAIL</button>
+                  </div>
+                  <div>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="goToQuestionario()">TEST</button>
+                      </div>
+                      <div>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            (click)="goToQuestionario()">INZIA</button>
+                          </div>
+                            <!-- routerLink="/questionario" -->
                 </div>
               </div>
             </div>
