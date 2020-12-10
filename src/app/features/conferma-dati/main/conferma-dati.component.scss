@@ -11,13 +11,21 @@ body {
 }
 
 .skill {
-  width: 49%;
+  width: 31.5%;
 }
 
 input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
 
-.modal-body{
-  text-align: justify;
+.dati{
+  font-size: medium;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1%;
+  padding: 1%;
+  font-family: "Arial Black", Gadget, sans-serif;
 }

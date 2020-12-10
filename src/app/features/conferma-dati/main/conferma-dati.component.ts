@@ -47,6 +47,7 @@ export class ConfermaDatiComponent implements OnInit {
     this.candidateForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       idSeniority: ['', Validators.required],
     })
 
