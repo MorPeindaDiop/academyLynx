@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule) },
   { path: 'adminlogin', loadChildren: () => import('./features/adminlogin/adminlogin.module').then(m => m.AdminloginModule) },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'mail', loadChildren: () => import('./features/mail/mail.module').then(m => m.MailModule) },
 ];
 
 @NgModule({
