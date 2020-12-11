@@ -63,17 +63,13 @@ export class RisultatoComponent implements OnInit {
   download(){
     var element =document.getElementById('table');
     html2canvas(element).then((canvas)=>{
-      console.log(canvas);
 
       var imgData=canvas.toDataURL('image/jpeg');
-      //var doc =new jsPDF("p", "mm", "a4");
-      var doc =new jsPDF();
-      var imgHeight = canvas.height * 208 / canvas.width;
-      //doc.addImage(imgData,0,0,208,imgHeight);
-      //var width = doc.internal.pageSize.getWidth();
-      //var height = doc.internal.pageSize.getHeight();
-      doc.addImage(imgData,0,0,208,imgHeight);
+      var doc =new jsPDF("p", "mm", "a4");
+      var width = doc.internal.pageSize.getWidth();
+      doc.addImage(imgData,'JPEG',0,0,width,208);
       doc.save("risultato.pdf");
+      
     })
   }
 
