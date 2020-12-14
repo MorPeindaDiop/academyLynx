@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConfermaDatiService } from './conferma-dati.service';
+import { MailService } from './mail.service';
 
-describe('ConfermaDatiService', () => {
-  let service: ConfermaDatiService;
+describe('MailService', () => {
+  let service: MailService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConfermaDatiService);
+    service = TestBed.inject(MailService);
   });
 
   it('should be created', () => {

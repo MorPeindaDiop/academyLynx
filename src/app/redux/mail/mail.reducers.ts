@@ -1,11 +1,12 @@
 import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
+import { Mail } from 'src/app/core/model/Mail.interface';
 import { Response } from 'src/app/core/model/Response.interface';
 
 import { initResponse } from './mail.actions';
 
 export interface MailState {
-    response: Response;
+    response: Mail;
     error: string
 }
 

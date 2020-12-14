@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/core/model/User.interface';
-import { selectUsers } from 'src/app/redux/login';
-import { LoginService } from '../../login/services/login.service';
-import { AdminLoginService } from '../services/adminlogin.service';
+import { AdminLoginService } from '../services/admin-login.service';
 
 @Component({
   selector: 'app-adminlogin',
@@ -22,15 +19,19 @@ export class AdminloginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.adminLoginService.retrieveAllUsers();
+    //this.adminLoginService.retrieveAllUsers();
     this.loginForm= this.fb.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
 
   login() {
-    this.adminLoginService.executeLogin(this.loginForm.get('email').value, this.loginForm.get('password').value);
+    this.adminLoginService.executeLogin(this.loginForm.value.username, this.loginForm.value.password);
+    // this.adminLoginService.executeLogin(this.loginForm.value.username);
+
+    //this.router.navigateByUrl('/form');
   }
+
   }
   

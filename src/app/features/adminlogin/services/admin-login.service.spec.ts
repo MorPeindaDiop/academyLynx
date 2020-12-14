@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdminLoginService } from './adminlogin.service';
+import { AdminLoginService } from './admin-login.service';
 
-describe('LoginService', () => {
+describe('AdminLoginService', () => {
   let service: AdminLoginService;
 
   beforeEach(() => {

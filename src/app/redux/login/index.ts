@@ -9,5 +9,5 @@ export const selectUsersState = (state: AppState) => state.usersState;
 
 export const selectUsers = createSelector(
     selectUsersState,
-    (state: UsersState) => state.users
+    (state: UsersState) => state.currentUser
 );

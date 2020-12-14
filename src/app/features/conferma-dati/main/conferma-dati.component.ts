@@ -97,7 +97,7 @@ export class ConfermaDatiComponent implements OnInit {
   }
 
   sendMail() {
-    
+    this.router.navigateByUrl('/mail');
   }
  
 }

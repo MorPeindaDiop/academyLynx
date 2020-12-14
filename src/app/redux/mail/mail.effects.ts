@@ -7,6 +7,7 @@ import { map, switchMap } from "rxjs/operators";
 import { HttpCommunicationsService } from "../../core/HttpCommunications/http-communications.service";
 import { Mail } from "../../core/model/Mail.interface";
 import { sendMail, initResponse } from './mail.actions';
+import { Response } from 'src/app/core/model/Response.interface';
 
 @Injectable()
 export class MailEffects {

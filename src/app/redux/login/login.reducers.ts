@@ -1,21 +1,21 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from 'src/app/core/model/User.interface';
-import { initUsers } from './login.actions';
+import { initUser } from './login.actions';
 
 
 export interface UsersState{
-    users:User[];
+    currentUser: User;
 }
 
 
 export const initalState: UsersState={
-    users: []
+    currentUser: null
 }
 
 
 export const userReducer= createReducer(
     initalState,
-    on(initUsers, (state, { user }) => ( { ...state, fields: user } )),
+    on(initUser, (state, { response }) => ( { ...state, currentUser: response.result } )),
     );
 
     export function reducer(state: UsersState , action: Action) {
