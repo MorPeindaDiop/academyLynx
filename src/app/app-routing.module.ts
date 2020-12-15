@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InformazioniGuard } from './core/guard/informazioni.guard';
 import { QuestionarioGuard } from './core/guard/questionario.guard';
 import { RisultatoGuard } from './core/guard/risultato.guard';
 
 
 const routes: Routes = [
   { path: 'form', loadChildren: () => import('./features/conferma-dati/conferma-dati.module').then(m => m.ConfermaDatiModule) },
+  { path: 'form/informazioni', loadChildren: () => import('./features/conferma-dati/conferma-dati.module').then(m => m.ConfermaDatiModule), canActivate: [InformazioniGuard] },
   { path: 'questionario', loadChildren: () => import('./features/questionario/questionario.module').then(m => m.QuestionarioModule), canActivate: [QuestionarioGuard] },
   { path: 'risultato', loadChildren: () => import('./features/risultato/risultato.module').then(m => m.RisultatoModule), canActivate: [RisultatoGuard] },
   { path: 'admin/skill', loadChildren: () => import('./featuresAdmin/skill/skill.module').then(m => m.SkillModule) },

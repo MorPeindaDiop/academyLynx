@@ -95,5 +95,7 @@ export class ConfermaDatiComponent implements OnInit {
   goToQuestionario() {    
     this.router.navigateByUrl('/questionario');
   }
+
+  
  
 }
