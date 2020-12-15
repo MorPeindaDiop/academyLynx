@@ -31,8 +31,8 @@ export class CandidateComponent implements OnInit {
   createTest(id: number) {
     let test: TestQuestion = {
       idCandidate: id,
-      idTest: 0
     }
+    console.log("test: -->", test);
     this.candidateService.createTest(test)
   }
 

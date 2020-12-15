@@ -1,4 +1,4 @@
 export interface TestQuestion {
-    idTest: number;
+    idTest?: number;
     idCandidate: number;
 }
