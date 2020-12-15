@@ -1,8 +1,6 @@
-import { Params } from '@angular/router';
-import { ActionReducerMap, createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import { AppState } from '..';
-import { selectRouteParams } from '../router';
-import { userReducer, UsersState } from './login.reducers';
+import { UsersState } from './login.reducers';
 
 
 export const selectUsersState = (state: AppState) => state.usersState;
@@ -10,4 +8,14 @@ export const selectUsersState = (state: AppState) => state.usersState;
 export const selectUsers = createSelector(
     selectUsersState,
     (state: UsersState) => state.currentUser
+);
+
+export const getCurrentUser = createSelector(
+    selectUsersState,
+    (state: UsersState) => state.currentUser
+);
+
+export const selectErrorMessage = createSelector(
+    selectUsersState,
+    (state: UsersState) => state.errorMessage
 );

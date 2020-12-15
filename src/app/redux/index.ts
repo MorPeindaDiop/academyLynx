@@ -9,6 +9,7 @@ import { candidateAnswersReducer, CandidateAnswersState } from './candidate-answ
 import { fieldsReducer, FieldssState } from './field/field.reducers';
 import { userReducer, UsersState } from './login/login.reducers';
 import { mailReducer, MailState } from './mail/mail.reducers';
+import { TestsState, testsReducer } from './test-question/test-question.reducers';
 
 export interface AppState {
     router: RouterReducerState<any>;
@@ -21,6 +22,7 @@ export interface AppState {
     fieldsState: FieldssState;
     usersState: UsersState;
     mailState: MailState;
+    testsState: TestsState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -34,4 +36,5 @@ export const reducers: ActionReducerMap<AppState> = {
     fieldsState: fieldsReducer,
     usersState: userReducer,
     mailState: mailReducer,
+    testsState: testsReducer,
 };
