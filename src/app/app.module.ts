@@ -28,6 +28,7 @@ import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
 import { FieldsEffects } from './redux/field/field.effects';
 import { MailEffects } from './redux/mail/mail.effects';
+import { TestsEffects } from './redux/test-question/test-question.effects';
 
 
 
@@ -54,6 +55,7 @@ import { MailEffects } from './redux/mail/mail.effects';
       FieldsEffects,
       LoginEffects,
       MailEffects,
+      TestsEffects,
     ]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
