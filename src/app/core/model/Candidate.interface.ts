@@ -3,6 +3,8 @@ export interface Candidate {
     name: string;
     surname: string;
     email: string;
+    password: string;
+    idCandidate?:string;
     idSeniority: number;
     dataTest: Date;
     ncorrectAnswer: number;

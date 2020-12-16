@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
-import { initUser, loginUser, loginUserFailure, loginUserSuccess } from './login.actions';
+import { initUser, loginUser, loginUserCandidate, loginUserCandidateSuccess, loginUserFailure, loginUserSuccess } from './login.actions';
 
 
 @Injectable()
@@ -27,6 +27,9 @@ export class LoginEffects {
      
     signInUser(username: string, password: string): Observable<Response> {
       return this.http.retrievePostCall<Response>('user/signIn', {username, password});
+    }
+    signInCandidate(username: string, password: string, idCandidate:string): Observable<Response> {
+      return this.http.retrievePostCall<Response>('candidate/signIn', {username, password, idCandidate});
     }
     
     // loginUser$=createEffect(()=>this.actions$.pipe(
@@ -62,6 +65,28 @@ export class LoginEffects {
       ofType(loginUserSuccess),
       map( (action) => initUser( {user: action.user} )),
       tap(()=>this.router.navigateByUrl('/admin/panel'))
+    ));
+
+
+    // candidate login
+
+    loginUserCandidate$=createEffect(()=>this.actions$.pipe(
+      ofType(loginUserCandidate),
+      switchMap(action => this.signInCandidate(action.username, action.password, action.idCandidate).pipe(
+          map( response=>{
+            if(response.result === null){
+              return loginUserFailure({error:'Username e/o Password non corretta'})
+            }else{
+              return loginUserCandidateSuccess({user: response.result})
+            }
+          })
+        ))
+      ));
+  
+      loginUserCandidateSuccess$=createEffect(()=>this.actions$.pipe(
+      ofType(loginUserSuccess),
+      map( (action) => initUser( {user: action.user} )),
+      tap(()=>this.router.navigateByUrl('/questionario'))
     ));
       
 }
