@@ -86,7 +86,7 @@ export class LoginEffects {
     loginUserCandidateSuccess$=createEffect(()=>this.actions$.pipe(
       ofType(loginUserSuccess),
       map( (action) => initUser( {user: action.user} )),
-      tap(()=>this.router.navigateByUrl('/admin/panel'))
+      tap(()=>this.router.navigateByUrl('/form'))
     ));
       
 }
