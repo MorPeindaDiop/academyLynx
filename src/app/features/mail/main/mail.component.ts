@@ -55,6 +55,7 @@ export class MailComponent implements OnInit {
     
 
     )
+    this.router.navigateByUrl("/emailSuccess")
   }
 
   // sendEmailLog(){

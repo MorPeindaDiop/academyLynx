@@ -15,6 +15,7 @@ export class MailEffects {
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     sendMail(smtpServer: string, 
+        porta:string,
         username: string, 
         password: string, 
         destinatario: string, 
@@ -22,6 +23,7 @@ export class MailEffects {
         oggetto:string,
         testo:string): Observable<Response> {
         return this.http.retrievePostCall<Response>("mail/send", {smtpServer,
+            porta,
             username, 
             password, 
             destinatario, 
@@ -33,6 +35,7 @@ export class MailEffects {
     sendMail$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(sendMail),
         switchMap((action) => this.sendMail(action.smtpServer,
+            action.porta,
             action.username, 
             action.password, 
             action.destinatario, 

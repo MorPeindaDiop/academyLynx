@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'mail', loadChildren: () => import('./features/mail/mail.module').then(m => m.MailModule) },
   { path: '', redirectTo: '/adminlogin', pathMatch: 'full' },
   { path: 'helpServer', loadChildren: () => import('./features/help-server/help-server.module').then(m => m.HelpServerModule) },
+  { path: 'emailSuccess', loadChildren: () => import('./features/email-success/email-success.module').then(m => m.EmailSuccessModule) },
   { path: '**', loadChildren: () => import('./features/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
   
 
