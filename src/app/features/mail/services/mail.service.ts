@@ -11,8 +11,8 @@ export class MailService {
   constructor(private store: Store) { }
 
   sendEmailService(smtpServer: string, 
-    username: string, 
     porta: string,
+    username: string, 
     password: string, 
     destinatario: string, 
     cc:string,
