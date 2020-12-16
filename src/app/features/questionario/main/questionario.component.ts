@@ -73,7 +73,7 @@ export class QuestionarioComponent implements OnInit {
     
 
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
-    this.store.pipe(select(getCurrentUser)).subscribe((user)=>{return this.user=user});
+  
 
     this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
       for (let seniority of seniorities) {
