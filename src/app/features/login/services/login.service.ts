@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrieveAllUsers } from 'src/app/redux/login/login.actions';
+import { loginUser, loginUserCandidate, retrieveAllUsers } from 'src/app/redux/login/login.actions';
 
 
 @Injectable({
@@ -12,6 +12,10 @@ export class LoginService {
 
   retrieveAllUsers() {
     this.store.dispatch(retrieveAllUsers())
+  }
+  executeLoginCandidate(username: string, password: string, idCandidate: string) {
+    console.log("STAMPO DAL SERVICE USER:",username," PW: ",password," idCandidate: ",idCandidate)
+    this.store.dispatch(loginUserCandidate({username, password, idCandidate}))
   }
   
   // retrieveAllSeniorities() {

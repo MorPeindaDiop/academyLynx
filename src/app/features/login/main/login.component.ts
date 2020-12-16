@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
     //this.loginService.retrieveAllUsers();
     this.loginForm= this.fb.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      idCandidate: ['', Validators.required]
     })
   }
 
   login(){
     console.log(this.loginForm.value)
+    this.loginService.executeLoginCandidate(this.loginForm.value.email,this.loginForm.value.password,this.loginForm.value.idCandidate)
   }
 
 }
