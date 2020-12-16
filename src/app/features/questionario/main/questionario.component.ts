@@ -31,6 +31,7 @@ export class QuestionarioComponent implements OnInit {
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
   candidateSkills: number[] = [];
+  Msg: boolean=false;
   
   splitted = [];
 
@@ -131,6 +132,17 @@ export class QuestionarioComponent implements OnInit {
     console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
+  }
+
+  errorMsg(){
+    console.log(this.Msg);
+    console.log(this.rispostaForm.value.candidateResponse);
+    if(this.rispostaForm.value.candidateResponse == ""){
+      this.Msg=true;
+      console.log(this.Msg);
+      console.log(this.rispostaForm.value.candidateResponse);
+    }
+
   }
 
   

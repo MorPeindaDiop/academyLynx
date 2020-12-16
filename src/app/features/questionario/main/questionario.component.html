@@ -85,22 +85,50 @@
 										</div>
 										<input type="text" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp" formControlName="candidateResponse">
-										<br>
+											<span *ngIf="rispostaForm.get('candidateResponse').touched && rispostaForm.get('candidateResponse').hasError('required')">Enter
+												name</span>
+											<br>
 									</div>
 								</div>
 							</div>
 						</div>
 						<br>
 						<form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
-						<div class="posizioneBottone">
+						<!-- <div class="posizioneBottone">
 							
-							<button type="submit" *ngIf="i+1!=questions.length"
+							<button class="btn btn-primary"  type="submit" *ngIf="i+1!=questions.length"
 								(click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false; addResponse(item.question.id)"
-								[disabled]="rispostaForm.valid">AVANTI</button>
+								>AVANTI</button>
 							
-							<button *ngIf="i+1==questions.length"
+							<button class="btn btn-primary"  *ngIf="i+1==questions.length" 
 								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
-						</div>
+						</div> -->
+
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="i+1==questions.length" 
+						(click)="errorMsg();addResponse(item.question.id); goResult(); " >
+							RISULTATO
+						  </button>
+						  
+						  <!-- Modal -->
+						  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="Msg">
+							<div class="modal-dialog" role="document">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+								<div class="modal-body">
+								 Sei sicuro di voler andare avanti?
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-secondary" data-dismiss="modal">Conferma</button>
+								  
+								</div>
+							  </div>
+							</div>
+						  </div>
 					</form>
 					</div>
 				</div>
