@@ -111,7 +111,7 @@
 							</div>
 						</div>
 						<br>
-						<form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
+						<!-- <form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
 						<div class="posizioneBottone">
 							
 							<button class="btn btn-primary"  type="submit" *ngIf="i+1!=questions.length"
@@ -121,8 +121,10 @@
 							<button class="btn btn-primary"  *ngIf="i+1==questions.length" 
 								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
 						</div>
+						</form> -->
 
-						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="i+1==questions.length" 
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+						*ngIf="i+1==questions.length" 
 						(click)="errorMsg();addResponse(item.question.id); goResult(); " >
 							RISULTATO
 						  </button>
@@ -147,7 +149,7 @@
 							  </div>
 							</div>
 						  </div> 
-					</form>
+					
 					</div>
 				</div>
 			</div>
