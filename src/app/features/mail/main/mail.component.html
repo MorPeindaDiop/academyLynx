@@ -1,17 +1,19 @@
 
 <div class="login-dark" style="height: 85%;">
      
-        <form [formGroup]="sender" (ngSubmit)="sendEmailLog()">
+        <form [formGroup]="sender" (ngSubmit)="sendEmail()">
             <h2>MAIL SENDER</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <div class="form-group"><input class="form-control" id=adminMail type="email"  formControlName="adminMail" name="amdinMail" placeholder="Email"></div>
+            <!-- server data -->
+            <div class="form-group"><input class="form-control" id=host type="smtpServer"  formControlName="smtpServer" name="smtpServer" placeholder="smtpServer"></div>
+            <div class="form-group"><input class="form-control" id=username type="email"  formControlName="username" name="username" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" id=password type="password"  formControlName="password" name="password" placeholder="password"></div>
-            <div class="form-group"><input class="form-control" id=host type="text"  formControlName="host" name="host" placeholder="host"></div>
-            <div class="form-group"><input class="form-control" id=body type="text"  formControlName="body" name="body" placeholder="body"></div>
-            <div class="form-group"><input class="form-control" id=candidateMail type="email"  formControlName="candidateMail" name="candidateMail" placeholder="candidate mail"></div>
-            <div class="form-group"><input class="form-control" type="text" name="subject"  formControlName="subject" placeholder="Oggetto"></div>
+            <!-- candidate mail -->
+            <div class="form-group"><input class="form-control" id=candidateMail type="email"  formControlName="destinatario" name="destinatario" placeholder="destinatario"></div>
             <div class="form-group"><input class="form-control" type="text" name="cc"  formControlName="cc" placeholder="CC"></div>
-            <div class="form-group"><input class="form-control" type="text" name="text"  formControlName="body" placeholder="Testo"></div>
+            <!-- mail -->
+            <div class="form-group"><input class="form-control" type="text" name="oggetto"  formControlName="oggetto" placeholder="Oggetto"></div>
+            <div class="form-group"><input class="form-control" type="text" name="text"  formControlName="testo" placeholder="Testo"></div>
             <div class="form-group"><button type="submit" class="btn btn-primary btn-block">Invia</button></div>
         </form>
 

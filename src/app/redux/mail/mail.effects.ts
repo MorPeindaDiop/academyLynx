@@ -14,13 +14,31 @@ export class MailEffects {
 
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
-    sendMail(mail: Mail): Observable<Response> {
-        return this.http.retrievePostCall<Response>("mail/send", mail)
+    sendMail(smtpServer: string, 
+        username: string, 
+        password: string, 
+        destinatario: string, 
+        cc:string,
+        oggetto:string,
+        testo:string): Observable<Response> {
+        return this.http.retrievePostCall<Response>("mail/send", {smtpServer,
+            username, 
+            password, 
+            destinatario, 
+            cc,
+            oggetto,
+            testo})
     }
 
     sendMail$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(sendMail),
-        switchMap((mail) => this.sendMail(mail.mail).pipe(
+        switchMap((action) => this.sendMail(action.smtpServer,
+            action.username, 
+            action.password, 
+            action.destinatario, 
+            action.cc,
+            action.oggetto,
+            action.testo).pipe(
             map((response) => initResponse({ response }))
         ))
     ));

@@ -3,8 +3,15 @@ import { Mail } from "../../core/model/Mail.interface";
 import { Response } from 'src/app/core/model/Response.interface';
 
 //send mail
-export const sendMail = createAction('[mail] send mail', props<{mail: Mail}>());
-export const initResponse = createAction('[mail] init response', props<{response: Response}>());
+export const sendMail = createAction('[Mail] send mail', props<{
+                                                                smtpServer: string, 
+                                                                username: string, 
+                                                                password: string, 
+                                                                destinatario: string, 
+                                                                cc:string,
+                                                                oggetto:string,
+                                                                testo:string}>());
+export const initResponse = createAction('[Mail] init response', props<{response: Response}>());
 
 
 
