@@ -21,7 +21,7 @@ export class QuestionarioGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.candidate != null||this.user) {
+    if (this.candidate != null||this.user) {//aggiunta pietro
       return true;
     }
     this.router.navigateByUrl("/form");
