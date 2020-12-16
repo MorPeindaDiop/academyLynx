@@ -5,6 +5,7 @@ import { Response } from 'src/app/core/model/Response.interface';
 //send mail
 export const sendMail = createAction('[Mail] send mail', props<{
                                                                 smtpServer: string, 
+                                                                porta: string,
                                                                 username: string, 
                                                                 password: string, 
                                                                 destinatario: string, 

@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule) },
   { path: 'mail', loadChildren: () => import('./features/mail/mail.module').then(m => m.MailModule) },
   { path: '', redirectTo: '/adminlogin', pathMatch: 'full' },
+  { path: 'helpServer', loadChildren: () => import('./features/help-server/help-server.module').then(m => m.HelpServerModule) },
   { path: '**', loadChildren: () => import('./features/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
   
 

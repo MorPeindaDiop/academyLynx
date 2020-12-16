@@ -1,5 +1,6 @@
 export interface Mail {
-    smtpServer: string;
+	smtpServer: string;
+	porta:string;
 	username: string;
 	password: string;
 	destinatario: string;

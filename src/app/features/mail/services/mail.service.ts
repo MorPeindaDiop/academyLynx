@@ -12,6 +12,7 @@ export class MailService {
 
   sendEmailService(smtpServer: string, 
     username: string, 
+    porta: string,
     password: string, 
     destinatario: string, 
     cc:string,
@@ -19,6 +20,7 @@ export class MailService {
     testo:string){
     this.store.dispatch(sendMail({
                                   smtpServer,
+                                  porta,
                                   username, 
                                   password, 
                                   destinatario, 

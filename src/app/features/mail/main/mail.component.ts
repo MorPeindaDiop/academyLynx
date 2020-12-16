@@ -30,6 +30,7 @@ export class MailComponent implements OnInit {
   ngOnInit(): void {
     this.sender= this.fb.group({
       smtpServer: ['', Validators.required],
+      porta: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
       destinatario: ['', Validators.required],
@@ -44,6 +45,7 @@ export class MailComponent implements OnInit {
             console.log("sender BOIIII",this.sender.value)
    this.mailService.sendEmailService(
     this.sender.value.smtpServer,
+    this.sender.value.porta,
     this.sender.value.username,
     this.sender.value.password,
     this.sender.value.destinatario,
