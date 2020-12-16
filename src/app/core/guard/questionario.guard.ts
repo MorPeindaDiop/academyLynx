@@ -13,15 +13,14 @@ import { User } from '../model/User.interface';
 })
 export class QuestionarioGuard implements CanActivate {
   candidate: Candidate;
-  user:User;
+  
   constructor(private store: Store, private router: Router) {
-    this.store.pipe(select(getCurrentUser)).subscribe(user => { return this.user = user });
     this.store.pipe(select(getCurrentCandidate)).subscribe(candidate => { return this.candidate = candidate });
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.candidate != null||this.user) {//aggiunta pietro
+    if (this.candidate != null) {
       return true;
     }
     this.router.navigateByUrl("/form");

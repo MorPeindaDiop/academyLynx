@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { Response } from 'src/app/core/model/Response.interface';
-import { initUser, loginUser, loginUserCandidate, loginUserCandidateSuccess, loginUserFailure, loginUserSuccess } from './login.actions';
+import { initUser, initUserCandidate, loginUser, loginUserCandidate, loginUserCandidateSuccess, loginUserCanidateFailure, loginUserFailure, loginUserSuccess } from './login.actions';
 
 
 @Injectable()
@@ -75,17 +75,17 @@ export class LoginEffects {
       switchMap(action => this.signInCandidate(action.username, action.password, action.idCandidate).pipe(
           map( response=>{
             if(response.result === null){
-              return loginUserFailure({error:'Username e/o Password non corretta'})
+              return loginUserCanidateFailure({error:'Username e/o Password non corretta'})
             }else{
-              return loginUserCandidateSuccess({user: response.result})
+              return loginUserCandidateSuccess({candidate: response.result})
             }
           })
         ))
       ));
   
       loginUserCandidateSuccess$=createEffect(()=>this.actions$.pipe(
-      ofType(loginUserSuccess),
-      map( (action) => initUser( {user: action.user} )),
+      ofType(loginUserCandidateSuccess),
+      map( (action) => initUserCandidate( {candidate: action.candidate} )),
       tap(()=>this.router.navigateByUrl('/questionario'))
     ));
       
