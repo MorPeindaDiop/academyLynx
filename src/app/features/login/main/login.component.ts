@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.loginService.retrieveAllUsers();
+    //this.loginService.retrieveAllUsers();
     this.loginForm= this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -29,9 +29,6 @@ export class LoginComponent implements OnInit {
 
   login(){
     console.log(this.loginForm.value)
-  }
-  get users(): Observable<User[]> {
-    return this.store.pipe(select(selectUsers));
   }
 
 }

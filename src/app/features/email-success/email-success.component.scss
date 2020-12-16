@@ -1,0 +1,53 @@
+
+        h1 {
+          color: #88B04B;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        text-align: center;
+        padding: 40px;
+        padding-left: 2%;
+        padding-right: 2%;
+        background: white;
+        // padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .container{
+          padding-left: 26%;
+      }
+      button{ 
+        color:#f8b9b9;
+                background:none;
+                font-size : 20px ; font-family:"Segoe UI Light";
+                text-align: center;
+                border :2px solid #333333;
+                border-radius: 4px;
+                padding: 10px 0;
+                width: 170px;
+                
+               }
+               
+    button{  
+           cursor:pointer;
+                       color:#fff;
+                       background:#333333;
+                       border :2px solid white;
+                       }	
