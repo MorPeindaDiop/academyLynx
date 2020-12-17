@@ -18,7 +18,7 @@ export interface AppState {
     candidatesState: CandidatesState;
     candidateSkillsState: CandidateSkillsState;
     questionState: QuestionsState;
-    candidateAnswer: CandidateAnswersState;
+    candidateAnswersState: CandidateAnswersState;
     fieldsState: FieldssState;
     usersState: UsersState;
     mailState: MailState;
@@ -32,7 +32,7 @@ export const reducers: ActionReducerMap<AppState> = {
     candidatesState: candidatesReducer,
     candidateSkillsState: candidateSkillsReducer,
     questionState: questionsReducer,
-    candidateAnswer: candidateAnswersReducer,
+    candidateAnswersState: candidateAnswersReducer,
     fieldsState: fieldsReducer,
     usersState: userReducer,
     mailState: mailReducer,

@@ -9,7 +9,7 @@ import { RisultatoGuard } from './core/guard/risultato.guard';
 
 const routes: Routes = [
   { path: 'form', loadChildren: () => import('./features/conferma-dati/conferma-dati.module').then(m => m.ConfermaDatiModule), canActivate: [AdminGuard] },
-  { path: 'questionario', loadChildren: () => import('./features/questionario/questionario.module').then(m => m.QuestionarioModule), canActivate: [CandidateLoginGuard] },
+  { path: 'questionario/:id', loadChildren: () => import('./features/questionario/questionario.module').then(m => m.QuestionarioModule), canActivate: [CandidateLoginGuard] },
   { path: 'risultato', loadChildren: () => import('./features/risultato/risultato.module').then(m => m.RisultatoModule), canActivate: [CandidateLoginGuard] },
   
   { path: 'adminlogin', loadChildren: () => import('./features/adminlogin/adminlogin.module').then(m => m.AdminloginModule) },
