@@ -32,6 +32,7 @@ export class QuestionarioComponent implements OnInit {
   seniority: Seniority;
   candidateSkills: number[] = [];
   Msg: boolean=false;
+  buttonText: string="AVANTI";
   
   splitted = [];
 
@@ -103,8 +104,11 @@ export class QuestionarioComponent implements OnInit {
       for (var i = 0; i < this.allQuestions.length; i++) {
         this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
+  
       return this.questions
     });
+
+   
   }
 
   split(question: Question) {
@@ -126,6 +130,16 @@ export class QuestionarioComponent implements OnInit {
 
     this.candidateResponse.push(candidateAnswer)
     this.rispostaForm.reset();
+
+    // if(this.questions.length=i){
+    //   this.buttonText="RISULTATO";
+    // }
+
+    // if(this.questions.length==i+1){
+    //   this.router.navigateByUrl('/risultato');
+    // }
+    // console.log(i);
+    // console.log(this.questions.length);
   }
 
   goResult() {

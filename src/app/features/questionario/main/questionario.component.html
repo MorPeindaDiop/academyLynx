@@ -120,28 +120,32 @@
 							
 							<button class="btn btn-primary"  *ngIf="i+1==questions.length" 
 								(click)="addResponse(item.question.id);goResult()">RISULTATO</button>
+
+
+							<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
+						(click)="errorMsg();addResponse(item.question.id,i);" >
+							{{buttonText}}
+						  </button> -->
 						</div>
 
-						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="i+1==questions.length" 
-						(click)="errorMsg();addResponse(item.question.id); goResult(); " >
-							RISULTATO
-						  </button>
+						
 						  
-						  <!-- Modal -->
+						  <!-- Modal  -->
 						  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="Msg">
 							<div class="modal-dialog" role="document">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+								  <h2 class="modal-title" id="exampleModalLabel">Conferma</h2>
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								  </button>
 								</div>
 								<div class="modal-body">
-								 Sei sicuro di voler andare avanti?
+								 Sei sicuro di voler andare avanti senza dare una risposta?<br>Non potrai più tornare indietro. <br> Se si vuole inserire
+								  la risposta cliccare sulla x
 								</div>
 								<div class="modal-footer">
-								  <button type="button" class="btn btn-secondary" data-dismiss="modal">Conferma</button>
+								  <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="goResult()">Conferma</button>
 								  
 								</div>
 							  </div>
