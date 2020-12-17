@@ -14,6 +14,8 @@ import { QuestionarioService } from '../services/questionario.service';
 import { Observable } from 'rxjs';
 import { Skill } from 'src/app/core/model/Skill.interface';
 import { selectSkills } from 'src/app/redux/skill';
+import { getCurrentUser } from 'src/app/redux/login';
+import { User } from 'src/app/core/model/User.interface';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class QuestionarioComponent implements OnInit {
   allQuestions = [];
   questions = [];
   candidate: Candidate;
+  user:User;
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
@@ -48,8 +51,10 @@ export class QuestionarioComponent implements OnInit {
     return array;
   }
 
-  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
+  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router, ) {
     
+    this.questionarioService.retrieveAllQuestions();
+
     setTimeout(() => {
       this.goResult()
     }, 1800000);
@@ -71,6 +76,7 @@ export class QuestionarioComponent implements OnInit {
     
 
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
+  
 
     this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
       for (let seniority of seniorities) {
@@ -88,7 +94,7 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
-    this.questionarioService.retrieveAllQuestions();
+    
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {

@@ -3,6 +3,9 @@ export interface Candidate {
     name: string;
     surname: string;
     email: string;
+    password: string;
+    idCandidate?:string;
+    idTest:string;
     idSeniority: number;
     dataTest: Date;
     ncorrectAnswer: number;
