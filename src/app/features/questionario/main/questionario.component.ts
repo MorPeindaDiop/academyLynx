@@ -51,8 +51,10 @@ export class QuestionarioComponent implements OnInit {
     return array;
   }
 
-  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
+  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router, ) {
     
+    this.questionarioService.retrieveAllQuestions();
+
     setTimeout(() => {
       this.goResult()
     }, 1800000);
@@ -92,7 +94,7 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
-    this.questionarioService.retrieveAllQuestions();
+    
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
