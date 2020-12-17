@@ -49,6 +49,7 @@ export class ConfermaDatiComponent implements OnInit {
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      idTest:['', Validators.required],
       idSeniority: ['', Validators.required],
     })
 
