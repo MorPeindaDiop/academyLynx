@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { CandidateAnswer } from '../../core/model/CandidateAnswer.interface';
-import { initCandidateAnswers } from './candidate-answer.actions';
+import { initCandidateAnswers, initCandidateAnswersByIdCandidate } from './candidate-answer.actions';
 
 export interface CandidateAnswersState {
     candidateAnswers: CandidateAnswer[];
@@ -17,6 +17,7 @@ export const initialState: CandidateAnswersState = {
 export const candidateAnswersReducer = createReducer(
     initialState,
     on(initCandidateAnswers, (state, { response }) => ( { ...state, candidateAnswers: response.result, error: response.error } )),
+    on(initCandidateAnswersByIdCandidate, (state, { response }) => ( { ...state, currentCandidateAnswer: response.result } )),
     );
 
 export function reducer(state: CandidateAnswersState , action: Action) {
