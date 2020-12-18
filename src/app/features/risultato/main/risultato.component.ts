@@ -77,5 +77,5 @@ export class RisultatoComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {   }
 }

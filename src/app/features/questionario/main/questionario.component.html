@@ -8,14 +8,14 @@
 			<div class="square">
 				<div *ngFor="let item of questions;let i = index">
 
-					<div class="ndomanda" *ngFor="let skill of skills | async">
-						<div *ngIf="skill.id == item.question.idSkill">
-							Domanda {{i+1}}&nbsp;({{ skill.description }})
-						</div>
-					</div>
 					<br>
 					<div [hidden]="item.isHidden">
-
+						<div class="ndomanda" *ngFor="let skill of skills | async">
+							<div *ngIf="skill.id == item.question.idSkill">
+								Domanda {{i+1}}&nbsp;({{ skill.description }})
+							</div>
+						</div>
+						
 						<!-- domanda crocette -->
 						<div *ngIf="item.question.type=='crocette'">
 							<div class="row">
