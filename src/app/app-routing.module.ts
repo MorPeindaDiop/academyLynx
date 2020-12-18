@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminGuard } from './core/guard/admin.guard';
 import { CandidateLoginGuard } from './core/guard/candidate-login.guard';
-import { QuestionarioGuard } from './core/guard/questionario.guard';
-import { RisultatoGuard } from './core/guard/risultato.guard';
 
 
 const routes: Routes = [

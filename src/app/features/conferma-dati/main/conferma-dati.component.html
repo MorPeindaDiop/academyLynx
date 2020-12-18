@@ -75,11 +75,10 @@
 
         <div class="col">
           <div>
-            <mat-form-field appearance="fill" class="skill">
+            <mat-form-field appearance="fill" class="skill" >
               <mat-label>Skill</mat-label>
-              <mat-select [formControl]="skill" multiple>
-                <mat-option *ngFor="let skill of skills | async" [value]="skill.id">{{skill.description}}</mat-option>
-                <!-- <span *ngIf="candidateForm.get('skill').touched && candidateForm.get('skill').hasError('required')">Enter skill</span> -->
+              <mat-select [formControl]="skill" multiple required>
+                <mat-option  *ngFor="let skill of skills | async" [value]="skill.id">{{skill.description}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -178,8 +177,12 @@
                         (click)="goToQuestionario()">TEST</button>
                       </div>
                       <div>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal"
+                          <!-- <button type="button" class="btn btn-primary" data-dismiss="modal"
                             (click)="goToQuestionario()">INZIA</button>
+                          </div> -->
+
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            routerLink="informazioni">INZIA</button>
                           </div>
                             <!-- routerLink="/questionario" -->
                 </div>

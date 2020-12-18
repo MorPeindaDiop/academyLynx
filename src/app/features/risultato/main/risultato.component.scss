@@ -12,11 +12,12 @@
   font-family: "Arial Black", Gadget, sans-serif;
 }
 
-.punteggio{
+.punteggio {
   text-align: right;
 }
 
-.testo {
+.testo,
+.candidato {
   text-align: center;
   font-family: "Arial Black", Gadget, sans-serif;
 }
@@ -33,11 +34,12 @@
   border-radius: 2%;
 }
 
-.prova{
+.posBottoni {
   display: block;
-  margin: 0 auto; 
+  margin: 0 auto;
   width: 170px;
 }
-#table{
+
+#table {
   height: 75%;
 }

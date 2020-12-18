@@ -2,10 +2,8 @@ import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { CountdownComponent } from 'ngx-countdown';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
-import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { Question } from 'src/app/core/model/Question.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
@@ -36,6 +34,8 @@ export class QuestionarioComponent implements OnInit {
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
   candidateSkills: number[] = [];
+  Msg: boolean=false;
+  buttonText: string="AVANTI";
   
   splitted = [];
 
@@ -110,8 +110,11 @@ export class QuestionarioComponent implements OnInit {
       for (var i = 0; i < this.allQuestions.length; i++) {
         this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
+  
       return this.questions
     });
+
+   
   }
 
   split(question: Question) {
@@ -133,12 +136,33 @@ export class QuestionarioComponent implements OnInit {
 
     this.candidateResponse.push(candidateAnswer)
     this.rispostaForm.reset();
+
+    // if(this.questions.length=i){
+    //   this.buttonText="RISULTATO";
+    // }
+
+    // if(this.questions.length==i+1){
+    //   this.router.navigateByUrl('/risultato');
+    // }
+    // console.log(i);
+    // console.log(this.questions.length);
   }
 
   goResult() {
     console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
+  }
+
+  errorMsg(){
+    console.log(this.Msg);
+    console.log(this.rispostaForm.value.candidateResponse);
+    if(this.rispostaForm.value.candidateResponse == ""){
+      this.Msg=true;
+      console.log(this.Msg);
+      console.log(this.rispostaForm.value.candidateResponse);
+    }
+
   }
 
   
