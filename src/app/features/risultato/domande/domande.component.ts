@@ -52,6 +52,7 @@ export class DomandeComponent implements OnInit {
   }
 
   goToLogin() {    
+    location.reload();
     sessionStorage.clear();
     this.router.navigateByUrl('/login');
   }
