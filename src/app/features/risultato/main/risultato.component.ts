@@ -10,6 +10,8 @@ import { selectSeniorities } from 'src/app/redux/seniority';
 import jsPDF, * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { image } from 'html2canvas/dist/types/css/types/image';
+import { questionsReducer } from 'src/app/redux/question/question.reducers';
+import { resetQuestion } from 'src/app/redux/question/question.actions';
 
 @Component({
   selector: 'app-risultato',
@@ -22,6 +24,7 @@ export class RisultatoComponent implements OnInit {
   seniority: Seniority;
   nQuestion: number = 0;
   candidateSkills: number[] = [];
+  
 
   constructor(private store: Store, private router: Router) {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate; })
@@ -56,8 +59,12 @@ export class RisultatoComponent implements OnInit {
   }
 
   goToLogin() {    
+    this.store.dispatch(resetQuestion())
     sessionStorage.clear();
-    this.router.navigateByUrl('/login');
+    location.reload()
+    this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['login']);
+  }); 
   }
 
   download(){
