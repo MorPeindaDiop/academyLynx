@@ -79,7 +79,6 @@ export class ConfermaDatiComponent implements OnInit {
 
   async selectCurrentCandidate() {
     await this.delay(30);
-    console.log("IL CANDIDATO AOOOO->", this.idCandidate)
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
    
     this.createCandidateSkill()
