@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.loginForm.value)
     this.loginService.executeLoginCandidate(this.loginForm.value.email,this.loginForm.value.password,this.loginForm.value.idCandidate)
+ 
   }
  
 

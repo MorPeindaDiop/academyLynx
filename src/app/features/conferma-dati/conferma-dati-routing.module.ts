@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InformazioniComponent } from './informazioni/informazioni.component';
+import { InformazioniComponent } from '../login/informazioni/informazioni.component';
+
 
 import { ConfermaDatiComponent } from './main/conferma-dati.component';
 

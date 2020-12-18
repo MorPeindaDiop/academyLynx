@@ -86,7 +86,7 @@ export class LoginEffects {
       loginUserCandidateSuccess$=createEffect(()=>this.actions$.pipe(
       ofType(loginUserCandidateSuccess),
       map( (action) => initUserCandidate( {candidate: action.candidate} )),
-      tap(()=>this.router.navigateByUrl('/questionario'))
+      tap(()=>this.router.navigateByUrl('/login/informazioni'))
     ));
       
 }
