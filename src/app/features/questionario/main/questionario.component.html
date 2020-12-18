@@ -15,16 +15,21 @@
 					</div> -->
 					<br>
 					<div [hidden]="item.isHidden">
-
+						<div class="ndomanda" *ngFor="let skill of skills | async">
+							<div *ngIf="skill.id == item.question.idSkill">
+								Domanda {{i+1}}&nbsp;({{ skill.description }})
+							</div>
+						</div>
+						
 						<!-- domanda crocette -->
 						<div *ngIf="item.question.type=='crocette'">
 							<div class="row">
 								<div class="col">
-									<div class="ndomanda" *ngFor="let skill of skills | async">
+									<!-- <div class="ndomanda" *ngFor="let skill of skills | async">
 										<div *ngIf="skill.id == item.question.idSkill">
 											Domanda {{i+1}}&nbsp;({{ skill.description }})
 										</div>
-									</div>
+									</div> -->
 									<br>
 									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
@@ -53,11 +58,11 @@
 						<div *ngIf="item.question.type=='vf'">
 							<div class="row">
 								<div class="col">
-									<div class="ndomanda" *ngFor="let skill of skills | async">
+									<!-- <div class="ndomanda" *ngFor="let skill of skills | async">
 										<div *ngIf="skill.id == item.question.idSkill">
 											Domanda {{i+1}}&nbsp;({{ skill.description }})
 										</div>
-									</div>
+									</div> -->
 									<br>
 									<label>
 										<li class="domanda">{{item.question.questionText}}</li>
@@ -89,11 +94,11 @@
 							<div class="row">
 								<div class="col">
 									<div class="form-group">
-										<div class="ndomanda" *ngFor="let skill of skills | async">
+										<!-- <div class="ndomanda" *ngFor="let skill of skills | async">
 											<div *ngIf="skill.id == item.question.idSkill">
 												Domanda {{i+1}}&nbsp;({{ skill.description }})
 											</div>
-										</div>
+										</div> -->
 										<br>
 										<label for="exampleInputEmail1">
 											<li class="domanda">{{item.question.questionText}}</li>

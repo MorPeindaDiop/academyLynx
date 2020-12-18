@@ -21,7 +21,7 @@ export class LoginService {
     console.log("STAMPO DAL SERVICE USER:",username," PW: ",password," idCandidate: ",idCandidate)
     this.store.dispatch(loginUserCandidate({username, password, idCandidate}))
     this.store.dispatch(retrieveAllCandidateSkills())
-    this.store.dispatch(retrieveAllQuestions())
+    // this.store.dispatch(retrieveAllQuestions())
     this.store.dispatch(retrieveAllSeniorities())
   }
 

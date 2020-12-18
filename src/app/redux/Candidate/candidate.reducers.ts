@@ -3,7 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { initUserCandidate, loginUserCanidateFailure } from '../login/login.actions';
 
-import { deleteCandidate, initCandidate, initCandidates } from './candidate.actions';
+import { deleteCandidate, initCandidate, initCandidates, logout } from './candidate.actions';
 
 export interface CandidatesState {
     candidates: Candidate[];
@@ -26,6 +26,7 @@ export const candidatesReducer = createReducer(
     on(deleteCandidate, (state, { }) => ({ ...state, currentCandidate: null })),
     on(initUserCandidate, (state, { candidate }) => ( { ...state, currentCandidate: candidate } )),
     on(loginUserCanidateFailure, (state, {error}) => ({...state, errorMessage: error})),
+    
 );
 
 export function reducer(state: CandidatesState, action: Action) {
