@@ -11,7 +11,7 @@ export const loginUserSuccess = createAction('[User] Login Success', props<{user
 export const loginUserFailure = createAction('[User] Login Failure', props<{error: string}>());
 
 
-export const loginUserCandidate = createAction('[Candidate] login canidate', props<{username: string, password: string, idCandidate: string}>());
+export const loginUserCandidate = createAction('[Candidate] login canidate', props<{username: string, password: string, idCandidate: string, idTest: string}>());
 export const initUserCandidate = createAction('[CandidateInit] init', props<{candidate: Candidate}>());
 export const loginUserCandidateSuccess = createAction('[Candidate] Login Success', props<{candidate: Candidate}>());
 export const loginUserCanidateFailure = createAction('[Candidate] Login Failure', props<{error: string}>());

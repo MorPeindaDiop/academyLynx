@@ -28,8 +28,8 @@ export class LoginEffects {
     signInUser(username: string, password: string): Observable<Response> {
       return this.http.retrievePostCall<Response>('user/signIn', {username, password});
     }
-    signInCandidate(username: string, password: string, idCandidate:string): Observable<Response> {
-      return this.http.retrievePostCall<Response>('candidate/signIn', {username, password, idCandidate});
+    signInCandidate(username: string, password: string, idCandidate:string, idTest: string): Observable<Response> {
+      return this.http.retrievePostCall<Response>('candidate/signIn', {username, password, idCandidate, idTest});
     }
     
     // loginUser$=createEffect(()=>this.actions$.pipe(
@@ -72,7 +72,7 @@ export class LoginEffects {
 
     loginUserCandidate$=createEffect(()=>this.actions$.pipe(
       ofType(loginUserCandidate),
-      switchMap(action => this.signInCandidate(action.username, action.password, action.idCandidate).pipe(
+      switchMap(action => this.signInCandidate(action.username, action.password, action.idCandidate, action.idTest).pipe(
           map( response=>{
             if(response.result === null){
               return loginUserCanidateFailure({error:'Username e/o Password non corretta'})

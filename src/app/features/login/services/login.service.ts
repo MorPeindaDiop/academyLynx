@@ -17,9 +17,9 @@ export class LoginService {
   retrieveAllUsers() {
     //this.store.dispatch(retrieveAllUsers())
   }
-  executeLoginCandidate(username: string, password: string, idCandidate: string) {
-    console.log("STAMPO DAL SERVICE USER:",username," PW: ",password," idCandidate: ",idCandidate)
-    this.store.dispatch(loginUserCandidate({username, password, idCandidate}))
+  executeLoginCandidate(username: string, password: string, idCandidate:string, idTest: string) {
+    console.log("STAMPO DAL SERVICE USER:",username," PW: ",password," idCandidate: ",idCandidate," idTest: ",idTest)
+    this.store.dispatch(loginUserCandidate({username, password, idCandidate, idTest}))
     this.store.dispatch(resetQuestion())
     this.store.dispatch(retrieveAllCandidateSkills())
     // this.store.dispatch(retrieveAllQuestions())
