@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -23,7 +23,7 @@ import { User } from 'src/app/core/model/User.interface';
   templateUrl: './questionario.component.html',
   styleUrls: ['./questionario.component.scss']
 })
-export class QuestionarioComponent implements OnInit {
+export class QuestionarioComponent implements OnInit, OnDestroy {
 
   rispostaForm: FormGroup;
   allQuestions = [];
@@ -53,6 +53,8 @@ export class QuestionarioComponent implements OnInit {
 
   constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router, ) {
     
+console.log("costruttore questionaraio")
+
     this.questionarioService.retrieveAllQuestions();
 
     setTimeout(() => {
@@ -71,11 +73,19 @@ export class QuestionarioComponent implements OnInit {
   get skills(): Observable<Skill[]> {
     return this.store.pipe(select(selectSkills));
   }
+  
+  ngOnDestroy(){
+    console.log("SIAMO DENTRO GG BOYS on destroy questionario")
+    this.questions=[]
+    this.splitted=[]
+    console.log(this.questions)
+   
 
+  }
   ngOnInit() {
     
-
-    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
+    console.log("siamo dentro all on init questionario")
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate })
   
 
     this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
@@ -110,9 +120,9 @@ export class QuestionarioComponent implements OnInit {
       for (var i = 0; i < this.allQuestions.length; i++) {
         this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
-  
+      console.log(this.questions)
       return this.questions
-    });
+    })
 
    
   }
@@ -149,6 +159,7 @@ export class QuestionarioComponent implements OnInit {
   }
 
   goResult() {
+    
     console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
@@ -164,6 +175,8 @@ export class QuestionarioComponent implements OnInit {
   //   }
 
   // }
+
+  
 
   
    
