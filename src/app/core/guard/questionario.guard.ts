@@ -4,13 +4,16 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
 import { deleteCandidate } from 'src/app/redux/candidate/candidate.actions';
+import { getCurrentUser } from 'src/app/redux/login';
 import { Candidate } from '../model/Candidate.interface';
+import { User } from '../model/User.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionarioGuard implements CanActivate {
   candidate: Candidate;
+  
   constructor(private store: Store, private router: Router) {
     this.store.pipe(select(getCurrentCandidate)).subscribe(candidate => { return this.candidate = candidate });
   }

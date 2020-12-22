@@ -6,7 +6,7 @@
         <th>Surname</th>
         <!-- <th>Difficoltà minima</th>
         <th>Difficoltà massima</th> -->
-        <!-- <th></th> -->
+        <th></th>
         <th></th>
     </tr>
     <tr *ngFor="let candidate of candidates | async">
@@ -16,6 +16,9 @@
         <!-- <td>{{ candidate.minDifficulty }}</td>
         <td>{{ candidate.maxDifficulty }}</td> -->
         <!-- <td><button [routerLink]="['detail', candidate.id]">Edit</button></td> -->
+        <td><button (click)="createTest(candidate.id)">New Test</button></td>
         <td><button (click)="delete(candidate.id)">Delete</button></td>
     </tr>
 </table>
+<button class="botu" routerLink="../../admin/panel">TORNA AL PANNELLO</button>
+<button class="botu" routerLink="/mail">MAIL</button>

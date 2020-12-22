@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InformazioniComponent } from './informazioni/informazioni.component';
 
 import { ConfermaDatiComponent } from './main/conferma-dati.component';
 
-const routes: Routes = [{ path: '', component: ConfermaDatiComponent }];
+const routes: Routes = [{ path: '', component: ConfermaDatiComponent },
+{ path: 'informazioni', component: InformazioniComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

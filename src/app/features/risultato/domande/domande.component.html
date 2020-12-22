@@ -1,0 +1,33 @@
+<div id="table">
+  <h1 class="testo"> Visualizzazione delle domande </h1>
+  <table class="table8">
+    <tr>
+        <th>Question</th>
+        <th>Candidate Answer</th>
+        <th>Correct Answer</th>
+    </tr>
+    <tr *ngFor="let candidateAnswer of currentCandidateAnswers | async">
+        <td>
+          <div *ngFor="let question of questions | async">
+              <div *ngIf="candidateAnswer.idQuestion == question.id">
+                      {{ question.questionText }}
+              </div>
+          </div>
+        </td>
+        <td>{{ candidateAnswer.answer }}</td>
+        <td>
+          <div *ngFor="let question of questions | async">
+              <div *ngIf="candidateAnswer.idQuestion == question.id">
+                {{ question.type == "vf" ? question.correctAnswerBoolean : question.correctAnswerText }}
+              </div>
+          </div>
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="posBottoni">
+    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goToLogin()">&nbsp;Esci&nbsp;</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" (click)="download()" class="btn btn-primary" data-dismiss="modal">Esporta</button>
+  </div>

@@ -47,6 +47,9 @@ export class ConfermaDatiComponent implements OnInit {
     this.candidateForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      idTest:['', Validators.required],
       idSeniority: ['', Validators.required],
     })
 
@@ -74,9 +77,10 @@ export class ConfermaDatiComponent implements OnInit {
     this.selectCurrentCandidate();
   }
 
-  selectCurrentCandidate() {
+  async selectCurrentCandidate() {
+    await this.delay(30);
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
-    console.log(this.idCandidate)
+   
     this.createCandidateSkill()
   }
 
@@ -91,8 +95,12 @@ export class ConfermaDatiComponent implements OnInit {
     }
   }
 
+  
   goToQuestionario() {    
     this.router.navigateByUrl('/questionario');
+  }
+  sendMail() {
+    this.router.navigateByUrl('/mail');
   }
  
 }

@@ -1,5 +1,5 @@
 import { Params } from '@angular/router';
-import { createSelector } from '@ngrx/store';
+import { createSelector, MetaReducer } from '@ngrx/store';
 import { AppState } from '..';
 import { CandidatesState } from './candidate.reducers';
 
@@ -14,3 +14,5 @@ export const getCurrentCandidate = createSelector(
     selectCandidatesState,
     (state: CandidatesState) => state.currentCandidate
 );
+
+

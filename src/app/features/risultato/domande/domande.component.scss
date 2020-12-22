@@ -1,0 +1,44 @@
+.posBottoni {
+    display: block;
+    margin: 0 auto;
+    width: 170px;
+  }
+  
+  #table {
+    height: 75%;
+    
+  }
+
+  .table8 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    border-collapse: collapse;
+    color: #686461;
+    margin: 0 auto;
+}
+.table8 caption {
+    padding: 10px;
+    color: white;
+    background: #8FD4C1;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+}
+.table8 th {
+    border-bottom: 3px solid #B9B29F;
+    padding: 10px;
+    text-align: left;
+}
+.table8 td {
+    padding: 10px;
+}
+.table8 tr:nth-child(odd) {
+    background: white;
+}
+.table8 tr:nth-child(even) {
+    background: #E8E6D1;
+}
+
+.testo {
+  text-align: center;
+  font-family: "Arial Black", Gadget, sans-serif;
+}

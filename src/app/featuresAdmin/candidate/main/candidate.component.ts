@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
+import { TestQuestion } from 'src/app/core/model/TestQuestion.interface';
 import { selectCandidates } from 'src/app/redux/candidate';
 import { CandidateService } from '../services/candidate.service';
 
@@ -25,6 +26,14 @@ export class CandidateComponent implements OnInit {
 
   delete(id: number) {
     this.candidateService.deleteCandidate(id)
+  }
+
+  createTest(id: number) {
+    let test: TestQuestion = {
+      idCandidate: id,
+    }
+    console.log("test: -->", test);
+    this.candidateService.createTest(test)
   }
 
 }

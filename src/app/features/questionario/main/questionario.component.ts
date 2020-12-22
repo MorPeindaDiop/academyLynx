@@ -1,11 +1,9 @@
-import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { CountdownComponent } from 'ngx-countdown';
 import { Candidate } from 'src/app/core/model/Candidate.interface';
 import { CandidateResponse } from 'src/app/core/model/CandidateResponse.interface';
-import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { Question } from 'src/app/core/model/Question.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { getCurrentCandidate } from 'src/app/redux/candidate';
@@ -13,6 +11,11 @@ import { selectQuestions } from 'src/app/redux/question';
 import { selectSeniorities } from 'src/app/redux/seniority';
 import { selectCandidatesSkill } from 'src/app/redux/candidate-skill';
 import { QuestionarioService } from '../services/questionario.service';
+import { Observable } from 'rxjs';
+import { Skill } from 'src/app/core/model/Skill.interface';
+import { selectSkills } from 'src/app/redux/skill';
+import { getCurrentUser } from 'src/app/redux/login';
+import { User } from 'src/app/core/model/User.interface';
 
 
 @Component({
@@ -20,16 +23,19 @@ import { QuestionarioService } from '../services/questionario.service';
   templateUrl: './questionario.component.html',
   styleUrls: ['./questionario.component.scss']
 })
-export class QuestionarioComponent implements OnInit {
+export class QuestionarioComponent implements OnInit, OnDestroy {
 
   rispostaForm: FormGroup;
   allQuestions = [];
   questions = [];
   candidate: Candidate;
+  user:User;
   i: number = 0;
   candidateResponse: CandidateResponse[] = [];
   seniority: Seniority;
   candidateSkills: number[] = [];
+  Msg: boolean=false;
+  buttonText: string="AVANTI";
   
   splitted = [];
 
@@ -45,8 +51,12 @@ export class QuestionarioComponent implements OnInit {
     return array;
   }
 
-  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router) {
+  constructor(private store: Store, private questionarioService: QuestionarioService, private fb: FormBuilder, private router: Router, ) {
     
+console.log("costruttore questionaraio")
+
+    this.questionarioService.retrieveAllQuestions();
+
     setTimeout(() => {
       this.goResult()
     }, 1800000);
@@ -56,11 +66,27 @@ export class QuestionarioComponent implements OnInit {
       candidateResponse: ['', Validators.required]
     })
 
+    this.questionarioService.retrieveAllSkills();
+
   }
 
-  ngOnInit() {
+  get skills(): Observable<Skill[]> {
+    return this.store.pipe(select(selectSkills));
+  }
+  
+  ngOnDestroy(){
+    console.log("SIAMO DENTRO GG BOYS on destroy questionario")
+    this.questions=[]
+    this.splitted=[]
+    console.log(this.questions)
+   
 
-    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
+  }
+  ngOnInit() {
+    
+    console.log("siamo dentro all on init questionario")
+    this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate })
+  
 
     this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
       for (let seniority of seniorities) {
@@ -78,7 +104,7 @@ export class QuestionarioComponent implements OnInit {
       }
     })
 
-    this.questionarioService.retrieveAllQuestions();
+    
 
     this.store.pipe(select(selectQuestions)).subscribe((question) => {
       for (let item of question) {
@@ -94,8 +120,11 @@ export class QuestionarioComponent implements OnInit {
       for (var i = 0; i < this.allQuestions.length; i++) {
         this.questions.push({ question: this.allQuestions[i], isHidden: (i == 0 ? false : true) })
       }
+      console.log(this.questions)
       return this.questions
-    });
+    })
+
+   
   }
 
   split(question: Question) {
@@ -117,12 +146,38 @@ export class QuestionarioComponent implements OnInit {
 
     this.candidateResponse.push(candidateAnswer)
     this.rispostaForm.reset();
+
+    // if(this.questions.length=i){
+    //   this.buttonText="RISULTATO";
+    // }
+
+    // if(this.questions.length==i+1){
+    //   this.router.navigateByUrl('/risultato');
+    // }
+    // console.log(i);
+    // console.log(this.questions.length);
   }
 
   goResult() {
+    
     console.log(this.candidateResponse)
     this.questionarioService.createCandidateAnswer(this.candidateResponse);
     this.router.navigateByUrl('/risultato');
   }
+
+  errorMsg(){
+    console.log(this.Msg);
+    console.log(this.rispostaForm.value.candidateResponse);
+    if(this.rispostaForm.value.candidateResponse == ""){
+      this.Msg=true;
+      console.log(this.Msg);
+      console.log(this.rispostaForm.value.candidateResponse);
+    }
+
+  }
+
+  
+
+  
    
 }

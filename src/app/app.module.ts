@@ -15,17 +15,22 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
+import { CountdownModule } from 'ngx-countdown';
 
 import { EffectsModule } from '@ngrx/effects';
 import { SkillsEffects } from './redux/skill/skill.effects';
+import { LoginEffects } from './redux/login/login.effects';
 import { SenioritiesEffects } from './redux/seniority/seniority.effects';
 import { CandidatesEffects } from './redux/candidate/candidate.effects';
 import { CandidateSkillsEffects } from './redux/candidate-skill/candidate-skill.effects';
 import { QuestionsEffects } from './redux/question/question.effects';
 import { CandidateAnswersEffects } from './redux/candidate-answer/candidate-answer.effects';
 import { FieldsEffects } from './redux/field/field.effects';
-import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
-import { CountdownModule } from 'ngx-countdown';
+import { MailEffects } from './redux/mail/mail.effects';
+import { TestsEffects } from './redux/test-question/test-question.effects';
+
+
 
 
 @NgModule({
@@ -49,8 +54,10 @@ import { CountdownModule } from 'ngx-countdown';
       QuestionsEffects,
       CandidateAnswersEffects,
       FieldsEffects,
+      LoginEffects,
+      MailEffects,
+      TestsEffects,
     ]),
-    EffectsModule.forRoot([SkillsEffects, SenioritiesEffects, CandidatesEffects, CandidateSkillsEffects, QuestionsEffects, CandidateAnswersEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

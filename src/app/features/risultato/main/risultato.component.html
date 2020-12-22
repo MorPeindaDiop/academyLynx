@@ -1,35 +1,46 @@
-
-<div>
+<div id="table">
   <h1 class="testo"> Risultato finale della prova</h1>
-</div>
+  <p class="testo">Candidato: {{candidate.name}} {{candidate.surname}}</p>
+  <div class="container">
+    <div class="grid-container">
 
-<div class="grid-container">
-  
-  <div></div><div></div><div></div>
-  
-  <div>
-    Risultato aritmetico:
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div>
+        Risultato aritmetico:
+      </div>
+
+      <div></div>
+      <div class="punteggio">{{candidate.arithmeticScore}}%</div>
+
+
+      <div>
+        Risultato ponderato:
+      </div>
+
+      <div></div>
+      <div class="punteggio">{{candidate.weightedScore}}%</div>
+
+
+      <div>Domande corrette</div>
+
+      <div></div>
+      <div class="punteggio">{{candidate.ncorrectAnswer}}/{{nQuestion}}</div>
+
+
+      <div>Tempo impiegato:</div>
+      <div></div>
+      <div class="punteggio">{{candidate.time }} minuti</div>
+    </div>
   </div>
-  
-  <div></div>
-  <div>{{candidate.arithmeticScore}}%</div>
- 
- 
-  <div>
-    Risultato ponderato:
-  </div>
-  
-  <div></div>
-  <div>{{candidate.weightedScore}}%</div>
- 
- 
-  <div>Domande corrette</div>
- 
-  <div></div>
-  <div>{{candidate.ncorrectAnswer}}/{{nQuestion}}</div>
-  
- 
-  <div>Tempo impiegato:</div>
-  <div></div>
-  <div>{{candidate.time}}</div>
+</div>
+<div class="posBottoni">
+  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goToLogin()">&nbsp;Esci&nbsp;</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" (click)="download()" class="btn btn-primary" data-dismiss="modal">Esporta</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button"  routerLink="domande" class="btn btn-primary" data-dismiss="modal">Visualizza domande</button>
+
 </div>

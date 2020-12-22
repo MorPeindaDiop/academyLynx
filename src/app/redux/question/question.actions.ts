@@ -11,3 +11,5 @@ export const createQuestion = createAction('[Question] create question', props<{
 
 //delete question
 export const deleteQuestion = createAction('[Question] delete question', props<{id: number}>());
+
+export const resetQuestion= createAction('[Question] reset question');

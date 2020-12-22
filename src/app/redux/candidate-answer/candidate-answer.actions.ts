@@ -11,3 +11,6 @@ export const initCandidateAnswers = createAction('[CandidateAnswer] init candida
 //crea candidato
 export const createCandidateAnswer = createAction('[CandidateAnswer] create candidate answer', props<{candidateResponse: CandidateResponse[]}>());
 
+//current candidate answer
+export const retrieveCandidateAnswersByIdCandidate = createAction('[CandidateAnswer] candidate answers by id', props<{idCandidate: number}>());
+export const initCandidateAnswersByIdCandidate = createAction('[CandidateAnswer] init candidate answers by id', props<{response: Response}>());
