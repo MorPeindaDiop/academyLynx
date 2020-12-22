@@ -5,7 +5,6 @@ export interface Candidate {
     email: string;
     password: string;
     idCandidate?:string;
-    idTest:string;
     idSeniority: number;
     dataTest: Date;
     ncorrectAnswer: number;
