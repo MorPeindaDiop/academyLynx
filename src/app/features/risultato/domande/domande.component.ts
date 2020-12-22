@@ -43,9 +43,10 @@ export class DomandeComponent implements OnInit {
     html2canvas(element).then((canvas)=>{
 
       var imgData=canvas.toDataURL('image/jpeg');
-      var doc =new jsPDF("p", "mm", "a4");
+      var doc =new jsPDF("p", "pc", "a4");
       var width = doc.internal.pageSize.getWidth();
-      doc.addImage(imgData,'JPEG',0,0,width,208);
+      var height = doc.internal.pageSize.getHeight();
+      doc.addImage(imgData,'JPEG',0,0,width,height);
       doc.save("domande.pdf");
       
     })
