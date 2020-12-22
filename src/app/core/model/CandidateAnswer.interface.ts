@@ -1,7 +1,7 @@
 export interface CandidateAnswer {
     idCandidate: number;
     idQuestion: number;
-    idTest: string;
-    answer: string;
-    isCorrect: boolean;
+    idTest: number;
+    answer?: string;
+    isCorrect?: boolean;
 }

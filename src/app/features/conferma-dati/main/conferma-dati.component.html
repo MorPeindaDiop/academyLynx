@@ -46,22 +46,16 @@
             l'email correttamente</span>
         </div>
       </div>
-      <br>
-      <div class="col" style="text-align: left;">
-        <!-- <div class="form-group">
+
+      <!-- <div class="col" style="text-align: left;">
+        <div class="form-group">
           <label>Password:</label>
           <input type="password" class="form-control" placeholder="password"
             formControlName="password">
-
-        </div> -->
-        <div class="form-group">
-          <label>Id Test:</label>
-          <input type="text" class="form-control" placeholder="idTest"
-            formControlName="idTest">
-          <!-- mancano i controlli non ho sbatti di farli -pietro -->
-
+          mancano i controlli non ho sbatti di farli -pietro
+          
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -141,7 +135,7 @@
       <div class="col" style="text-align: center;">
         <div class="form-group">
           <button type="submit" class="btn btn-primary" [disabled]="!candidateForm.valid || skill.value==null"
-            data-toggle="modal" data-target="#exampleModal">
+            data-toggle="modal" data-target="#exampleModal" (click)="createTest()">
             Conferma
           </button><br><br>
           <button class="btn btn-primary" routerLink="/admin/panel">

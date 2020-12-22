@@ -67,6 +67,7 @@ console.log("costruttore questionaraio")
     })
 
     this.questionarioService.retrieveAllSkills();
+    this.questionarioService.retrieveAllQuestions();
 
   }
 
@@ -88,21 +89,21 @@ console.log("costruttore questionaraio")
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate })
   
 
-    this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
-      for (let seniority of seniorities) {
-        if (seniority.id == this.candidate.idSeniority) {
-          return this.seniority = seniority;
-        }
-      }
-    })
+    // this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
+    //   for (let seniority of seniorities) {
+    //     if (seniority.id == this.candidate.idSeniority) {
+    //       return this.seniority = seniority;
+    //     }
+    //   }
+    // })
 
-    this.store.pipe(select(selectCandidatesSkill)).subscribe((candidateSkills) => {
-      for (let candidateSkill of candidateSkills) {
-        if (candidateSkill.idCandidate == this.candidate.id) {
-          this.candidateSkills.push(candidateSkill.idSkill)
-        }
-      }
-    })
+    // this.store.pipe(select(selectCandidatesSkill)).subscribe((candidateSkills) => {
+    //   for (let candidateSkill of candidateSkills) {
+    //     if (candidateSkill.idCandidate == this.candidate.id) {
+    //       this.candidateSkills.push(candidateSkill.idSkill)
+    //     }
+    //   }
+    // })
 
     
 

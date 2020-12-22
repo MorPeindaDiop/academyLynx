@@ -1,6 +1,7 @@
 import { Params } from '@angular/router';
 import { createSelector } from '@ngrx/store';
 import { AppState } from '..';
+import { selectRouteParams } from '../router';
 import { CandidateAnswersState } from './candidate-answer.reducers';
 
 export const selectCandidateAnswersState = (state: AppState) => state.candidateAnswersState;

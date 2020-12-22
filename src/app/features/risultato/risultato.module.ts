@@ -14,4 +14,4 @@ import { DomandeComponent } from './domande/domande.component';
     SharedModule,
   ]
 })
-export class RisultatoModule { }
+export class RisultatoModule { } 

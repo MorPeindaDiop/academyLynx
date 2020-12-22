@@ -11,6 +11,8 @@ import { Skill } from 'src/app/core/model/Skill.interface';
 import { Seniority } from 'src/app/core/model/Seniority.interface';
 import { CandidateSkill } from 'src/app/core/model/CandidateSkill.interface';
 import { Router } from '@angular/router';
+import { CreateQuestionarioService } from '../services/create-questionario.service';
+import { TestQuestion } from 'src/app/core/model/TestQuestion.interface';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class ConfermaDatiComponent implements OnInit {
   psw: string = "";
   possible: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, /*private createQuestionarioService: CreateQuestionarioService, */private fb: FormBuilder, private router: Router) {
+  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private createQuestionarioService: CreateQuestionarioService, private fb: FormBuilder, private router: Router) {
     this.makeid();
   }
 
@@ -38,7 +40,6 @@ export class ConfermaDatiComponent implements OnInit {
   
     return this.psw;
   }
-
 
   keyPressAlpha(event) {
 
@@ -59,8 +60,7 @@ export class ConfermaDatiComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      idTest:['', Validators.required],
+      password: [this.psw, Validators.required],
       idSeniority: ['', Validators.required],
     })
 
@@ -87,14 +87,14 @@ export class ConfermaDatiComponent implements OnInit {
     await this.delay(50);
     this.selectCurrentCandidate();
   }
-
+  
   async selectCurrentCandidate() {
-    await this.delay(30);
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.idCandidate = candidate.id });
-   
-    this.createCandidateSkill()
+    console.log(this.idCandidate)
+    this.createCandidateSkill();
+    this.createTest();
   }
-
+  
   createCandidateSkill() {
     
     for (let idSkill of this.skill.value) {
@@ -105,7 +105,20 @@ export class ConfermaDatiComponent implements OnInit {
       this.confermaDatiService.createCandidateSkill(candSkill)
     }
   }
+  
+  createTest() {
+    let test: TestQuestion = {
+      idCandidate: this.idCandidate,
+    }
+    console.log("test: -->", test);
+    this.confermaDatiService.createTest(test)
+    this.createCandidateTest();
+  }
+  
 
+  createCandidateTest() {
+    this.createQuestionarioService.createCandidateTest();
+  }
   
   goToQuestionario() {    
     this.router.navigateByUrl('/questionario');
