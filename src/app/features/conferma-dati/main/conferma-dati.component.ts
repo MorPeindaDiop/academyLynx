@@ -24,8 +24,19 @@ export class ConfermaDatiComponent implements OnInit {
   skill = new FormControl();
   idCandidate: number;
 
-  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, private fb: FormBuilder, private router: Router) {
+  psw: string = "";
+  possible: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+  constructor(private store: Store, private confermaDatiService: ConfermaDatiService, /*private createQuestionarioService: CreateQuestionarioService, */private fb: FormBuilder, private router: Router) {
+    this.makeid();
+  }
+
+  makeid() {
+    for (var i = 0; i < 8; i++)
+      this.psw += this.possible.charAt(Math.floor(Math.random() * this.possible.length));
+    console.log(this.psw)
+  
+    return this.psw;
   }
 
 
