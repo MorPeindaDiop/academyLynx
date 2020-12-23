@@ -17,7 +17,7 @@ import { ConfermaDatiService } from './conferma-dati.service';
 })
 export class CreateQuestionarioService {
 
-  tests: TestQuestion[] = [];
+  idTest: number;
   candidate: Candidate; 
   candidateAnswers: CandidateAnswer[] = [];
   seniority: Seniority;
@@ -29,7 +29,11 @@ export class CreateQuestionarioService {
   createCandidateTest() {
     this.store.pipe(select(getCurrentCandidate)).subscribe((candidate) => { return this.candidate = candidate });
   
-    this.store.pipe(select(selectTests)).subscribe((tests) => { return this.tests = tests });
+    this.store.pipe(select(selectTests)).subscribe((tests) => {
+      for (let test of tests) {
+        if (test.idCandidate == this.candidate.id)
+          this.idTest == test.idTest
+      }});
 
     this.store.pipe(select(selectSeniorities)).subscribe((seniorities) => { 
       for (let seniority of seniorities) {
@@ -54,9 +58,9 @@ export class CreateQuestionarioService {
         for (let idSkill of this.candidateSkills) {
           if (item.difficulty >= this.seniority.minDifficulty && item.difficulty <= this.seniority.maxDifficulty && item.idSkill == idSkill) {
             let ca: CandidateAnswer = {
-                idCandidate: 0,
-                idQuestion: 0,
-                idTest:0
+                idCandidate: this.candidate.id,
+                idQuestion: item.id,
+                idTest: this.idTest
             }
             this.candidateAnswers.push(ca)
           }
